@@ -1,27 +1,21 @@
 // ============================================================
-// Biblical Genealogy Interactive Tree with Full Database
-// (Desktop + Mobile / Tablet Friendly)
+// Biblical Genealogy Interactive Tree (Upgraded)
+// Desktop + Mobile/Tablet Friendly — UTF-8 safe symbols
 // ============================================================
 
 let genealogyData = {};
-
 let currentPath = [];
 let expandedNodes = new Set();
 
+// ---------- Utilities ----------
 function prettifyKey(k) {
   return String(k).replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 }
-
 function isPersonObject(v) {
   return v && typeof v === 'object' && (
-    'descendants' in v ||
-    'bio' in v ||
-    'scripture' in v ||
-    'name' in v ||
-    'id' in v
+    'descendants' in v || 'bio' in v || 'scripture' in v || 'name' in v || 'id' in v
   );
 }
-
 function flattenEntries(obj, outMap) {
   Object.entries(obj || {}).forEach(([key, value]) => {
     if (!value || typeof value !== 'object') return;
@@ -42,7 +36,28 @@ function flattenEntries(obj, outMap) {
     }
   });
 }
+function isScriptureQuery(q) {
+  // e.g., "Genesis 5", "1 Samuel 17", "Matt 1", "Rom 11:17"
+  const re = /^\s*(?:[1-3]\s*)?[A-Za-z.]+(?:\s+[A-Za-z.]+)?\s+\d+(?::\d+(-\d+)?)?\s*$/;
+  return re.test(q);
+}
+function findPerson(idOrName) {
+  if (!idOrName) return null;
+  const key = String(idOrName).trim();
+  if (genealogyData[key]) return genealogyData[key];
+  const lower = key.toLowerCase();
+  // try by id field or exact/display name
+  return Object.values(genealogyData).find(p =>
+    (p.id && String(p.id).toLowerCase() === lower) ||
+    (p.name && p.name.toLowerCase() === lower)
+  );
+}
+function fuzzyFind(nameLike) {
+  const q = String(nameLike).toLowerCase();
+  return Object.values(genealogyData).filter(p => p.name && p.name.toLowerCase().includes(q));
+}
 
+// ---------- Load Data ----------
 async function loadGenealogyData() {
   try {
     const res = await fetch('./biblical_genealogy.json', { cache: 'no-store' });
@@ -54,36 +69,23 @@ async function loadGenealogyData() {
     flattenEntries(source, normalized);
     genealogyData = normalized;
 
-    console.info('Genealogy loaded — person count:', Object.keys(genealogyData).length);
-    console.debug('Has adam:', !!(genealogyData['adam'] || Object.values(genealogyData).find(p=>p.id==='adam')));
-    console.debug('Sample keys:', Object.keys(genealogyData).slice(0,40));
-
     initializeTree();
     setupEventListeners();
     updateStats();
+
+    console.info('Genealogy loaded — people:', Object.keys(genealogyData).length);
   } catch (err) {
     console.error('Error loading genealogy data:', err);
-    const notice = document.getElementById('data-error-notice');
-    if (notice) {
-      notice.style.display = 'block';
-      notice.textContent = 'Error loading biblical_genealogy.json — check console.';
-    }
     initializeTree();
     setupEventListeners();
     updateStats();
   }
 }
 
-function findPerson(id) {
-  if (!id) return null;
-  if (genealogyData[id]) return genealogyData[id];
-  const byId = Object.values(genealogyData).find(p => p && String(p.id) === String(id));
-  if (byId) return byId;
-  return Object.values(genealogyData).find(p => p && p.name && p.name.toLowerCase() === String(id).toLowerCase());
-}
-
+// ---------- Tree ----------
 function initializeTree() {
   const root = document.getElementById("tree-root");
+
   const rootPerson =
     genealogyData["adam"] ||
     genealogyData.root ||
@@ -106,36 +108,34 @@ function createNode(personData) {
   const div = document.createElement("div");
   div.className = "node-box";
   div.dataset.personId = personData.id;
-  
+
   const hasDescendants = personData.descendants && personData.descendants.length > 0;
   div.innerHTML = `
     <span class="node-name">${personData.name}</span>
     ${hasDescendants ? '<span class="expand-indicator">▼</span>' : ''}
   `;
 
+  // Single click expands
   div.addEventListener("click", e => {
     e.stopPropagation();
-    if (hasDescendants) {
-      toggleBranch(div, personData);
-    }
+    if (hasDescendants) toggleBranch(div, personData);
   });
 
+  // Double click opens modal
   div.addEventListener("dblclick", e => {
     e.stopPropagation();
     openModal(personData);
   });
 
+  // Long-press opens modal (mobile)
   let touchTimer;
   div.addEventListener("touchstart", e => {
     e.stopPropagation();
-    touchTimer = setTimeout(() => {
-      openModal(personData);
-    }, 600);
+    touchTimer = setTimeout(() => openModal(personData), 600);
   });
-
-  ["touchend", "touchcancel", "touchmove"].forEach(evt => {
-    div.addEventListener(evt, () => clearTimeout(touchTimer));
-  });
+  ["touchend", "touchcancel", "touchmove"].forEach(evt =>
+    div.addEventListener(evt, () => clearTimeout(touchTimer))
+  );
 
   return div;
 }
@@ -144,7 +144,7 @@ function toggleBranch(container, personData) {
   const personId = personData.id;
   const existing = container.nextElementSibling;
 
-  if (existing && existing.classList.contains("branch") && existing.dataset.parentId === personId) {
+  if (existing && existing.classList.contains("branch") && existing.dataset.parentId === String(personId)) {
     if (expandedNodes.has(personId)) {
       existing.remove();
       expandedNodes.delete(personId);
@@ -169,8 +169,7 @@ function toggleBranch(container, personData) {
   descendants.forEach(childId => {
     const childData = genealogyData[childId] || Object.values(genealogyData).find(p => p && p.id === childId);
     if (childData) {
-      const childNode = createNode(childData);
-      branch.appendChild(childNode);
+      branch.appendChild(createNode(childData));
     } else {
       console.warn(`Missing data for descendant: ${childId}`);
     }
@@ -187,6 +186,7 @@ function toggleBranch(container, personData) {
   }
 }
 
+// ---------- Modal ----------
 function openModal(personData) {
   const modal = document.getElementById("infoModal");
   const modalContent = document.getElementById("person-info");
@@ -214,85 +214,237 @@ function openModal(personData) {
   `;
 }
 
+// ---------- Global UI / Events ----------
 function setupEventListeners() {
+  // Modal close
   const modal = document.getElementById("infoModal");
   const closeBtn = document.querySelector(".close");
   closeBtn.onclick = () => (modal.style.display = "none");
-  window.onclick = e => {
-    if (e.target === modal) modal.style.display = "none";
-  };
+  window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
 
+  // Search
   const searchBtn = document.getElementById("search-btn");
   const searchInput = document.getElementById("search-input");
-  
-  searchBtn.addEventListener('click', () => performSearch(searchInput.value));
-  searchInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') performSearch(searchInput.value);
-  });
+  searchBtn.addEventListener('click', () => smartSearch(searchInput.value));
+  searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') smartSearch(searchInput.value); });
 
+  // Quick navigation buttons
   document.querySelectorAll('.nav-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const personId = btn.dataset.person;
-      jumpToPerson(personId);
-    });
+    btn.addEventListener('click', () => jumpToPerson(btn.dataset.person));
   });
 
-  document.querySelectorAll('[data-person]').forEach(btn => {
-    btn.removeEventListener('click', btn._personHandler);
-    const handler = (e) => {
-      const id = btn.getAttribute('data-person');
-      jumpToPerson(id);
-    };
-    btn.addEventListener('click', handler);
-    btn._personHandler = handler;
+  // Lineage tools
+  document.getElementById('btn-ancestors').addEventListener('click', () => {
+    const id = document.getElementById('lin-person').value.trim();
+    if (!id) return alert('Enter a person id or name');
+    const person = findPerson(id) || (fuzzyFind(id)[0] || null);
+    if (!person) return alert('Person not found');
+    const list = getAncestors(person.id);
+    displayResults(`Ancestors of ${person.name}`, list);
+  });
+
+  document.getElementById('btn-descendants').addEventListener('click', () => {
+    const id = document.getElementById('lin-person').value.trim();
+    if (!id) return alert('Enter a person id or name');
+    const person = findPerson(id) || (fuzzyFind(id)[0] || null);
+    if (!person) return alert('Person not found');
+    const list = getDescendants(person.id);
+    displayResults(`Descendants of ${person.name}`, list);
+  });
+
+  document.getElementById('btn-highlight-messianic').addEventListener('click', () => {
+    highlightMessianicLine();
+    alert('Messianic line highlighted (if nodes are visible). Tip: navigate to Adam or David first.');
+  });
+
+  // Compare
+  document.getElementById('btn-compare').addEventListener('click', () => {
+    const a = document.getElementById('cmp-a').value.trim();
+    const b = document.getElementById('cmp-b').value.trim();
+    if (!a || !b) return alert('Enter both people to compare');
+    const p1 = findPerson(a) || (fuzzyFind(a)[0] || null);
+    const p2 = findPerson(b) || (fuzzyFind(b)[0] || null);
+    if (!p1 || !p2) return alert('One or both people not found');
+    comparePeople(p1.id, p2.id);
+  });
+
+  // Tribe & roles
+  document.getElementById('btn-tribe').addEventListener('click', () => {
+    const tribe = document.getElementById('tribe-select').value;
+    if (!tribe) return;
+    listTribe(tribe);
+  });
+  document.querySelectorAll('.role-btn').forEach(btn => {
+    btn.addEventListener('click', () => filterByRole(btn.dataset.role));
+  });
+
+  // Timeline
+  document.getElementById('btn-chronology').addEventListener('click', listChronologically);
+}
+
+// ---------- Search ----------
+function smartSearch(q) {
+  const query = (q || '').trim();
+  if (!query) return;
+  if (isScriptureQuery(query)) return searchByScripture(query);
+
+  // name-based search
+  const exact = findPerson(query);
+  if (exact) return openModal(exact);
+
+  const results = fuzzyFind(query).slice(0, 25);
+  if (results.length === 0) return alert('No matches found for: ' + query);
+  displayResults(`Matches for "${query}"`, results);
+}
+
+function searchByScripture(ref) {
+  const results = Object.values(genealogyData).filter(p =>
+    p.scripture && p.scripture.toLowerCase().includes(ref.toLowerCase())
+  );
+  displayResults(`People connected to ${ref}`, results);
+}
+
+// ---------- Lineage helpers ----------
+function getAncestors(id, seen = new Set()) {
+  const ancestors = [];
+  for (const person of Object.values(genealogyData)) {
+    if (!person || !Array.isArray(person.descendants)) continue;
+    if (person.descendants.includes(id) && !seen.has(person.id)) {
+      ancestors.push(person);
+      seen.add(person.id);
+      ancestors.push(...getAncestors(person.id, seen));
+    }
+  }
+  // dedupe while preserving order
+  const uniq = [];
+  const seenIds = new Set();
+  for (const p of ancestors) { if (p && !seenIds.has(p.id)) { uniq.push(p); seenIds.add(p.id); } }
+  return uniq;
+}
+
+function getDescendants(id, seen = new Set()) {
+  const person = genealogyData[id];
+  if (!person || !Array.isArray(person.descendants)) return [];
+  const out = [];
+  for (const childId of person.descendants) {
+    const child = genealogyData[childId] || null;
+    if (child && !seen.has(child.id)) {
+      out.push(child);
+      seen.add(child.id);
+      out.push(...getDescendants(child.id, seen));
+    }
+  }
+  // dedupe
+  const uniq = [];
+  const ids = new Set();
+  for (const p of out) { if (p && !ids.has(p.id)) { uniq.push(p); ids.add(p.id); } }
+  return uniq;
+}
+
+// ---------- Themes / Filters ----------
+function listTribe(tribe) {
+  const t = String(tribe).toLowerCase();
+  const tribeMembers = Object.values(genealogyData).filter(p =>
+    (p.bio && p.bio.toLowerCase().includes(t)) ||
+    (p.name && p.name.toLowerCase().includes(t))
+  );
+  displayResults(`${tribe} Tribe`, tribeMembers);
+}
+
+function filterByRole(keyword) {
+  const k = String(keyword).toLowerCase();
+  const matches = Object.values(genealogyData).filter(p =>
+    p.bio && p.bio.toLowerCase().includes(k)
+  );
+  const title = k === 'woman' ? 'Women of Faith' : `People associated with "${keyword}"`;
+  displayResults(title, matches);
+}
+
+const messianicLine = [
+  "adam","seth","enos","enosh","kenan","mahalalel","jared","enoch","methuselah","lamach","lamech","noah",
+  "shem","arapachshad","arphaxad","shelah","heber","peleg","reu","serug","nahor","terah","abraham",
+  "isaac","jacob","judah","pharez","perez","hezron","ram","amminadab","nahshon","salmon","boaz",
+  "obed","jesse","david","solomon","rehoboam","abijah","asa","jehoshaphat","joram","uzziah","jotham",
+  "ahaz","hezekiah","manasseh","amon","josiah","jeconiah","jehoiachin","shealtiel","zerubbabel",
+  "abiud","eliakim","azor","zadok","achim","eliud","eleazar","matthan","jacob","joseph","jesus"
+].map(s => s.toLowerCase());
+
+function highlightMessianicLine() {
+  document.querySelectorAll('.highlight-messianic').forEach(n => n.classList.remove('highlight-messianic'));
+  messianicLine.forEach(id => {
+    // accept exact id or a person whose id matches case-insensitively
+    const match = Object.values(genealogyData).find(p => p.id && p.id.toLowerCase() === id);
+    if (!match) return;
+    const el = document.querySelector(`[data-person-id="${match.id}"]`);
+    if (el) el.classList.add("highlight-messianic");
   });
 }
 
-function performSearch(query) {
-  if (!query.trim()) return;
-  
-  const results = Object.entries(genealogyData)
-    .filter(([id, person]) => 
-      person.name && person.name.toLowerCase().includes(query.toLowerCase())
-    )
-    .slice(0, 10);
+function listChronologically() {
+  const ordered = Object.values(genealogyData)
+    .filter(p => p && typeof p.scripture === 'string' && p.scripture.trim().length)
+    .sort((a, b) => a.scripture.localeCompare(b.scripture));
+  displayResults("Biblical Figures (Approximate Order)", ordered.slice(0, 250)); // cap to keep UI snappy
+}
 
-  if (results.length === 0) {
-    alert('No matches found for: ' + query);
+// ---------- Compare ----------
+function comparePeople(id1, id2) {
+  const p1 = genealogyData[id1];
+  const p2 = genealogyData[id2];
+  const modal = document.getElementById("infoModal");
+  const content = document.getElementById("person-info");
+  modal.style.display = "block";
+  content.innerHTML = `
+    <h2>Compare ${p1?.name || id1} and ${p2?.name || id2}</h2>
+    <div class="compare-grid">
+      <div>
+        <h3>${p1?.name || 'Unknown'}</h3>
+        <p>${p1?.bio || 'No biography available.'}</p>
+        <small class="scripture-refs">${p1?.scripture || ''}</small>
+      </div>
+      <div>
+        <h3>${p2?.name || 'Unknown'}</h3>
+        <p>${p2?.bio || 'No biography available.'}</p>
+        <small class="scripture-refs">${p2?.scripture || ''}</small>
+      </div>
+    </div>
+  `;
+}
+
+// ---------- Results rendering ----------
+function displayResults(title, list) {
+  const modal = document.getElementById("infoModal");
+  const content = document.getElementById("person-info");
+  modal.style.display = "block";
+
+  if (!list || list.length === 0) {
+    content.innerHTML = `<h2>${title}</h2><p>No matching entries found.</p>`;
     return;
   }
 
-  if (results.length === 1) {
-    openModal(results[0][1]);
-  } else {
-    const modal = document.getElementById("infoModal");
-    const modalContent = document.getElementById("person-info");
-    modal.style.display = "block";
-    
-    modalContent.innerHTML = `
-      <h2>Search Results for "${query}"</h2>
-      <div class="search-results">
-        ${results.map(([id, person]) => `
-          <div class="search-result-item" data-person-id="${id}">
-            <strong>${person.name}</strong>
-            <p>${person.bio.substring(0, 150)}...</p>
-          </div>
-        `).join('')}
-      </div>
-    `;
+  content.innerHTML = `
+    <h2>${title} (${list.length})</h2>
+    <div class="search-results">
+      ${list.map(p => `
+        <div class="search-result-item" data-person-id="${p.id}">
+          <strong>${p.name}</strong>
+          <p>${(p.bio || '').substring(0, 220)}${(p.bio && p.bio.length > 220) ? '…' : ''}</p>
+        </div>
+      `).join('')}
+    </div>
+  `;
 
-    modalContent.querySelectorAll('.search-result-item').forEach(item => {
-      item.addEventListener('click', () => {
-        const personId = item.dataset.personId;
-        modal.style.display = "none";
-        jumpToPerson(personId);
-      });
+  content.querySelectorAll('.search-result-item').forEach(item => {
+    item.addEventListener('click', () => {
+      modal.style.display = "none";
+      jumpToPerson(item.dataset.personId);
     });
-  }
+  });
 }
 
+// ---------- Jump / Breadcrumb / Stats ----------
 function jumpToPerson(personId) {
-  const person = findPerson(personId);
+  const person = findPerson(personId) || (fuzzyFind(personId)[0] || null);
   if (!person) {
     console.error('Person not found:', personId);
     return;
@@ -310,14 +462,15 @@ function jumpToPerson(personId) {
 
 function updateBreadcrumb(path) {
   const breadcrumb = document.getElementById("breadcrumb");
-  breadcrumb.innerHTML = path.map((name, i) => 
+  breadcrumb.innerHTML = path.map((name) =>
     `<span class="breadcrumb-item">${name}</span>`
   ).join(' → ');
 }
 
 function updateStats() {
   const count = Object.keys(genealogyData).length;
-  document.getElementById('person-count').textContent = count;
+  const el = document.getElementById('person-count');
+  if (el) el.textContent = count;
 }
 
 window.addEventListener('DOMContentLoaded', loadGenealogyData);
