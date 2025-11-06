@@ -1,6 +1,7 @@
 // ============================================================
-// Biblical Genealogy Interactive Tree (Upgraded)
+// Biblical Genealogy Interactive Tree (Upgraded v2)
 // Desktop + Mobile/Tablet Friendly — UTF-8 safe symbols
+// Added: forgiving text search with normalization (no exact-format requirement)
 // ============================================================
 
 let genealogyData = {};
@@ -36,25 +37,48 @@ function flattenEntries(obj, outMap) {
     }
   });
 }
+
+// Normalize text (for search)
+function normalizeText(str) {
+  return String(str || "")
+    .toLowerCase()
+    .replace(/[\p{P}\p{S}]+/gu, "") // remove punctuation/symbols
+    .replace(/\s+/g, " ") // collapse spaces
+    .trim();
+}
+
 function isScriptureQuery(q) {
   // e.g., "Genesis 5", "1 Samuel 17", "Matt 1", "Rom 11:17"
   const re = /^\s*(?:[1-3]\s*)?[A-Za-z.]+(?:\s+[A-Za-z.]+)?\s+\d+(?::\d+(-\d+)?)?\s*$/;
   return re.test(q);
 }
+
 function findPerson(idOrName) {
   if (!idOrName) return null;
-  const key = String(idOrName).trim();
-  if (genealogyData[key]) return genealogyData[key];
-  const lower = key.toLowerCase();
-  // try by id field or exact/display name
-  return Object.values(genealogyData).find(p =>
-    (p.id && String(p.id).toLowerCase() === lower) ||
-    (p.name && p.name.toLowerCase() === lower)
-  );
+  const q = normalizeText(idOrName);
+
+  // Direct ID match
+  if (genealogyData[idOrName]) return genealogyData[idOrName];
+
+  // Match by normalized id or name
+  for (const p of Object.values(genealogyData)) {
+    if (!p) continue;
+    if (normalizeText(p.id) === q) return p;
+    if (normalizeText(p.name) === q) return p;
+  }
+
+  return null;
 }
+
 function fuzzyFind(nameLike) {
-  const q = String(nameLike).toLowerCase();
-  return Object.values(genealogyData).filter(p => p.name && p.name.toLowerCase().includes(q));
+  if (!nameLike) return [];
+  const q = normalizeText(nameLike);
+  return Object.values(genealogyData).filter(p => {
+    const n = normalizeText(p.name);
+    const i = normalizeText(p.id);
+    const b = normalizeText(p.bio || "");
+    return n.includes(q) || i.includes(q) || b.includes(q);
+  });
 }
 
 // ---------- Load Data ----------
@@ -423,54 +447,4 @@ function displayResults(title, list) {
   }
 
   content.innerHTML = `
-    <h2>${title} (${list.length})</h2>
-    <div class="search-results">
-      ${list.map(p => `
-        <div class="search-result-item" data-person-id="${p.id}">
-          <strong>${p.name}</strong>
-          <p>${(p.bio || '').substring(0, 220)}${(p.bio && p.bio.length > 220) ? '…' : ''}</p>
-        </div>
-      `).join('')}
-    </div>
-  `;
-
-  content.querySelectorAll('.search-result-item').forEach(item => {
-    item.addEventListener('click', () => {
-      modal.style.display = "none";
-      jumpToPerson(item.dataset.personId);
-    });
-  });
-}
-
-// ---------- Jump / Breadcrumb / Stats ----------
-function jumpToPerson(personId) {
-  const person = findPerson(personId) || (fuzzyFind(personId)[0] || null);
-  if (!person) {
-    console.error('Person not found:', personId);
-    return;
-  }
-
-  expandedNodes.clear();
-  currentPath = [person.name];
-
-  const root = document.getElementById('tree-root');
-  root.innerHTML = '';
-  const node = createNode(person);
-  root.appendChild(node);
-  updateBreadcrumb(currentPath);
-}
-
-function updateBreadcrumb(path) {
-  const breadcrumb = document.getElementById("breadcrumb");
-  breadcrumb.innerHTML = path.map((name) =>
-    `<span class="breadcrumb-item">${name}</span>`
-  ).join(' → ');
-}
-
-function updateStats() {
-  const count = Object.keys(genealogyData).length;
-  const el = document.getElementById('person-count');
-  if (el) el.textContent = count;
-}
-
-window.addEventListener('DOMContentLoaded', loadGenealogyData);
+    <h2>${title}
