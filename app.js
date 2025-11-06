@@ -4,16 +4,36 @@
 
 // The complete genealogy database
 const genealogyData = {
-  "root": {
+  "adam": {
     "id": "adam",
     "name": "Adam & Eve",
     "bio": "The first humans created by God in His image. Adam named all the animals and was given dominion over creation. Eve was created from Adam's rib as his helper. They lived in the Garden of Eden until the Fall, when they ate the forbidden fruit and brought sin into the world. They had three named sons: Cain, Abel, and Seth.",
     "scripture": "Gen 1:26-27; 2:7-25; 3:1-24; 5:1-5",
     "descendants": ["cain", "abel", "seth"]
   },
-  // ... [Include the ENTIRE JSON genealogy database here - all 400+ entries]
-  // For brevity in this response, I'm showing the structure. 
-  // You would paste the complete JSON from the artifact here.
+  "cain": {
+    "id": "cain",
+    "name": "Cain",
+    "bio": "Firstborn son of Adam and Eve. A farmer who brought an offering of crops to God, which was not accepted. In jealousy, he murdered his brother Abel, becoming the first murderer. God marked him and sent him to wander in the land of Nod, east of Eden, where he built a city named after his son Enoch.",
+    "scripture": "Gen 4:1-17, 25; Heb 11:4; 1 John 3:12; Jude 1:11",
+    "descendants": ["enoch_cain"]
+  },
+  "abel": {
+    "id": "abel",
+    "name": "Abel",
+    "bio": "Second son of Adam and Eve. A shepherd who brought the firstborn of his flock as an offering to God, which was accepted. He was murdered by his brother Cain out of jealousy. Abel is remembered as the first martyr and a man of faith whose blood cried out from the ground.",
+    "scripture": "Gen 4:2-10, 25; Matt 23:35; Luke 11:51; Heb 11:4; 12:24",
+    "descendants": []
+  },
+  "seth": {
+    "id": "seth",
+    "name": "Seth",
+    "bio": "Third named son of Adam and Eve, born after Abel's murder. His name means 'appointed' or 'granted,' as Eve said God appointed him in place of Abel. Through Seth came the godly line that called upon the name of the LORD, leading ultimately to Noah and Christ.",
+    "scripture": "Gen 4:25-26; 5:3-8; Luke 3:38",
+    "descendants": ["enosh"]
+  },
+  // ... paste the REST of your genealogy data here with the same structure
+  // Make sure EVERY entry has an "id" field matching its key
 };
 
 // State management
@@ -29,14 +49,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initializeTree() {
   const root = document.getElementById("tree-root");
-  const rootPerson = genealogyData.root;
-  const rootNode = createNode(rootPerson, genealogyData);
+  // tolerant lookup for the root person
+  const rootPerson =
+    genealogyData["adam"] ||
+    genealogyData.root ||
+    Object.values(genealogyData).find(p => p && p.id === "adam") ||
+    Object.values(genealogyData)[0];
+
+  if (!rootPerson) {
+    console.error("No root person found in genealogyData");
+    return;
+  }
+
+  const rootNode = createNode(rootPerson);
   root.innerHTML = '';
   root.appendChild(rootNode);
-  updateBreadcrumb([rootPerson.name]);
+  currentPath = [rootPerson.name];
+  updateBreadcrumb(currentPath);
 }
 
-function createNode(personData, dataSource) {
+function createNode(personData) {
   const div = document.createElement("div");
   div.className = "node-box";
   div.dataset.personId = personData.id;
@@ -52,7 +84,7 @@ function createNode(personData, dataSource) {
   div.addEventListener("click", e => {
     e.stopPropagation();
     if (hasDescendants) {
-      toggleBranch(div, personData, dataSource);
+      toggleBranch(div, personData);
     }
   });
 
@@ -65,42 +97,55 @@ function createNode(personData, dataSource) {
   return div;
 }
 
-function toggleBranch(container, personData, dataSource) {
+function toggleBranch(container, personData) {
   const personId = personData.id;
   const existing = container.nextElementSibling;
-  
-  // If branch exists, toggle it
+
+  // If branch exists for this node, toggle collapse
   if (existing && existing.classList.contains("branch") && existing.dataset.parentId === personId) {
     if (expandedNodes.has(personId)) {
       existing.remove();
       expandedNodes.delete(personId);
-      container.querySelector('.expand-indicator').textContent = '▼';
+      const indicator = container.querySelector('.expand-indicator');
+      if (indicator) indicator.textContent = '▼';
+    } else {
+      existing.classList.add('active');
+      expandedNodes.add(personId);
+      const indicator = container.querySelector('.expand-indicator');
+      if (indicator) indicator.textContent = '▲';
     }
     return;
   }
 
-  // Create new branch
-  if (!personData.descendants || personData.descendants.length === 0) return;
+  // Create new branch (tolerant lookup for children)
+  const descendants = personData.descendants || [];
+  if (descendants.length === 0) return;
 
   const branch = document.createElement("div");
   branch.className = "branch active";
   branch.dataset.parentId = personId;
 
-  personData.descendants.forEach(childId => {
-    const childData = dataSource[childId];
+  descendants.forEach(childId => {
+    // allow child lookup by key or by .id inside entries
+    const childData = genealogyData[childId] || Object.values(genealogyData).find(p => p && p.id === childId);
     if (childData) {
-      const childNode = createNode(childData, dataSource);
+      const childNode = createNode(childData);
       branch.appendChild(childNode);
+    } else {
+      console.warn(`Missing data for descendant: ${childId}`);
     }
   });
 
   container.insertAdjacentElement("afterend", branch);
   expandedNodes.add(personId);
-  container.querySelector('.expand-indicator').textContent = '▲';
-  
-  // Update breadcrumb
-  currentPath.push(personData.name);
-  updateBreadcrumb(currentPath);
+  const indicator = container.querySelector('.expand-indicator');
+  if (indicator) indicator.textContent = '▲';
+
+  // update breadcrumb (avoid duplicates)
+  if (!currentPath.length || currentPath[currentPath.length - 1] !== personData.name) {
+    currentPath.push(personData.name);
+    updateBreadcrumb(currentPath);
+  }
 }
 
 function openModal(personData) {
@@ -200,19 +245,22 @@ function performSearch(query) {
 }
 
 function jumpToPerson(personId) {
-  const person = genealogyData[personId];
-  if (!person) return;
+  // tolerant lookup: direct key or find by .id
+  const person = genealogyData[personId] || Object.values(genealogyData).find(p => p && p.id === personId);
+  if (!person) {
+    console.error(`Person not found: ${personId}`);
+    return;
+  }
 
-  // Reset tree
   expandedNodes.clear();
   currentPath = [];
-  
+
   const root = document.getElementById("tree-root");
   root.innerHTML = '';
-  
-  const node = createNode(person, genealogyData);
+
+  const node = createNode(person);
   root.appendChild(node);
-  
+
   updateBreadcrumb([person.name]);
 }
 
@@ -224,6 +272,6 @@ function updateBreadcrumb(path) {
 }
 
 function updateStats() {
-  const count = Object.keys(genealogyData).length - 1; // -1 for root
+  const count = Object.keys(genealogyData).length;
   document.getElementById('person-count').textContent = count;
 }
