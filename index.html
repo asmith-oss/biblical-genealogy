@@ -5,128 +5,91 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Biblical Genealogy Explorer</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="app.js" defer></script>
 </head>
-
 <body>
   <header>
-    <h1>📜 Biblical Genealogy Explorer</h1>
-    <p class="subtitle">Follow the Bloodline from Adam to Messiah</p>
+    <h1>Biblical Genealogy Explorer</h1>
+    <p>Explore the family lines, covenants, and key figures of Scripture</p>
   </header>
 
   <main>
-  <section id="intro">
-    <h2>Tracing the Lineage of Scripture</h2>
-    <p>
-      This interactive genealogy reveals how the people, families, and nations of the Bible are connected
-      across generations. Each name tells a story—of faith, failure, promise, and redemption—woven into the
-      greater narrative of Scripture.
-    </p>
-    <p>
-      Explore how kings, prophets, and ordinary individuals shaped history and how their legacies intersect
-      to form the lineage that leads from creation to Christ. Use this tool to visualize biblical history,
-      study family lines, and see God’s plan unfold through time.
-    </p>
-  </section>
-</main>
-
+    <section id="intro">
+      <h2>The Genealogical Record of Scripture</h2>
+      <p>
+        This project allows you to explore every recorded name and connection in the Bible’s genealogies. 
+        You can trace the line from Adam to Jesus, view biographies, search by name or Scripture, 
+        and follow God’s promises through generations.
+      </p>
+      <p>
+        Use the tools below to navigate ancestors, descendants, Messianic lines, or compare key figures. 
+        Double-click any name in the tree to view their biography and references.
+      </p>
+    </section>
 
     <section id="controls">
-      <div class="search-container">
-        <input type="text" id="search-input" placeholder="Search a name (e.g., David) or a passage (e.g., 1 Samuel 17)..." />
-        <button id="search-btn">Search</button>
-      </div>
+      <div class="control-panel">
+        <div class="search-section">
+          <input type="text" id="search-input" placeholder="Search by name or Scripture..." />
+          <button id="search-btn">Search</button>
+        </div>
 
-      <div class="quick-nav">
-        <button class="nav-btn" data-person="adam">Start at Adam</button>
-        <button class="nav-btn" data-person="abraham">Jump to Abraham</button>
-        <button class="nav-btn" data-person="david">Jump to David</button>
-        <button class="nav-btn" data-person="jesus">Jump to Jesus</button>
-      </div>
-
-      <!-- New study tools -->
-      <div class="tools-grid">
-        <div class="tool-card">
+        <div class="lineage-section">
           <h3>Lineage Tools</h3>
-          <div class="row">
-            <input id="lin-person" type="text" placeholder="Enter a person id or name (e.g., abraham)" />
-          </div>
-          <div class="row">
-            <button id="btn-ancestors" class="pill-btn">Find Ancestors</button>
-            <button id="btn-descendants" class="pill-btn">Find Descendants</button>
-          </div>
-          <div class="row">
-            <button id="btn-highlight-messianic" class="pill-btn accent">Highlight Messianic Line</button>
-          </div>
+          <input type="text" id="lin-person" placeholder="Enter person name or ID" />
+          <button id="btn-ancestors">Show Ancestors</button>
+          <button id="btn-descendants">Show Descendants</button>
         </div>
 
-        <div class="tool-card">
-          <h3>Compare Two People</h3>
-          <div class="row">
-            <input id="cmp-a" type="text" placeholder="First person (e.g., saul)" />
-          </div>
-          <div class="row">
-            <input id="cmp-b" type="text" placeholder="Second person (e.g., david)" />
-          </div>
-          <div class="row">
-            <button id="btn-compare" class="pill-btn">Compare</button>
-          </div>
+        <div class="compare-section">
+          <h3>Compare</h3>
+          <input type="text" id="cmp-a" placeholder="Person A" />
+          <input type="text" id="cmp-b" placeholder="Person B" />
+          <button id="btn-compare">Compare</button>
         </div>
 
-        <div class="tool-card">
+        <div class="themes-section">
           <h3>Explore by Theme</h3>
-          <div class="row">
-            <select id="tribe-select">
-              <option value="">Choose a tribe…</option>
-              <option>Judah</option>
-              <option>Levi</option>
-              <option>Benjamin</option>
-              <option>Ephraim</option>
-              <option>Manasseh</option>
-              <option>Reuben</option>
-              <option>Simeon</option>
-              <option>Issachar</option>
-              <option>Zebulun</option>
-              <option>Dan</option>
-              <option>Naphtali</option>
-              <option>Gad</option>
-              <option>Asher</option>
-            </select>
-            <button id="btn-tribe" class="pill-btn">List Tribe</button>
-          </div>
-          <div class="row wrap">
-            <button class="pill-btn role-btn" data-role="king">Kings</button>
-            <button class="pill-btn role-btn" data-role="prophet">Prophets</button>
-            <button class="pill-btn role-btn" data-role="priest">Priests</button>
-            <button class="pill-btn role-btn" data-role="judge">Judges</button>
-            <button class="pill-btn role-btn" data-role="woman">Women of Faith</button>
-          </div>
-          <div class="row">
-            <button id="btn-chronology" class="pill-btn">Timeline View</button>
-          </div>
+          <button class="role-btn" data-role="prophet">Prophets</button>
+          <button class="role-btn" data-role="king">Kings</button>
+          <button class="role-btn" data-role="priest">Priests</button>
+          <button class="role-btn" data-role="woman">Women of Faith</button>
+        </div>
+
+        <div class="highlight-section">
+          <h3>Messianic Line</h3>
+          <button id="btn-highlight-messianic">Highlight Messianic Line</button>
+        </div>
+
+        <div class="timeline-section">
+          <h3>Chronology</h3>
+          <button id="btn-chronology">List Chronologically</button>
         </div>
       </div>
     </section>
 
-    <section id="tree-section">
-      <h2>Interactive Genealogy Tree</h2>
-      <p>Click a name to expand descendants. Double-click to view full biography and scripture references.</p>
+    <section id="breadcrumb-container">
       <div id="breadcrumb"></div>
-      <div id="tree-root" class="tree-container"></div>
+      <div id="person-count-container">
+        Total People: <span id="person-count">0</span>
+      </div>
+    </section>
+
+    <section id="tree-container">
+      <div id="tree-root"></div>
     </section>
   </main>
 
-  <footer>
-    <p>"The gifts and the calling of God are irrevocable." — Romans 11:29</p>
-    <p class="stats">Database contains <span id="person-count">400+</span> biblical figures</p>
-  </footer>
-
-  <!-- Modal -->
   <div id="infoModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
       <div id="person-info"></div>
     </div>
   </div>
+
+  <footer>
+    <p>© 2025 Biblical Genealogy Explorer | Data sourced from Scripture</p>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>
