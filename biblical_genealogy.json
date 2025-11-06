@@ -452,6 +452,66 @@
       "abiud"
     ]
   },
+  "abiud": {
+  "name": "Abiud",
+  "bio": "Son of Zerubbabel. Ancestor of Jesus through the royal line recorded in Matthew’s genealogy. Continued the Davidic lineage after the Babylonian exile.",
+  "scripture": "Matt 1:13",
+  "descendants": ["eliakim_nt"]
+},
+"eliakim_nt": {
+  "name": "Eliakim",
+  "bio": "Son of Abiud, ancestor of Jesus Christ in the royal line preserved through Matthew’s genealogy.",
+  "scripture": "Matt 1:13",
+  "descendants": ["azor"]
+},
+"azor": {
+  "name": "Azor",
+  "bio": "Son of Eliakim, part of the Davidic line between the exile and Christ.",
+  "scripture": "Matt 1:14",
+  "descendants": ["zadok_nt"]
+},
+"zadok_nt": {
+  "name": "Zadok",
+  "bio": "Son of Azor, descendant of David through Solomon. Ancestor of Jesus Christ.",
+  "scripture": "Matt 1:14",
+  "descendants": ["achim"]
+},
+"achim": {
+  "name": "Achim",
+  "bio": "Son of Zadok, ancestor of Jesus Christ.",
+  "scripture": "Matt 1:14",
+  "descendants": ["eliud"]
+},
+"eliud": {
+  "name": "Eliud",
+  "bio": "Son of Achim, ancestor of Jesus Christ.",
+  "scripture": "Matt 1:15",
+  "descendants": ["eleazar_nt"]
+},
+"eleazar_nt": {
+  "name": "Eleazar",
+  "bio": "Son of Eliud, ancestor of Jesus Christ.",
+  "scripture": "Matt 1:15",
+  "descendants": ["matthan"]
+},
+"matthan": {
+  "name": "Matthan",
+  "bio": "Son of Eleazar, ancestor of Jesus Christ.",
+  "scripture": "Matt 1:15",
+  "descendants": ["jacob_nt"]
+},
+"jacob_nt": {
+  "name": "Jacob",
+  "bio": "Son of Matthan, father of Joseph, the legal father of Jesus Christ.",
+  "scripture": "Matt 1:16",
+  "descendants": ["joseph_nt"]
+},
+"joseph_nt": {
+  "name": "Joseph",
+  "bio": "Husband of Mary, legal father of Jesus Christ. A righteous man who obeyed God’s commands revealed through dreams, protecting Mary and the Christ Child.",
+  "scripture": "Matt 1:16–25; Luke 1:27; 2:4–7",
+  "descendants": ["jesus"]
+},
   "meshullam_zerubbabel": {
     "name": "Meshullam (Zerubbabel's line)",
     "bio": "Son of Zerubbabel. One of seven children listed.",
