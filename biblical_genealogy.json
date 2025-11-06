@@ -1043,13 +1043,11 @@
     ]
   },
   "joash_judah": {
-    "name": "Joash (Judah)",
-    "bio": "Son of Ahaziah, tenth king of Judah (also called Jehoash). When Athaliah killed the royal family, his aunt Jehosheba hid him for six years. At age 7, priest Jehoiada revealed him, and he was crowned king while Athaliah was executed. He reigned 40 years. Did right while Jehoiada lived, repairing the temple. After Jehoiada's death at 130, Joash turned to idols. When Zechariah (Jehoiada's son) rebuked him, Joash had him stoned in the temple court. Aram invaded; Joash paid them with temple treasures. His officials conspired and killed him, and he was not buried in the royal tombs.",
-    "scripture": "2 Kgs 11:2-12:21; 13:1, 10; 14:1, 3, 13, 17, 23; 1 Chr 3:11; 2 Chr 22:11-25:25; Matt 1:8",
-    "descendants": [
-      "amaziah"
-    ]
-  },
+  "name": "Joash (Judah)",
+  "bio": "Son of Ahaziah, tenth king of Judah (also called Jehoash). Hidden as an infant by his aunt Jehosheba when Athaliah sought to destroy the royal family. Crowned king at age seven under the guidance of the priest Jehoiada. During his early reign he did what was right in the eyes of the LORD, repairing the temple and restoring proper worship. However, after Jehoiada’s death, Joash turned to idolatry and ordered the stoning of Zechariah, Jehoiada’s son. As judgment, his officials conspired against him and killed him in the Millo. He was buried in the City of David but not in the royal tombs.",
+  "scripture": "2 Kgs 11:2–12:21; 2 Chr 22:11–24:27; Matt 1:8",
+  "descendants": ["amaziah"]
+},
   "ahitub2": {
     "name": "Ahitub (second)",
     "bio": "Son of Amariah, high priest. Distinct from the earlier Ahitub who was father of Zadok.",
