@@ -706,13 +706,15 @@
     "descendants": []
   },
   "zebulun": {
-    "name": "Zebulun",
-    "bio": "Tenth son of Jacob by Leah (her sixth son). His name means 'honor' or 'dwelling.' Leah said 'God has presented me with a precious gift. This time my husband will treat me with honor.' Father of three sons. His tribe received land from the Mediterranean to the Sea of Galilee. Jacob's blessing spoke of dwelling by seashore and ships. Moses blessed them for prosperity in trade. Zebulun and Naphtali risked their lives in Deborah's battle. Jesus grew up in Zebulun's territory, fulfilling Isaiah's prophecy.",
-    "scripture": "Ex 6:23; Num 1:7; 2:3; 7:12, 17; 10:14; Ruth 4:19-20; 1 Chr 2:10; 6:22; Matt 1:4; Luke 3:33",
-    "descendants": [
-      "nahshon"
-    ]
-  },
+  "name": "Zebulun",
+  "bio": "Tenth son of Jacob by Leah (her sixth son). His name means 'honor' or 'dwelling.' Leah said, 'God has presented me with a precious gift.' Father of three sons: Sered, Elon, and Jahleel. His tribe dwelled near the sea and traded with ships. Blessed by Moses for prosperity in trade and courage in battle.",
+  "scripture": "Gen 30:20; 35:23; 46:14; 49:13; Num 1:30; 2:7; 7:24; 10:16; Deut 33:18-19; Josh 19:10-16; Judg 1:30; 4:6; 5:14; 12:11; 1 Chr 2:1; 6:63; 12:33; Isa 9:1; Matt 4:13-15",
+  "descendants": [
+    "sered",
+    "elon",
+    "jahleel"
+  ]
+},
   "nahshon": {
     "name": "Nahshon",
     "bio": "Son of Amminadab, leader of the tribe of Judah during the wilderness wanderings. Brother of Elisheba (Aaron's wife), making him Aaron's brother-in-law. His tribe presented the first offering at the dedication of the tabernacle. Led Judah's division in the march through the wilderness. Ancestor of David and Christ.",
