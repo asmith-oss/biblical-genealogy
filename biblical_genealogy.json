@@ -737,6 +737,12 @@
       "obed"
     ]
   },
+  "ruth": {
+    "name": "Ruth",
+    "bio": "A Moabite widow who showed faith and loyalty to Naomi. Redeemed by Boaz, she became the great-grandmother of King David.",
+    "scripture": "Book of Ruth; Matthew 1:5",
+    "descendants": ["obed"]
+  },
   "obed": {
     "name": "Obed",
     "bio": "Son of Boaz and Ruth, father of Jesse, grandfather of David. The women of Bethlehem said to Naomi that he would be 'a restorer of life and a nourisher of your old age.' His birth brought joy after tragedy. Through him the line of David continued, bringing both Ruth the Moabite and Rahab the Canaanite into the messianic lineage.",
