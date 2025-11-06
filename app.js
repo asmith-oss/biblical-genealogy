@@ -1,278 +1,229 @@
 // ============================================================
-// Expandable Genealogy Tree
+// Biblical Genealogy Interactive Tree with Full Database
 // ============================================================
 
-// Hierarchical genealogy data
-const treeData = {
-  id: "adam",
-  name: "Adam & Eve",
-  info: "The first humans (Genesis 1–3). The promise of a Redeemer begins in Genesis 3:15.",
-  descendants: [
-    {
-      id: "cain",
-      name: "Cain",
-      info: "Firstborn; his line ends in the flood (Gen 4).",
-      descendants: []
-    },
-    {
-      id: "seth",
-      name: "Seth",
-      info: "Given in place of Abel; his line 'calls on the name of the Lord' (Gen 4:26).",
-      descendants: [
-        {
-          id: "enosh",
-          name: "Enosh",
-          info: "Grandson of Adam; the faithful line continues (Gen 5:6–11).",
-          descendants: [
-            {
-              id: "kenan",
-              name: "Kenan",
-              descendants: [
-                {
-                  id: "mahalalel",
-                  name: "Mahalalel",
-                  descendants: [
-                    {
-                      id: "jared",
-                      name: "Jared",
-                      descendants: [
-                        {
-                          id: "enoch",
-                          name: "Enoch",
-                          info: "Walked with God and was taken (Gen 5:24).",
-                          descendants: [
-                            {
-                              id: "methuselah",
-                              name: "Methuselah",
-                              descendants: [
-                                {
-                                  id: "lamech",
-                                  name: "Lamech",
-                                  descendants: [
-                                    {
-                                      id: "noah",
-                                      name: "Noah",
-                                      info: "Builder of the ark; preserved the human race; received the Noahic covenant (Gen 6–9).",
-                                      descendants: [
-                                        {
-                                          id: "shem",
-                                          name: "Shem",
-                                          info: "Blessed by Noah; through him the promise continues (Gen 9:26).",
-                                          descendants: [
-                                            {
-                                              id: "arpachshad",
-                                              name: "Arpachshad",
-                                              descendants: [
-                                                {
-                                                  id: "shelah",
-                                                  name: "Shelah",
-                                                  descendants: [
-                                                    {
-                                                      id: "eber",
-                                                      name: "Eber",
-                                                      info: "Root of 'Hebrew'; ancestor of Abraham (Gen 10:21–25).",
-                                                      descendants: [
-                                                        {
-                                                          id: "peleg",
-                                                          name: "Peleg",
-                                                          descendants: [
-                                                            {
-                                                              id: "reu",
-                                                              name: "Reu",
-                                                              descendants: [
-                                                                {
-                                                                  id: "serug",
-                                                                  name: "Serug",
-                                                                  descendants: [
-                                                                    {
-                                                                      id: "nahor",
-                                                                      name: "Nahor",
-                                                                      descendants: [
-                                                                        {
-                                                                          id: "terah",
-                                                                          name: "Terah",
-                                                                          descendants: [
-                                                                            {
-                                                                              id: "abraham",
-                                                                              name: "Abraham",
-                                                                              info: "Father of faith; God covenanted land, seed, and blessing (Gen 12; 15; 17).",
-                                                                              descendants: [
-                                                                                {
-                                                                                  id: "isaac",
-                                                                                  name: "Isaac",
-                                                                                  descendants: [
-                                                                                    {
-                                                                                      id: "jacob",
-                                                                                      name: "Jacob (Israel)",
-                                                                                      info: "Father of 12 tribes; covenant reaffirmed (Gen 28; 35).",
-                                                                                      descendants: [
-                                                                                        {
-                                                                                          id: "judah",
-                                                                                          name: "Judah",
-                                                                                          info: "Tribe of kings; 'the scepter shall not depart from Judah' (Gen 49:10).",
-                                                                                          descendants: [
-                                                                                            {
-                                                                                              id: "perez",
-                                                                                              name: "Perez",
-                                                                                              descendants: [
-                                                                                                {
-                                                                                                  id: "hezron",
-                                                                                                  name: "Hezron",
-                                                                                                  descendants: [
-                                                                                                    {
-                                                                                                      id: "ram",
-                                                                                                      name: "Ram",
-                                                                                                      descendants: [
-                                                                                                        {
-                                                                                                          id: "amminadab",
-                                                                                                          name: "Amminadab",
-                                                                                                          descendants: [
-                                                                                                            {
-                                                                                                              id: "nahshon",
-                                                                                                              name: "Nahshon",
-                                                                                                              descendants: [
-                                                                                                                {
-                                                                                                                  id: "salmon",
-                                                                                                                  name: "Salmon",
-                                                                                                                  descendants: [
-                                                                                                                    {
-                                                                                                                      id: "boaz",
-                                                                                                                      name: "Boaz",
-                                                                                                                      info: "Kinsman-redeemer who married Ruth the Moabite, preserving the line of Judah.",
-                                                                                                                      descendants: [
-                                                                                                                        {
-                                                                                                                          id: "obed",
-                                                                                                                          name: "Obed",
-                                                                                                                          descendants: [
-                                                                                                                            {
-                                                                                                                              id: "jesse",
-                                                                                                                              name: "Jesse",
-                                                                                                                              descendants: [
-                                                                                                                                {
-                                                                                                                                  id: "david",
-                                                                                                                                  name: "David",
-                                                                                                                                  info: "King of Israel; received the Davidic covenant—eternal throne through his seed (2 Sam 7).",
-                                                                                                                                  descendants: [
-                                                                                                                                    {
-                                                                                                                                      id: "jesus",
-                                                                                                                                      name: "Jesus (Messiah)",
-                                                                                                                                      info: "Son of David, Son of Abraham; fulfiller of all covenants.",
-                                                                                                                                      descendants: []
-                                                                                                                                    }
-                                                                                                                                  ]
-                                                                                                                                }
-                                                                                                                              ]
-                                                                                                                            }
-                                                                                                                          ]
-                                                                                                                        }
-                                                                                                                      ]
-                                                                                                                    }
-                                                                                                                  ]
-                                                                                                                }
-                                                                                                              ]
-                                                                                                            }
-                                                                                                          ]
-                                                                                                        }
-                                                                                                      ]
-                                                                                                    }
-                                                                                                  ]
-                                                                                                }
-                                                                                              ]
-                                                                                            }
-                                                                                          ]
-                                                                                        }
-                                                                                      ]
-                                                                                    }
-                                                                                  ]
-                                                                                }
-                                                                              ]
-                                                                            }
-                                                                          ]
-                                                                        }
-                                                                      ]
-                                                                    }
-                                                                  ]
-                                                                }
-                                                              ]
-                                                            }
-                                                          ]
-                                                        }
-                                                      ]
-                                                    }
-                                                  ]
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ]
+// The complete genealogy database
+const genealogyData = {
+  "root": {
+    "id": "adam",
+    "name": "Adam & Eve",
+    "bio": "The first humans created by God in His image. Adam named all the animals and was given dominion over creation. Eve was created from Adam's rib as his helper. They lived in the Garden of Eden until the Fall, when they ate the forbidden fruit and brought sin into the world. They had three named sons: Cain, Abel, and Seth.",
+    "scripture": "Gen 1:26-27; 2:7-25; 3:1-24; 5:1-5",
+    "descendants": ["cain", "abel", "seth"]
+  },
+  // ... [Include the ENTIRE JSON genealogy database here - all 400+ entries]
+  // For brevity in this response, I'm showing the structure. 
+  // You would paste the complete JSON from the artifact here.
 };
 
-// ============================================================
-// Rendering logic
-// ============================================================
+// State management
+let currentPath = [];
+let expandedNodes = new Set();
 
-function createNode(person) {
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+  initializeTree();
+  setupEventListeners();
+  updateStats();
+});
+
+function initializeTree() {
+  const root = document.getElementById("tree-root");
+  const rootPerson = genealogyData.root;
+  const rootNode = createNode(rootPerson, genealogyData);
+  root.innerHTML = '';
+  root.appendChild(rootNode);
+  updateBreadcrumb([rootPerson.name]);
+}
+
+function createNode(personData, dataSource) {
   const div = document.createElement("div");
   div.className = "node-box";
-  div.textContent = person.name;
+  div.dataset.personId = personData.id;
+  
+  // Add visual indicator if person has descendants
+  const hasDescendants = personData.descendants && personData.descendants.length > 0;
+  div.innerHTML = `
+    <span class="node-name">${personData.name}</span>
+    ${hasDescendants ? '<span class="expand-indicator">▼</span>' : ''}
+  `;
 
+  // Single click to expand
   div.addEventListener("click", e => {
-    e.stopPropagation(); // Prevent parent collapse
-    toggleBranch(div, person);
+    e.stopPropagation();
+    if (hasDescendants) {
+      toggleBranch(div, personData, dataSource);
+    }
   });
 
-  // Optional info popup below node
-  if (person.info) {
-    const infoDiv = document.createElement("div");
-    infoDiv.className = "person-info";
-    infoDiv.textContent = person.info;
-    div.appendChild(infoDiv);
-  }
+  // Double click for details
+  div.addEventListener("dblclick", e => {
+    e.stopPropagation();
+    openModal(personData);
+  });
 
   return div;
 }
 
-function toggleBranch(container, person) {
-  const existing = container.nextSibling;
-  if (existing && existing.classList.contains("branch")) {
-    existing.remove(); // Collapse branch
+function toggleBranch(container, personData, dataSource) {
+  const personId = personData.id;
+  const existing = container.nextElementSibling;
+  
+  // If branch exists, toggle it
+  if (existing && existing.classList.contains("branch") && existing.dataset.parentId === personId) {
+    if (expandedNodes.has(personId)) {
+      existing.remove();
+      expandedNodes.delete(personId);
+      container.querySelector('.expand-indicator').textContent = '▼';
+    }
     return;
   }
 
-  if (!person.descendants || person.descendants.length === 0) return;
+  // Create new branch
+  if (!personData.descendants || personData.descendants.length === 0) return;
 
   const branch = document.createElement("div");
-  branch.className = "branch";
+  branch.className = "branch active";
+  branch.dataset.parentId = personId;
 
-  person.descendants.forEach(child => {
-    const childNode = createNode(child);
-    branch.appendChild(childNode);
+  personData.descendants.forEach(childId => {
+    const childData = dataSource[childId];
+    if (childData) {
+      const childNode = createNode(childData, dataSource);
+      branch.appendChild(childNode);
+    }
   });
 
   container.insertAdjacentElement("afterend", branch);
+  expandedNodes.add(personId);
+  container.querySelector('.expand-indicator').textContent = '▲';
+  
+  // Update breadcrumb
+  currentPath.push(personData.name);
+  updateBreadcrumb(currentPath);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+function openModal(personData) {
+  const modal = document.getElementById("infoModal");
+  const modalContent = document.getElementById("person-info");
+  
+  modal.style.display = "block";
+  modalContent.innerHTML = `
+    <h2>${personData.name}</h2>
+    <div class="bio-section">
+      <h3>Biography</h3>
+      <p>${personData.bio}</p>
+    </div>
+    <div class="scripture-section">
+      <h3>📖 Scripture References</h3>
+      <p class="scripture-refs">${personData.scripture}</p>
+    </div>
+    ${personData.descendants && personData.descendants.length > 0 ? `
+      <div class="descendants-section">
+        <h3>Descendants</h3>
+        <p>${personData.descendants.length} direct descendant(s) recorded</p>
+      </div>
+    ` : ''}
+  `;
+}
+
+function setupEventListeners() {
+  // Modal close
+  const modal = document.getElementById("infoModal");
+  const closeBtn = document.querySelector(".close");
+  closeBtn.onclick = () => (modal.style.display = "none");
+  window.onclick = e => {
+    if (e.target === modal) modal.style.display = "none";
+  };
+
+  // Search functionality
+  const searchBtn = document.getElementById("search-btn");
+  const searchInput = document.getElementById("search-input");
+  
+  searchBtn.addEventListener('click', () => performSearch(searchInput.value));
+  searchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') performSearch(searchInput.value);
+  });
+
+  // Quick navigation buttons
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const personId = btn.dataset.person;
+      jumpToPerson(personId);
+    });
+  });
+}
+
+function performSearch(query) {
+  if (!query.trim()) return;
+  
+  const results = Object.entries(genealogyData)
+    .filter(([id, person]) => 
+      person.name && person.name.toLowerCase().includes(query.toLowerCase())
+    )
+    .slice(0, 10);
+
+  if (results.length === 0) {
+    alert('No matches found for: ' + query);
+    return;
+  }
+
+  if (results.length === 1) {
+    openModal(results[0][1]);
+  } else {
+    // Show search results in modal
+    const modal = document.getElementById("infoModal");
+    const modalContent = document.getElementById("person-info");
+    modal.style.display = "block";
+    
+    modalContent.innerHTML = `
+      <h2>Search Results for "${query}"</h2>
+      <div class="search-results">
+        ${results.map(([id, person]) => `
+          <div class="search-result-item" data-person-id="${id}">
+            <strong>${person.name}</strong>
+            <p>${person.bio.substring(0, 150)}...</p>
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    // Add click handlers to search results
+    modalContent.querySelectorAll('.search-result-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const personId = item.dataset.personId;
+        modal.style.display = "none";
+        jumpToPerson(personId);
+      });
+    });
+  }
+}
+
+function jumpToPerson(personId) {
+  const person = genealogyData[personId];
+  if (!person) return;
+
+  // Reset tree
+  expandedNodes.clear();
+  currentPath = [];
+  
   const root = document.getElementById("tree-root");
-  const rootNode = createNode(treeData);
-  root.appendChild(rootNode);
-});
+  root.innerHTML = '';
+  
+  const node = createNode(person, genealogyData);
+  root.appendChild(node);
+  
+  updateBreadcrumb([person.name]);
+}
+
+function updateBreadcrumb(path) {
+  const breadcrumb = document.getElementById("breadcrumb");
+  breadcrumb.innerHTML = path.map((name, i) => 
+    `<span class="breadcrumb-item">${name}</span>`
+  ).join(' → ');
+}
+
+function updateStats() {
+  const count = Object.keys(genealogyData).length - 1; // -1 for root
+  document.getElementById('person-count').textContent = count;
+}

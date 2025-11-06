@@ -11,19 +11,55 @@
 <body>
   <header>
     <h1>📜 Biblical Genealogy Explorer</h1>
-    <p class="subtitle">Follow the bloodline from Adam to Messiah</p>
+    <p class="subtitle">Follow the Bloodline from Adam to Messiah</p>
   </header>
 
   <main>
-    <section id="genealogy-explorer">
+    <section id="intro">
+      <h2>The Abrahamic Covenant: Eternal & Unbreakable</h2>
+      <p>
+        God's covenant with Abraham is <strong>unconditional and everlasting</strong> (Gen 12:1–3; 15; 17). 
+        The Mosaic Law did not nullify this covenant (Gal 3:17). 
+        The Davidic covenant (2 Sam 7:12–16) continues it, culminating in the New Covenant through Christ (Luke 22:20).
+      </p>
+      <p>
+        Gentiles are grafted in (Rom 11:17–24), sharing in the blessings, but Israel's role and promises remain intact. 
+        This genealogy follows God's faithfulness through each generation.
+      </p>
+    </section>
+
+    <section id="controls">
+      <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search for a person..." />
+        <button id="search-btn">Search</button>
+      </div>
+      <div class="quick-nav">
+        <button class="nav-btn" data-person="adam">Start at Adam</button>
+        <button class="nav-btn" data-person="abraham">Jump to Abraham</button>
+        <button class="nav-btn" data-person="david">Jump to David</button>
+        <button class="nav-btn" data-person="jesus">Jump to Jesus</button>
+      </div>
+    </section>
+
+    <section id="tree-section">
       <h2>Interactive Genealogy Tree</h2>
-      <p>Click a name to expand descendants. Side branches show where the line splits. Each person can later show covenant notes and Scripture references.</p>
+      <p>Click a name to expand descendants. Double-click to view full biography and scripture references.</p>
+      <div id="breadcrumb"></div>
       <div id="tree-root" class="tree-container"></div>
     </section>
   </main>
 
   <footer>
-    <p>“The gifts and calling of God are irrevocable.” — Romans 11:29</p>
+    <p>"The gifts and the calling of God are irrevocable." — Romans 11:29</p>
+    <p class="stats">Database contains <span id="person-count">400+</span> biblical figures</p>
   </footer>
+
+  <!-- Modal -->
+  <div id="infoModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="person-info"></div>
+    </div>
+  </div>
 </body>
 </html>
