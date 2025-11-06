@@ -16,27 +16,36 @@ async function loadGenealogyData() {
     if (!res.ok) throw new Error(`Failed to fetch JSON: ${res.status} ${res.statusText}`);
     const raw = await res.json();
 
-    // Normalize: ensure each entry has an id property equal to its key
+    // Normalize: ensure each entry has id, name, bio, scripture, descendants
     const normalized = {};
     Object.entries(raw).forEach(([key, value]) => {
-      // If value is not an object, skip it
       if (!value || typeof value !== 'object') return;
-      normalized[key] = { id: value.id || key, ...value };
+      normalized[key] = {
+        id: value.id || key,
+        name: value.name || prettifyKey(key),
+        bio: value.bio || '',
+        scripture: value.scripture || '',
+        descendants: Array.isArray(value.descendants) ? value.descendants : [],
+        ...value
+      };
     });
 
     genealogyData = normalized;
 
-    // Initialize UI after data is ready
     initializeTree();
     setupEventListeners();
     updateStats();
   } catch (err) {
     console.error('Error loading genealogy data:', err);
-    // still attempt to initialize with whatever is present
     initializeTree();
     setupEventListeners();
     updateStats();
   }
+}
+
+// helper: make key like "zerah_judah" -> "Zerah Judah" (optional)
+function prettifyKey(k) {
+  return k.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 }
 
 // Initialize after DOM ready, but only after we've attempted to load data
@@ -148,24 +157,27 @@ function toggleBranch(container, personData) {
 function openModal(personData) {
   const modal = document.getElementById("infoModal");
   const modalContent = document.getElementById("person-info");
-  
+
+  const name = personData.name || personData.id || 'Unknown';
+  const bio = personData.bio || 'No biography available.';
+  const scripture = personData.scripture || 'No scripture refs.';
+  const descendantsCount = (personData.descendants && personData.descendants.length) || 0;
+
   modal.style.display = "block";
   modalContent.innerHTML = `
-    <h2>${personData.name}</h2>
+    <h2>${name}</h2>
     <div class="bio-section">
       <h3>Biography</h3>
-      <p>${personData.bio}</p>
+      <p>${bio}</p>
     </div>
     <div class="scripture-section">
       <h3>📖 Scripture References</h3>
-      <p class="scripture-refs">${personData.scripture}</p>
+      <p class="scripture-refs">${scripture}</p>
     </div>
-    ${personData.descendants && personData.descendants.length > 0 ? `
-      <div class="descendants-section">
-        <h3>Descendants</h3>
-        <p>${personData.descendants.length} direct descendant(s) recorded</p>
-      </div>
-    ` : ''}
+    <div class="descendants-section">
+      <h3>Descendants</h3>
+      <p>${descendantsCount} direct descendant(s) recorded</p>
+    </div>
   `;
 }
 
