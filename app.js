@@ -332,3 +332,4 @@ function updateStats() {
   const count = Object.keys(genealogyData).length;
   document.getElementById('person-count').textContent = count;
 }
+window.addEventListener('DOMContentLoaded', loadGenealogyData);
