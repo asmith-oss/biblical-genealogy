@@ -2,49 +2,46 @@
 // Biblical Genealogy Interactive Tree with Full Database
 // ============================================================
 
-// The complete genealogy database
-const genealogyData = {
-  "adam": {
-    "id": "adam",
-    "name": "Adam & Eve",
-    "bio": "The first humans created by God in His image. Adam named all the animals and was given dominion over creation. Eve was created from Adam's rib as his helper. They lived in the Garden of Eden until the Fall, when they ate the forbidden fruit and brought sin into the world. They had three named sons: Cain, Abel, and Seth.",
-    "scripture": "Gen 1:26-27; 2:7-25; 3:1-24; 5:1-5",
-    "descendants": ["cain", "abel", "seth"]
-  },
-  "cain": {
-    "id": "cain",
-    "name": "Cain",
-    "bio": "Firstborn son of Adam and Eve. A farmer who brought an offering of crops to God, which was not accepted. In jealousy, he murdered his brother Abel, becoming the first murderer. God marked him and sent him to wander in the land of Nod, east of Eden, where he built a city named after his son Enoch.",
-    "scripture": "Gen 4:1-17, 25; Heb 11:4; 1 John 3:12; Jude 1:11",
-    "descendants": ["enoch_cain"]
-  },
-  "abel": {
-    "id": "abel",
-    "name": "Abel",
-    "bio": "Second son of Adam and Eve. A shepherd who brought the firstborn of his flock as an offering to God, which was accepted. He was murdered by his brother Cain out of jealousy. Abel is remembered as the first martyr and a man of faith whose blood cried out from the ground.",
-    "scripture": "Gen 4:2-10, 25; Matt 23:35; Luke 11:51; Heb 11:4; 12:24",
-    "descendants": []
-  },
-  "seth": {
-    "id": "seth",
-    "name": "Seth",
-    "bio": "Third named son of Adam and Eve, born after Abel's murder. His name means 'appointed' or 'granted,' as Eve said God appointed him in place of Abel. Through Seth came the godly line that called upon the name of the LORD, leading ultimately to Noah and Christ.",
-    "scripture": "Gen 4:25-26; 5:3-8; Luke 3:38",
-    "descendants": ["enosh"]
-  },
-  // ... paste the REST of your genealogy data here with the same structure
-  // Make sure EVERY entry has an "id" field matching its key
-};
+// Replace any hardcoded `const genealogyData = { ... }` with a loadable/normalized object:
+let genealogyData = {};
 
 // State management
 let currentPath = [];
 let expandedNodes = new Set();
 
-// Initialize
+// Load external JSON and normalize entries to include `id` = key when missing
+async function loadGenealogyData() {
+  try {
+    const res = await fetch('./biblical_genealogy.json', { cache: "no-store" });
+    if (!res.ok) throw new Error(`Failed to fetch JSON: ${res.status} ${res.statusText}`);
+    const raw = await res.json();
+
+    // Normalize: ensure each entry has an id property equal to its key
+    const normalized = {};
+    Object.entries(raw).forEach(([key, value]) => {
+      // If value is not an object, skip it
+      if (!value || typeof value !== 'object') return;
+      normalized[key] = { id: value.id || key, ...value };
+    });
+
+    genealogyData = normalized;
+
+    // Initialize UI after data is ready
+    initializeTree();
+    setupEventListeners();
+    updateStats();
+  } catch (err) {
+    console.error('Error loading genealogy data:', err);
+    // still attempt to initialize with whatever is present
+    initializeTree();
+    setupEventListeners();
+    updateStats();
+  }
+}
+
+// Initialize after DOM ready, but only after we've attempted to load data
 document.addEventListener('DOMContentLoaded', () => {
-  initializeTree();
-  setupEventListeners();
-  updateStats();
+  loadGenealogyData();
 });
 
 function initializeTree() {
