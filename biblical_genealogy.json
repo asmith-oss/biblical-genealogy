@@ -730,26 +730,21 @@
     ]
   },
   "boaz": {
-  "id": "boaz",
-  "name": "Boaz",
-  "bio": "A wealthy and honorable man of Bethlehem who redeemed Ruth, a Moabite widow, according to the law of the kinsman-redeemer.",
-  "scripture": "Ruth 2–4; Matthew 1:5",
-  "descendants": ["obed"]
-},
-"ruth": {
-  "id": "ruth",
-  "name": "Ruth",
-  "bio": "A Moabite widow who showed faith and loyalty to Naomi. Redeemed by Boaz, she became the great-grandmother of King David.",
-  "scripture": "Book of Ruth; Matthew 1:5",
-  "descendants": ["obed"]
-},
-"obed": {
-  "id": "obed",
-  "name": "Obed",
-  "bio": "Son of Boaz and Ruth; father of Jesse, and grandfather of King David.",
-  "scripture": "Ruth 4:17; Matthew 1:5-6",
-  "descendants": ["jesse"]
-},
+    "name": "Boaz",
+    "bio": "Son of Salmon and Rahab, wealthy landowner in Bethlehem from Judah's tribe. A man of noble character who showed great kindness to Ruth the Moabite widow. As kinsman-redeemer, he married Ruth after a nearer relative declined. His actions picture Christ as our Redeemer. Father of Obed, grandfather of Jesse, great-grandfather of David. His name means 'in him is strength.'",
+    "scripture": "Ruth 2:1-4:22; 1 Chr 2:11-12; Matt 1:5; Luke 3:32",
+    "descendants": [
+      "obed"
+    ]
+  },
+  "obed": {
+    "name": "Obed",
+    "bio": "Son of Boaz and Ruth, father of Jesse, grandfather of David. The women of Bethlehem said to Naomi that he would be 'a restorer of life and a nourisher of your old age.' His birth brought joy after tragedy. Through him the line of David continued, bringing both Ruth the Moabite and Rahab the Canaanite into the messianic lineage.",
+    "scripture": "Ruth 4:17, 21-22; 1 Chr 2:12; Matt 1:5; Luke 3:32",
+    "descendants": [
+      "jesse"
+    ]
+  },
   "jesse": {
     "name": "Jesse",
     "bio": "Son of Obed, father of eight sons including David, and at least two daughters (Zeruiah and Abigail). Lived in Bethlehem. When Samuel came to anoint a king, Jesse presented seven sons but overlooked David. God chose David, the youngest shepherd. Jesse is called 'the Bethlehemite' and later 'the father of David.' Isaiah prophesied that a shoot would come from the stump of Jesse. Sent provisions to his sons in Saul's army, leading to David's encounter with Goliath. In his old age, David entrusted him to the king of Moab for safety.",
@@ -1252,7 +1247,7 @@
     "bio": "Third son of Levi. His descendants formed one of the three main Levitical clans, responsible for the frames, bars, pillars, and bases of the tabernacle—the structural framework. They camped north of the tabernacle and received four carts and eight oxen for transport.",
     "scripture": "Gen 46:11; Ex 6:16, 19; Num 3:17, 20, 33-37; 4:29-45; 7:8; 10:17; 26:57; Josh 21:7, 34-40; 1 Chr 6:1, 16, 19, 29, 44, 47, 63, 77; 9:14; 15:6; 23:6, 21-23; 24:26-27; 26:10, 19; Ezra 8:19",
     "descendants": [
-      "mahli",F
+      "mahli",
       "mushi"
     ]
   },
