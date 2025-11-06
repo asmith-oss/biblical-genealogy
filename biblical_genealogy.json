@@ -347,7 +347,7 @@
     "bio": "Son of Azariah, high priest. Part of the continuous priestly line through the divided kingdom period.",
     "scripture": "1 Chr 6:11; Ezra 7:3",
     "descendants": [
-      "uzziah"
+      "ahitub2"
     ]
   },
   "azariah_uzziah": {
@@ -403,7 +403,9 @@
     "bio": "Son of Amon, eighteenth king of Judah. Became king at 8, reigned 31 years. One of Judah's greatest kings who 'did right...walking in all the way of David.' At 16, began to seek God; at 20, began purging high places, Asherah poles, idols. At 26, repaired the temple—priest Hilkiah found the Book of the Law. When read to Josiah, he tore his robes, realizing how far Judah had strayed. Prophetess Huldah prophesied judgment but said Josiah would die in peace. He renewed the covenant, celebrated greatest Passover since Samuel, removed mediums, household gods, and all abominations. 'Before him there was no king like him who turned to the LORD with all his heart...nor did any like him arise after him.' Tragically, he fought Pharaoh Neco at Megiddo despite warning, was mortally wounded, and died. All Judah mourned. Jeremiah wrote laments for him.",
     "scripture": "1 Kgs 13:2; 2 Kgs 21:24-23:30; 1 Chr 3:14-15; 2 Chr 33:25-36:1; Jer 1:2-3; 22:11, 18; 25:1, 3; 26:1; 27:1; 35:1; 36:1-2, 9; 37:1; 45:1; 46:2; Zeph 1:1; Matt 1:10-11",
     "descendants": [
-      "jeconiah"
+      "johanan_josiah",
+      "jehoiakim",
+      "zedekiah"
     ]
   },
   "johanan_josiah": {
@@ -441,7 +443,14 @@
     "bio": "Son of Shealtiel (or possibly Pedaiah, Shealtiel's brother), grandson of Jehoiachin. Governor of Judah who led first return from Babylonian exile with High Priest Jeshua (Joshua). Laid foundation of second temple despite opposition. When work stopped due to opposition, prophets Haggai and Zechariah encouraged him. Completed the temple in 516 BC. Called God's 'signet ring,' reversing the curse on his grandfather Jeconiah. His name means 'seed of Babylon.' A remnant of David's royal line, he led the restoration. Some see him as a type of Christ. Both Matthew and Luke trace Jesus' genealogy through him, though through different sons.",
     "scripture": "1 Chr 3:19; Ezra 2:2; 3:2-8; 4:2-3; 5:2; Neh 7:7; 12:1, 47; Hag 1:1-2:23; Zech 4:6-10; Matt 1:12-13; Luke 3:27",
     "descendants": [
-      "abiud"
+      "meshullam_zerubbabel",
+      "hananiah_zerubbabel",
+      "shelomith",
+      "hashubah",
+      "ohel",
+      "berekiah",
+      "hasadiah",
+      "jushabhesed"
     ]
   },
   "meshullam_zerubbabel": {
@@ -843,25 +852,16 @@
     "scripture": "1 Sam 16-1 Kgs 2:11; 1 Chr 11-29; Psalms; Isa 9:7; 16:10-11; 55:3; Jer 23:5; 30:9; 33:15-22; Ezek 34:23-24; 37:24-25; Hos 3:5; Amos 9:11; Zech 12:8; Matt 1:1, 6, 17; 9:27; 12:3, 23; 15:22; 20:30-31; 21:9, 15; 22:42-45; Mark 2:25; 10:47-48; 11:10; 12:35-37; Luke 1:27, 32, 69; 2:4, 11; 3:31; 6:3; 18:38-39; 20:41-44; John 7:42; Acts 1:16; 2:25-36; 4:25; 7:45; 13:22-36; 15:16; Rom 1:3; 4:6; 11:9; 2 Tim 2:8; Heb 4:7; 11:32; Rev 3:7; 5:5; 22:16",
     "descendants": [
       "amnon",
-      "daniel_david",
       "absalom",
       "adonijah",
-      "shephatiah_david",
       "ithream",
+      "solomon",
       "shammua",
       "shobab",
-      "nathan_david",
-      "solomon",
       "ibhar",
-      "elishama_david",
-      "eliphelet_david",
-      "nogah",
       "nepheg",
       "japhia",
-      "elishama2_david",
-      "eliada",
-      "eliphelet2_david",
-      "tamar_david"
+      "eliada"
     ]
   },
   "amnon": {
@@ -2635,7 +2635,18 @@
     "bio": "Son of Isaac and Rebekah, twin brother of Esau (born holding his heel). His name means 'supplanter.' Bought Esau's birthright and deceived Isaac to receive the blessing. Fled to Haran where he served Laban 20 years for his wives Leah and Rachel. At Peniel, he wrestled with God and was renamed Israel ('he struggles with God'). Father of the twelve tribes of Israel through four women. Favored Joseph and Benjamin (Rachel's sons). Moved to Egypt in old age where he blessed his sons and grandsons before dying at 147. His body was returned to Canaan for burial.",
     "scripture": "Gen 25:19-50:14; Ex 1:1-5; Matt 1:2; 8:11; Luke 3:34; John 4:5-6; Acts 7:8-16; Rom 9:11-13; Heb 11:9, 21",
     "descendants": [
-      "joseph"
+      "reuben",
+      "simeon",
+      "levi",
+      "judah",
+      "dan",
+      "naphtali",
+      "gad",
+      "asher",
+      "issachar",
+      "zebulun",
+      "joseph",
+      "benjamin"
     ]
   },
   "dinah": {
@@ -2850,7 +2861,7 @@
     "bio": "Third son of Aaron, married a daughter of Putiel. After his older brothers died, he became Aaron's successor as high priest. Helped Moses with the second census and assisted Joshua in dividing the Promised Land. Supervised the tabernacle and its holy objects. Father of Phinehas. The high priesthood continued through his line.",
     "scripture": "Ex 6:23, 25; 28:1; Lev 10:6, 12, 16; Num 3:2-4, 32; 4:16; 16:36-40; 19:3-4; 20:25-29; 25:7-11; 26:1-3, 60, 63; 27:2, 15-23; 31:12-54; 32:2, 28; 34:17; Deut 10:6; Josh 14:1; 17:4; 19:51; 21:1; 22:13-32; 24:33; Judg 20:28; 1 Chr 6:3-4, 50; 24:1-6",
     "descendants": [
-      "matthan"
+      "phinehas"
     ]
   },
   "phinehas": {
@@ -2922,7 +2933,7 @@
     "bio": "Son of Ahitub, high priest during David and Solomon's reigns. Remained faithful to David during Absalom's rebellion and supported Solomon against Adonijah. Anointed Solomon as king. God promised the priesthood would remain in his line. Ezekiel prophesied that Zadok's descendants would serve in the future temple. His name means 'righteous.'",
     "scripture": "2 Sam 8:17; 15:24-36; 17:15; 18:19-27; 19:11; 20:25; 1 Kgs 1:8-45; 2:35; 4:2, 4; 1 Chr 6:8, 12, 53; 12:28; 15:11; 16:39; 18:16; 24:3, 6, 31; 27:17; 29:22; 2 Chr 31:10; Ezra 7:2; Ezek 40:46; 43:19; 44:15; 48:11",
     "descendants": [
-      "achim"
+      "ahimaaz"
     ]
   },
   "ahimaaz": {
