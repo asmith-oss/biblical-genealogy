@@ -9,34 +9,56 @@ let genealogyData = {};
 let currentPath = [];
 let expandedNodes = new Set();
 
-// Load external JSON and normalize entries to include `id` = key when missing
+// Detect objects that look like person entries
+function isPersonObject(v) {
+  return v && typeof v === 'object' && (
+    'descendants' in v ||
+    'bio' in v ||
+    'scripture' in v ||
+    'name' in v ||
+    'id' in v
+  );
+}
+
+// Recursively walk the raw JSON and collect person entries into outMap
+function flattenEntries(obj, outMap) {
+  Object.entries(obj || {}).forEach(([key, value]) => {
+    if (!value || typeof value !== 'object') return;
+    if (isPersonObject(value)) {
+      outMap[key] = {
+        id: value.id || key,
+        name: value.name || prettifyKey(key),
+        bio: value.bio || '',
+        scripture: value.scripture || '',
+        descendants: Array.isArray(value.descendants) ? value.descendants.slice() : [],
+        ...value
+      };
+    } else {
+      // nested group — recurse
+      flattenEntries(value, outMap);
+    }
+  });
+}
+
 async function loadGenealogyData() {
   try {
     const res = await fetch('./biblical_genealogy.json', { cache: "no-store" });
     if (!res.ok) throw new Error(`Failed to fetch JSON: ${res.status} ${res.statusText}`);
     const raw = await res.json();
 
-    // Normalize: ensure each entry has id, name, bio, scripture, descendants
+    // Flatten nested groups into a single id-keyed map
     const normalized = {};
-    Object.entries(raw).forEach(([key, value]) => {
-      if (!value || typeof value !== 'object') return;
-      normalized[key] = {
-        id: value.id || key,
-        name: value.name || prettifyKey(key),
-        bio: value.bio || '',
-        scripture: value.scripture || '',
-        descendants: Array.isArray(value.descendants) ? value.descendants : [],
-        ...value
-      };
-    });
+    flattenEntries(raw, normalized);
 
     genealogyData = normalized;
+    console.info('Genealogy loaded — person count:', Object.keys(genealogyData).length);
 
     initializeTree();
     setupEventListeners();
     updateStats();
   } catch (err) {
     console.error('Error loading genealogy data:', err);
+    // show fallback UI but still attempt init
     initializeTree();
     setupEventListeners();
     updateStats();
