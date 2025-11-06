@@ -16,23 +16,27 @@
     <section id="intro">
       <h2>The Genealogical Record of Scripture</h2>
       <p>
-        This project allows you to explore every recorded name and connection in the Bible’s genealogies. 
-        You can trace the line from Adam to Jesus, view biographies, search by name or Scripture, 
+        This project allows you to explore every recorded name and connection in the Bible’s genealogies.
+        You can trace the line from Adam to Jesus, view biographies, search by name or Scripture,
         and follow God’s promises through generations.
       </p>
       <p>
-        Use the tools below to navigate ancestors, descendants, Messianic lines, or compare key figures. 
+        Use the tools below to navigate ancestors, descendants, or compare key figures.
         Double-click any name in the tree to view their biography and references.
       </p>
     </section>
 
     <section id="controls">
       <div class="control-panel">
+
+        <!-- Search -->
         <div class="search-section">
+          <h3>Search</h3>
           <input type="text" id="search-input" placeholder="Search by name or Scripture..." />
           <button id="search-btn">Search</button>
         </div>
 
+        <!-- Lineage Tools -->
         <div class="lineage-section">
           <h3>Lineage Tools</h3>
           <input type="text" id="lin-person" placeholder="Enter person name or ID" />
@@ -40,6 +44,7 @@
           <button id="btn-descendants">Show Descendants</button>
         </div>
 
+        <!-- Compare -->
         <div class="compare-section">
           <h3>Compare</h3>
           <input type="text" id="cmp-a" placeholder="Person A" />
@@ -47,19 +52,20 @@
           <button id="btn-compare">Compare</button>
         </div>
 
-        <div class="themes-section">
-          <h3>Explore by Theme</h3>
-          <button class="role-btn" data-role="prophet">Prophets</button>
-          <button class="role-btn" data-role="king">Kings</button>
-          <button class="role-btn" data-role="priest">Priests</button>
-          <button class="role-btn" data-role="woman">Women of Faith</button>
+        <!-- Jump To -->
+        <div class="jump-section">
+          <h3>Jump To</h3>
+          <button class="nav-btn" data-person="adam">Adam</button>
+          <button class="nav-btn" data-person="noah">Noah</button>
+          <button class="nav-btn" data-person="abraham">Abraham</button>
+          <button class="nav-btn" data-person="isaac">Isaac</button>
+          <button class="nav-btn" data-person="jacob">Jacob</button>
+          <button class="nav-btn" data-person="moses">Moses</button>
+          <button class="nav-btn" data-person="david">David</button>
+          <button class="nav-btn" data-person="jesus">Jesus</button>
         </div>
 
-        <div class="highlight-section">
-          <h3>Messianic Line</h3>
-          <button id="btn-highlight-messianic">Highlight Messianic Line</button>
-        </div>
-
+        <!-- Chronology -->
         <div class="timeline-section">
           <h3>Chronology</h3>
           <button id="btn-chronology">List Chronologically</button>
