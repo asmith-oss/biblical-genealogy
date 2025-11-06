@@ -1,7 +1,9 @@
 // ============================================================
-// Biblical Genealogy Interactive Tree (Upgraded v2)
+// Biblical Genealogy Interactive Tree (Upgraded + Autocomplete)
 // Desktop + Mobile/Tablet Friendly — UTF-8 safe symbols
-// Added: forgiving text search with normalization (no exact-format requirement)
+// - Preserves your working tree logic
+// - Adds live autocomplete under the search box (theme-matched)
+// - Improves text search tolerance (spacing/punctuation/case)
 // ============================================================
 
 let genealogyData = {};
@@ -38,7 +40,7 @@ function flattenEntries(obj, outMap) {
   });
 }
 
-// Normalize text (for search)
+// Normalize text for tolerant search
 function normalizeText(str) {
   return String(str || "")
     .toLowerCase()
@@ -53,32 +55,45 @@ function isScriptureQuery(q) {
   return re.test(q);
 }
 
+// Tolerant: exact by id key, then normalized id/name equality
 function findPerson(idOrName) {
   if (!idOrName) return null;
-  const q = normalizeText(idOrName);
+  const raw = String(idOrName).trim();
 
-  // Direct ID match
-  if (genealogyData[idOrName]) return genealogyData[idOrName];
+  // direct object-key hit (back-compat with your data keys)
+  if (genealogyData[raw]) return genealogyData[raw];
 
-  // Match by normalized id or name
+  const q = normalizeText(raw);
   for (const p of Object.values(genealogyData)) {
     if (!p) continue;
     if (normalizeText(p.id) === q) return p;
     if (normalizeText(p.name) === q) return p;
   }
-
   return null;
 }
 
+// Tolerant fuzzy: startsWith preferred, then includes; checks id, name, bio
 function fuzzyFind(nameLike) {
   if (!nameLike) return [];
   const q = normalizeText(nameLike);
-  return Object.values(genealogyData).filter(p => {
-    const n = normalizeText(p.name);
-    const i = normalizeText(p.id);
-    const b = normalizeText(p.bio || "");
-    return n.includes(q) || i.includes(q) || b.includes(q);
-  });
+
+  const persons = Object.values(genealogyData).filter(Boolean);
+  const starts = [];
+  const includes = [];
+  const seen = new Set();
+
+  for (const p of persons) {
+    const nid = normalizeText(p.id);
+    const nname = normalizeText(p.name);
+    const nbio = normalizeText(p.bio || "");
+
+    const isStart = nid.startsWith(q) || nname.startsWith(q);
+    const isIncl = (!isStart) && (nid.includes(q) || nname.includes(q) || nbio.includes(q));
+
+    if (isStart && !seen.has(p.id)) { starts.push(p); seen.add(p.id); }
+    else if (isIncl && !seen.has(p.id)) { includes.push(p); seen.add(p.id); }
+  }
+  return [...starts, ...includes];
 }
 
 // ---------- Load Data ----------
@@ -95,6 +110,7 @@ async function loadGenealogyData() {
 
     initializeTree();
     setupEventListeners();
+    initAutocomplete(); // NEW
     updateStats();
 
     console.info('Genealogy loaded — people:', Object.keys(genealogyData).length);
@@ -102,11 +118,12 @@ async function loadGenealogyData() {
     console.error('Error loading genealogy data:', err);
     initializeTree();
     setupEventListeners();
+    initAutocomplete(); // ensure autocomplete still wires up
     updateStats();
   }
 }
 
-// ---------- Tree ----------
+// ---------- Tree (unchanged) ----------
 function initializeTree() {
   const root = document.getElementById("tree-root");
 
@@ -210,7 +227,7 @@ function toggleBranch(container, personData) {
   }
 }
 
-// ---------- Modal ----------
+// ---------- Modal (unchanged) ----------
 function openModal(personData) {
   const modal = document.getElementById("infoModal");
   const modalContent = document.getElementById("person-info");
@@ -238,19 +255,21 @@ function openModal(personData) {
   `;
 }
 
-// ---------- Global UI / Events ----------
+// ---------- Global UI / Events (kept) ----------
 function setupEventListeners() {
   // Modal close
   const modal = document.getElementById("infoModal");
   const closeBtn = document.querySelector(".close");
-  closeBtn.onclick = () => (modal.style.display = "none");
+  if (closeBtn) closeBtn.onclick = () => (modal.style.display = "none");
   window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
 
   // Search
   const searchBtn = document.getElementById("search-btn");
   const searchInput = document.getElementById("search-input");
-  searchBtn.addEventListener('click', () => smartSearch(searchInput.value));
-  searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') smartSearch(searchInput.value); });
+  if (searchBtn && searchInput) {
+    searchBtn.addEventListener('click', () => smartSearch(searchInput.value));
+    searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') smartSearch(searchInput.value); });
+  }
 
   // Quick navigation buttons
   document.querySelectorAll('.nav-btn').forEach(btn => {
@@ -258,8 +277,12 @@ function setupEventListeners() {
   });
 
   // Lineage tools
-  document.getElementById('btn-ancestors').addEventListener('click', () => {
-    const id = document.getElementById('lin-person').value.trim();
+  const btnAnc = document.getElementById('btn-ancestors');
+  const btnDesc = document.getElementById('btn-descendants');
+  const btnMess = document.getElementById('btn-highlight-messianic');
+
+  if (btnAnc) btnAnc.addEventListener('click', () => {
+    const id = (document.getElementById('lin-person') || {}).value?.trim();
     if (!id) return alert('Enter a person id or name');
     const person = findPerson(id) || (fuzzyFind(id)[0] || null);
     if (!person) return alert('Person not found');
@@ -267,8 +290,8 @@ function setupEventListeners() {
     displayResults(`Ancestors of ${person.name}`, list);
   });
 
-  document.getElementById('btn-descendants').addEventListener('click', () => {
-    const id = document.getElementById('lin-person').value.trim();
+  if (btnDesc) btnDesc.addEventListener('click', () => {
+    const id = (document.getElementById('lin-person') || {}).value?.trim();
     if (!id) return alert('Enter a person id or name');
     const person = findPerson(id) || (fuzzyFind(id)[0] || null);
     if (!person) return alert('Person not found');
@@ -276,15 +299,16 @@ function setupEventListeners() {
     displayResults(`Descendants of ${person.name}`, list);
   });
 
-  document.getElementById('btn-highlight-messianic').addEventListener('click', () => {
+  if (btnMess) btnMess.addEventListener('click', () => {
     highlightMessianicLine();
     alert('Messianic line highlighted (if nodes are visible). Tip: navigate to Adam or David first.');
   });
 
   // Compare
-  document.getElementById('btn-compare').addEventListener('click', () => {
-    const a = document.getElementById('cmp-a').value.trim();
-    const b = document.getElementById('cmp-b').value.trim();
+  const btnCmp = document.getElementById('btn-compare');
+  if (btnCmp) btnCmp.addEventListener('click', () => {
+    const a = (document.getElementById('cmp-a') || {}).value?.trim();
+    const b = (document.getElementById('cmp-b') || {}).value?.trim();
     if (!a || !b) return alert('Enter both people to compare');
     const p1 = findPerson(a) || (fuzzyFind(a)[0] || null);
     const p2 = findPerson(b) || (fuzzyFind(b)[0] || null);
@@ -293,8 +317,10 @@ function setupEventListeners() {
   });
 
   // Tribe & roles
-  document.getElementById('btn-tribe').addEventListener('click', () => {
-    const tribe = document.getElementById('tribe-select').value;
+  const btnTribe = document.getElementById('btn-tribe');
+  if (btnTribe) btnTribe.addEventListener('click', () => {
+    const tribeSel = document.getElementById('tribe-select');
+    const tribe = tribeSel ? tribeSel.value : '';
     if (!tribe) return;
     listTribe(tribe);
   });
@@ -303,10 +329,11 @@ function setupEventListeners() {
   });
 
   // Timeline
-  document.getElementById('btn-chronology').addEventListener('click', listChronologically);
+  const btnChron = document.getElementById('btn-chronology');
+  if (btnChron) btnChron.addEventListener('click', listChronologically);
 }
 
-// ---------- Search ----------
+// ---------- Search (smarter, unchanged API) ----------
 function smartSearch(q) {
   const query = (q || '').trim();
   if (!query) return;
@@ -328,7 +355,7 @@ function searchByScripture(ref) {
   displayResults(`People connected to ${ref}`, results);
 }
 
-// ---------- Lineage helpers ----------
+// ---------- Lineage helpers (unchanged) ----------
 function getAncestors(id, seen = new Set()) {
   const ancestors = [];
   for (const person of Object.values(genealogyData)) {
@@ -365,7 +392,7 @@ function getDescendants(id, seen = new Set()) {
   return uniq;
 }
 
-// ---------- Themes / Filters ----------
+// ---------- Themes / Filters (unchanged) ----------
 function listTribe(tribe) {
   const t = String(tribe).toLowerCase();
   const tribeMembers = Object.values(genealogyData).filter(p =>
@@ -411,7 +438,7 @@ function listChronologically() {
   displayResults("Biblical Figures (Approximate Order)", ordered.slice(0, 250)); // cap to keep UI snappy
 }
 
-// ---------- Compare ----------
+// ---------- Compare (unchanged) ----------
 function comparePeople(id1, id2) {
   const p1 = genealogyData[id1];
   const p2 = genealogyData[id2];
@@ -435,7 +462,7 @@ function comparePeople(id1, id2) {
   `;
 }
 
-// ---------- Results rendering ----------
+// ---------- Results rendering (unchanged) ----------
 function displayResults(title, list) {
   const modal = document.getElementById("infoModal");
   const content = document.getElementById("person-info");
@@ -447,4 +474,236 @@ function displayResults(title, list) {
   }
 
   content.innerHTML = `
-    <h2>${title}
+    <h2>${title} (${list.length})</h2>
+    <div class="search-results">
+      ${list.map(p => `
+        <div class="search-result-item" data-person-id="${p.id}">
+          <strong>${p.name}</strong>
+          <p>${(p.bio || '').substring(0, 220)}${(p.bio && p.bio.length > 220) ? '…' : ''}</p>
+        </div>
+      `).join('')}
+    </div>
+  `;
+
+  content.querySelectorAll('.search-result-item').forEach(item => {
+    item.addEventListener('click', () => {
+      modal.style.display = "none";
+      jumpToPerson(item.dataset.personId);
+    });
+  });
+}
+
+// ---------- Jump / Breadcrumb / Stats (unchanged) ----------
+function jumpToPerson(personId) {
+  const person = findPerson(personId) || (fuzzyFind(personId)[0] || null);
+  if (!person) {
+    console.error('Person not found:', personId);
+    return;
+  }
+
+  expandedNodes.clear();
+  currentPath = [person.name];
+
+  const root = document.getElementById('tree-root');
+  root.innerHTML = '';
+  const node = createNode(person);
+  root.appendChild(node);
+  updateBreadcrumb(currentPath);
+}
+
+function updateBreadcrumb(path) {
+  const breadcrumb = document.getElementById("breadcrumb");
+  breadcrumb.innerHTML = path.map((name) =>
+    `<span class="breadcrumb-item">${name}</span>`
+  ).join(' → ');
+}
+
+function updateStats() {
+  const count = Object.keys(genealogyData).length;
+  const el = document.getElementById('person-count');
+  if (el) el.textContent = count;
+}
+
+// ============================================================
+// Autocomplete (NEW) — theme-matched dropdown
+// ============================================================
+let ac = {
+  box: null,
+  items: [],
+  index: -1,
+  open: false
+};
+
+function initAutocomplete() {
+  const input = document.getElementById('search-input');
+  if (!input) return;
+
+  // Ensure parent can position the dropdown
+  const parent = input.parentElement || document.body;
+  parent.style.position = parent.style.position || 'relative';
+
+  // Inject minimal theme-matched styles once
+  if (!document.getElementById('autocomplete-styles')) {
+    const style = document.createElement('style');
+    style.id = 'autocomplete-styles';
+    style.textContent = `
+      .ac-box {
+        position: absolute;
+        left: 0; right: 0;
+        margin: 6px auto 0;
+        max-width: 520px;
+        background: #1a2332;
+        border: 1px solid #3a4a7d;
+        border-radius: 10px;
+        box-shadow: 0 8px 18px rgba(0,0,0,0.35);
+        z-index: 9999;
+        overflow: hidden;
+        display: none;
+      }
+      .ac-item {
+        padding: 10px 12px;
+        color: #cfe6ff;
+        cursor: pointer;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+      }
+      .ac-item:last-child { border-bottom: none; }
+      .ac-item:hover, .ac-item.active {
+        background: #3a4a7d;
+        color: #fff;
+      }
+      @media (max-width: 768px) {
+        .ac-box { left: 0; right: 0; max-width: none; }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  // Create dropdown
+  ac.box = document.createElement('div');
+  ac.box.className = 'ac-box';
+
+  // Place just after the input
+  parent.appendChild(ac.box);
+
+  // Events
+  input.addEventListener('input', () => updateAutocomplete(input.value));
+  input.addEventListener('keydown', onAutocompleteKeydown);
+  // Hide on blur (small delay so clicks register)
+  input.addEventListener('blur', () => setTimeout(hideAutocomplete, 150));
+  // Reposition on resize
+  window.addEventListener('resize', () => positionAutocompleteBox(input));
+  // Also show when focused with existing text
+  input.addEventListener('focus', () => {
+    if (input.value.trim().length >= 2) updateAutocomplete(input.value);
+  });
+
+  positionAutocompleteBox(input);
+}
+
+function positionAutocompleteBox(input) {
+  if (!ac.box) return;
+  // Box width follows input width visually since we center via parent max-width
+  // No absolute px calc needed; CSS handles responsiveness.
+  ac.box.style.display = ac.open ? 'block' : 'none';
+}
+
+function buildSuggestions(q) {
+  if (!q || normalizeText(q).length < 2) return [];
+  const list = fuzzyFind(q);
+  // Limit to 8, prefer unique names
+  const out = [];
+  const seen = new Set();
+  for (const p of list) {
+    const key = (p.name || p.id);
+    if (!seen.has(key)) {
+      out.push(p);
+      seen.add(key);
+    }
+    if (out.length >= 8) break;
+  }
+  return out;
+}
+
+function updateAutocomplete(q) {
+  if (!ac.box) return;
+  const suggestions = buildSuggestions(q);
+  ac.items = suggestions;
+  ac.index = -1;
+
+  if (suggestions.length === 0) {
+    hideAutocomplete();
+    return;
+  }
+
+  ac.box.innerHTML = suggestions.map((p, i) => `
+    <div class="ac-item" data-id="${p.id}" data-idx="${i}">
+      ${p.name}
+    </div>
+  `).join('');
+
+  // Click / touch handlers
+  ac.box.querySelectorAll('.ac-item').forEach(el => {
+    el.addEventListener('mousedown', (e) => {
+      e.preventDefault(); // prevent input blur before click
+      const id = el.getAttribute('data-id');
+      selectAutocompleteById(id);
+    });
+    el.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      const id = el.getAttribute('data-id');
+      selectAutocompleteById(id);
+    }, { passive: false });
+  });
+
+  ac.open = true;
+  ac.box.style.display = 'block';
+}
+
+function hideAutocomplete() {
+  if (!ac.box) return;
+  ac.open = false;
+  ac.index = -1;
+  ac.items = [];
+  ac.box.style.display = 'none';
+}
+
+function onAutocompleteKeydown(e) {
+  if (!ac.open || ac.items.length === 0) return; // let normal keys work
+
+  const key = e.key;
+  if (key === 'ArrowDown' || key === 'Down') {
+    e.preventDefault();
+    ac.index = (ac.index + 1) % ac.items.length;
+    refreshActiveItem();
+  } else if (key === 'ArrowUp' || key === 'Up') {
+    e.preventDefault();
+    ac.index = (ac.index - 1 + ac.items.length) % ac.items.length;
+    refreshActiveItem();
+  } else if (key === 'Enter') {
+    // If an item is highlighted, choose it; else let smartSearch handle it
+    if (ac.index >= 0 && ac.index < ac.items.length) {
+      e.preventDefault();
+      const chosen = ac.items[ac.index];
+      selectAutocompleteById(chosen.id);
+    } // else do nothing (smartSearch bound on click or keypress outside)
+  } else if (key === 'Escape' || key === 'Esc') {
+    hideAutocomplete();
+  }
+}
+
+function refreshActiveItem() {
+  if (!ac.box) return;
+  ac.box.querySelectorAll('.ac-item').forEach((el, i) => {
+    if (i === ac.index) el.classList.add('active'); else el.classList.remove('active');
+  });
+}
+
+function selectAutocompleteById(id) {
+  hideAutocomplete();
+  const p = findPerson(id) || genealogyData[id] || null;
+  if (!p) return;
+  openModal(p); // open details immediately; keeps your tree untouched
+}
+
+// ---------- Boot ----------
+window.addEventListener('DOMContentLoaded', loadGenealogyData);
