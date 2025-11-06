@@ -3,19 +3,15 @@
 // (Desktop + Mobile / Tablet Friendly)
 // ============================================================
 
-// Replace any hardcoded `const genealogyData = { ... }` with a loadable/normalized object:
 let genealogyData = {};
 
-// State management
 let currentPath = [];
 let expandedNodes = new Set();
 
-// helper: prettify keys if name missing
 function prettifyKey(k) {
   return String(k).replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 }
 
-// Detect objects that look like person entries
 function isPersonObject(v) {
   return v && typeof v === 'object' && (
     'descendants' in v ||
@@ -26,7 +22,6 @@ function isPersonObject(v) {
   );
 }
 
-// Recursively walk the raw JSON and collect person entries into outMap
 function flattenEntries(obj, outMap) {
   Object.entries(obj || {}).forEach(([key, value]) => {
     if (!value || typeof value !== 'object') return;
@@ -41,10 +36,8 @@ function flattenEntries(obj, outMap) {
         __sourceKey: key,
         ...value
       };
-      // alias original key if different (helps if buttons use original)
       if (mapKey !== key) outMap[key] = outMap[mapKey];
     } else {
-      // nested group â€” recurse
       flattenEntries(value, outMap);
     }
   });
@@ -55,15 +48,13 @@ async function loadGenealogyData() {
     const res = await fetch('./biblical_genealogy.json', { cache: 'no-store' });
     if (!res.ok) throw new Error(`Failed to fetch JSON: ${res.status} ${res.statusText}`);
     const raw = await res.json();
-
-    // Support both top-level map and { "genealogy": { ... } } shape
     const source = raw && raw.genealogy ? raw.genealogy : raw;
 
     const normalized = {};
     flattenEntries(source, normalized);
     genealogyData = normalized;
 
-    console.info('Genealogy loaded â€” person count:', Object.keys(genealogyData).length);
+    console.info('Genealogy loaded — person count:', Object.keys(genealogyData).length);
     console.debug('Has adam:', !!(genealogyData['adam'] || Object.values(genealogyData).find(p=>p.id==='adam')));
     console.debug('Sample keys:', Object.keys(genealogyData).slice(0,40));
 
@@ -75,7 +66,7 @@ async function loadGenealogyData() {
     const notice = document.getElementById('data-error-notice');
     if (notice) {
       notice.style.display = 'block';
-      notice.textContent = 'Error loading biblical_genealogy.json â€” check console.';
+      notice.textContent = 'Error loading biblical_genealogy.json — check console.';
     }
     initializeTree();
     setupEventListeners();
@@ -83,19 +74,16 @@ async function loadGenealogyData() {
   }
 }
 
-// tolerant lookup helper
 function findPerson(id) {
   if (!id) return null;
   if (genealogyData[id]) return genealogyData[id];
   const byId = Object.values(genealogyData).find(p => p && String(p.id) === String(id));
   if (byId) return byId;
-  // maybe passed a pretty name
   return Object.values(genealogyData).find(p => p && p.name && p.name.toLowerCase() === String(id).toLowerCase());
 }
 
 function initializeTree() {
   const root = document.getElementById("tree-root");
-  // tolerant lookup for the root person
   const rootPerson =
     genealogyData["adam"] ||
     genealogyData.root ||
@@ -119,17 +107,12 @@ function createNode(personData) {
   div.className = "node-box";
   div.dataset.personId = personData.id;
   
-  // Add visual indicator if person has descendants
   const hasDescendants = personData.descendants && personData.descendants.length > 0;
   div.innerHTML = `
     <span class="node-name">${personData.name}</span>
-    ${hasDescendants ? '<span class="expand-indicator">â–¼</span>' : ''}
+    ${hasDescendants ? '<span class="expand-indicator">▼</span>' : ''}
   `;
 
-  // ------------------------------------------------------------
-  // DESKTOP BEHAVIOR
-  // ------------------------------------------------------------
-  // Single click to expand
   div.addEventListener("click", e => {
     e.stopPropagation();
     if (hasDescendants) {
@@ -137,21 +120,17 @@ function createNode(personData) {
     }
   });
 
-  // Double click for details
   div.addEventListener("dblclick", e => {
     e.stopPropagation();
     openModal(personData);
   });
 
-  // ------------------------------------------------------------
-  // MOBILE / TABLET BEHAVIOR (LONG PRESS)
-  // ------------------------------------------------------------
   let touchTimer;
   div.addEventListener("touchstart", e => {
     e.stopPropagation();
     touchTimer = setTimeout(() => {
       openModal(personData);
-    }, 600); // Hold for 0.6s to open bio
+    }, 600);
   });
 
   ["touchend", "touchcancel", "touchmove"].forEach(evt => {
@@ -165,23 +144,21 @@ function toggleBranch(container, personData) {
   const personId = personData.id;
   const existing = container.nextElementSibling;
 
-  // If branch exists for this node, toggle collapse
   if (existing && existing.classList.contains("branch") && existing.dataset.parentId === personId) {
     if (expandedNodes.has(personId)) {
       existing.remove();
       expandedNodes.delete(personId);
       const indicator = container.querySelector('.expand-indicator');
-      if (indicator) indicator.textContent = 'â–¼';
+      if (indicator) indicator.textContent = '▼';
     } else {
       existing.classList.add('active');
       expandedNodes.add(personId);
       const indicator = container.querySelector('.expand-indicator');
-      if (indicator) indicator.textContent = 'â–²';
+      if (indicator) indicator.textContent = '▲';
     }
     return;
   }
 
-  // Create new branch (tolerant lookup for children)
   const descendants = personData.descendants || [];
   if (descendants.length === 0) return;
 
@@ -190,7 +167,6 @@ function toggleBranch(container, personData) {
   branch.dataset.parentId = personId;
 
   descendants.forEach(childId => {
-    // allow child lookup by key or by .id inside entries
     const childData = genealogyData[childId] || Object.values(genealogyData).find(p => p && p.id === childId);
     if (childData) {
       const childNode = createNode(childData);
@@ -203,9 +179,8 @@ function toggleBranch(container, personData) {
   container.insertAdjacentElement("afterend", branch);
   expandedNodes.add(personId);
   const indicator = container.querySelector('.expand-indicator');
-  if (indicator) indicator.textContent = 'â–²';
+  if (indicator) indicator.textContent = '▲';
 
-  // update breadcrumb (avoid duplicates)
   if (!currentPath.length || currentPath[currentPath.length - 1] !== personData.name) {
     currentPath.push(personData.name);
     updateBreadcrumb(currentPath);
@@ -229,7 +204,7 @@ function openModal(personData) {
       <p>${bio}</p>
     </div>
     <div class="scripture-section">
-      <h3>ðŸ“– Scripture References</h3>
+      <h3>📖 Scripture References</h3>
       <p class="scripture-refs">${scripture}</p>
     </div>
     <div class="descendants-section">
@@ -240,7 +215,6 @@ function openModal(personData) {
 }
 
 function setupEventListeners() {
-  // Modal close
   const modal = document.getElementById("infoModal");
   const closeBtn = document.querySelector(".close");
   closeBtn.onclick = () => (modal.style.display = "none");
@@ -248,7 +222,6 @@ function setupEventListeners() {
     if (e.target === modal) modal.style.display = "none";
   };
 
-  // Search functionality
   const searchBtn = document.getElementById("search-btn");
   const searchInput = document.getElementById("search-input");
   
@@ -257,7 +230,6 @@ function setupEventListeners() {
     if (e.key === 'Enter') performSearch(searchInput.value);
   });
 
-  // Quick navigation buttons
   document.querySelectorAll('.nav-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const personId = btn.dataset.person;
@@ -265,7 +237,6 @@ function setupEventListeners() {
     });
   });
 
-  // quick-nav buttons (expected markup: <button class="quick-nav" data-person="adam">)
   document.querySelectorAll('[data-person]').forEach(btn => {
     btn.removeEventListener('click', btn._personHandler);
     const handler = (e) => {
@@ -294,7 +265,6 @@ function performSearch(query) {
   if (results.length === 1) {
     openModal(results[0][1]);
   } else {
-    // Show search results in modal
     const modal = document.getElementById("infoModal");
     const modalContent = document.getElementById("person-info");
     modal.style.display = "block";
@@ -311,7 +281,6 @@ function performSearch(query) {
       </div>
     `;
 
-    // Add click handlers to search results
     modalContent.querySelectorAll('.search-result-item').forEach(item => {
       item.addEventListener('click', () => {
         const personId = item.dataset.personId;
@@ -343,7 +312,7 @@ function updateBreadcrumb(path) {
   const breadcrumb = document.getElementById("breadcrumb");
   breadcrumb.innerHTML = path.map((name, i) => 
     `<span class="breadcrumb-item">${name}</span>`
-  ).join(' â†’ ');
+  ).join(' → ');
 }
 
 function updateStats() {
