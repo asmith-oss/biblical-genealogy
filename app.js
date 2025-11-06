@@ -395,10 +395,11 @@ function getDescendants(id, seen = new Set()) {
 // ---------- Themes / Filters (unchanged) ----------
 function listTribe(tribe) {
   const t = String(tribe).toLowerCase();
-  const tribeMembers = Object.values(genealogyData).filter(p =>
-    (p.bio && p.bio.toLowerCase().includes(t)) ||
-    (p.name && p.name.toLowerCase().includes(t))
-  );
+const tribeRegex = new RegExp(`\\b${t}\\b`, 'i');
+const tribeMembers = Object.values(genealogyData).filter(p =>
+  tribeRegex.test(p.bio || '') || tribeRegex.test(p.name || '')
+);
+
   displayResults(`${tribe} Tribe`, tribeMembers);
 }
 
