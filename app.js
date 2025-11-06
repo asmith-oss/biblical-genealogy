@@ -395,10 +395,16 @@ function getDescendants(id, seen = new Set()) {
 // ---------- Themes / Filters (unchanged) ----------
 function listTribe(tribe) {
   const t = String(tribe).toLowerCase();
-const tribeRegex = new RegExp(`\\b${t}\\b`, 'i');
-const tribeMembers = Object.values(genealogyData).filter(p =>
-  tribeRegex.test(p.bio || '') || tribeRegex.test(p.name || '')
-);
+  const tribeRegex = new RegExp(`\\b${t}\\b`, 'i');
+  const contextRegex = new RegExp(`\\b(tribe|son|descendant|line|house)\\s+(of\\s+)?${t}\\b`, 'i');
+
+  const tribeMembers = Object.values(genealogyData).filter(p => {
+    const bio = p.bio ? p.bio.toLowerCase() : '';
+    const name = p.name ? p.name.toLowerCase() : '';
+    // keep only if tribe mentioned meaningfully in context
+    return contextRegex.test(bio) || contextRegex.test(name) ||
+           (tribeRegex.test(name) && !bio.includes('descendant'));
+  });
 
   displayResults(`${tribe} Tribe`, tribeMembers);
 }
