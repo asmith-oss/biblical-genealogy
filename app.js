@@ -1,5 +1,6 @@
 // ============================================================
 // Biblical Genealogy Interactive Tree with Full Database
+// (Desktop + Mobile / Tablet Friendly)
 // ============================================================
 
 // Replace any hardcoded `const genealogyData = { ... }` with a loadable/normalized object:
@@ -63,7 +64,6 @@ async function loadGenealogyData() {
     genealogyData = normalized;
 
     console.info('Genealogy loaded — person count:', Object.keys(genealogyData).length);
-    // debug checks
     console.debug('Has adam:', !!(genealogyData['adam'] || Object.values(genealogyData).find(p=>p.id==='adam')));
     console.debug('Sample keys:', Object.keys(genealogyData).slice(0,40));
 
@@ -126,6 +126,9 @@ function createNode(personData) {
     ${hasDescendants ? '<span class="expand-indicator">▼</span>' : ''}
   `;
 
+  // ------------------------------------------------------------
+  // DESKTOP BEHAVIOR
+  // ------------------------------------------------------------
   // Single click to expand
   div.addEventListener("click", e => {
     e.stopPropagation();
@@ -138,6 +141,21 @@ function createNode(personData) {
   div.addEventListener("dblclick", e => {
     e.stopPropagation();
     openModal(personData);
+  });
+
+  // ------------------------------------------------------------
+  // MOBILE / TABLET BEHAVIOR (LONG PRESS)
+  // ------------------------------------------------------------
+  let touchTimer;
+  div.addEventListener("touchstart", e => {
+    e.stopPropagation();
+    touchTimer = setTimeout(() => {
+      openModal(personData);
+    }, 600); // Hold for 0.6s to open bio
+  });
+
+  ["touchend", "touchcancel", "touchmove"].forEach(evt => {
+    div.addEventListener(evt, () => clearTimeout(touchTimer));
   });
 
   return div;
@@ -332,4 +350,5 @@ function updateStats() {
   const count = Object.keys(genealogyData).length;
   document.getElementById('person-count').textContent = count;
 }
+
 window.addEventListener('DOMContentLoaded', loadGenealogyData);
