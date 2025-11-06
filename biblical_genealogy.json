@@ -920,7 +920,8 @@
       "ibhar",
       "nepheg",
       "japhia",
-      "eliada"
+      "eliada",
+      "nathan"
     ]
   },
   "amnon": {
@@ -980,10 +981,66 @@
     "descendants": []
   },
   "nathan_david": {
-    "name": "Nathan (David's son)",
-    "bio": "Son of David and Bathsheba, born in Jerusalem. Brother of Solomon. Though Solomon inherited the throne, Nathan's line is recorded in Luke's genealogy of Jesus, possibly representing Mary's lineage. A prophet also named Nathan was David's contemporary but was a different person.",
-    "scripture": "2 Sam 5:14; 1 Chr 3:5; 14:4; Zech 12:12; Luke 3:31",
-    "descendants": []
+  "name": "Nathan (David's son)",
+  "bio": "Son of David and Bathsheba, born in Jerusalem. Brother of Solomon. Though Solomon inherited the throne, Nathan's line is recorded in Luke's genealogy of Jesus, possibly representing Mary's lineage. A prophet also named Nathan was David's contemporary but was a different person.",
+  "scripture": "2 Sam 5:14; 1 Chr 3:5; 14:4; Zech 12:12; Luke 3:31",
+  "descendants": [
+    "mattatha",  // Adding the first generation of descendants
+    "menna",
+    "melea",
+    "eliakim_luke",
+    "jonan",
+    "joseph_luke",
+    "mary"
+  ]
+},
+"mattatha": {
+  "name": "Mattatha",
+  "bio": "Son of Nathan, descendant in the line of David recorded in Luke's genealogy.",
+  "scripture": "Luke 3:31",
+  "descendants": ["menna"]
+},
+"menna": {
+  "name": "Menna",
+  "bio": "Son of Mattatha, continued the line of Nathan in Luke's genealogy.",
+  "scripture": "Luke 3:31",
+  "descendants": ["melea"]
+},
+"melea": {
+  "name": "Melea",
+  "bio": "Son of Menna, part of Nathan’s line, continuing down the generations in Luke’s Gospel.",
+  "scripture": "Luke 3:31",
+  "descendants": ["eliakim_luke"]
+},
+"eliakim_luke": {
+  "name": "Eliakim",
+  "bio": "Son of Melea, one of the ancestors of Jesus Christ through Mary.",
+  "scripture": "Luke 3:31",
+  "descendants": ["jonan"]
+},
+"jonan": {
+  "name": "Jonan",
+  "bio": "Son of Eliakim, continuing the line of Nathan and David.",
+  "scripture": "Luke 3:31",
+  "descendants": ["joseph_luke"]
+},
+"joseph_luke": {
+  "name": "Joseph (Luke's line)",
+  "bio": "Husband of Mary, from the family of David through Nathan. He was the earthly father of Jesus, though not his biological father.",
+  "scripture": "Luke 3:23-38",
+  "descendants": ["mary"]
+},
+"mary": {
+  "name": "Mary",
+  "bio": "Mother of Jesus, the virgin who gave birth to the Messiah. Mary’s lineage traces back to David through Nathan, showing Jesus’ rightful claim to David’s throne.",
+  "scripture": "Luke 1:26-38; Luke 3:31-38",
+  "descendants": ["jesus"]
+},
+"jesus": {
+  "name": "Jesus",
+  "bio": "Son of God, born of Mary, fulfilling the prophecies of the Messiah. He is the King of Israel, descendant of David, through Nathan’s line, as well as the Son of God.",
+  "scripture": "Matt 1:1-16; Luke 1:26-38; Luke 3:23-38"
+}
   },
   "ibhar": {
     "name": "Ibhar",
