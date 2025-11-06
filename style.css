@@ -1,0 +1,52 @@
+body {
+  font-family: 'Georgia', serif;
+  margin: 0;
+  color: #f4f4f4;
+  background: linear-gradient(135deg, #101423 0%, #1b2440 100%);
+}
+
+header, footer {
+  text-align: center;
+  background: rgba(255,255,255,0.05);
+  padding: 1.5rem;
+  border-bottom: 1px solid #333;
+}
+
+.subtitle {
+  color: #9dd3ff;
+  font-style: italic;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 80vh;
+}
+
+#genealogy {
+  padding: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+.name {
+  background: #243055;
+  border: 1px solid #3a4a7d;
+  border-radius: 8px;
+  padding: 0.5rem 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.name:hover { background: #3a4a7d; }
+
+#details {
+  padding: 1.5rem;
+  border-left: 1px solid #333;
+  background: rgba(255,255,255,0.05);
+  overflow-y: auto;
+}
+
+#details h2 { color: #8dd3ff; margin-top: 0; }
+.verse { display: block; color: #ffd08d; margin: 0.3rem 0; }

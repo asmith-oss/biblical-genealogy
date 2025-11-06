@@ -1,0 +1,34 @@
+[
+  {
+    "id": "abraham",
+    "name": "Abraham",
+    "tribe": "Hebrew / Patriarch",
+    "desc": "Father of faith; through him all nations are blessed (Gen 12:1-3).",
+    "significance": "God’s covenant with Abraham is everlasting and unconditional — it promises land, descendants, and blessing. This covenant stands to this day and is the foundation for Gentile inclusion through faith.",
+    "verses": ["Genesis 12:1-3", "Genesis 15:5-18", "Romans 4:13-17", "Galatians 3:6-29"]
+  },
+  {
+    "id": "judah",
+    "name": "Judah",
+    "tribe": "Tribe of Judah",
+    "desc": "Fourth son of Jacob; received the scepter promise (Gen 49:8-10).",
+    "significance": "The Messianic line flows through Judah, reaffirming that God’s covenant with Abraham continued through David and ultimately to Christ.",
+    "verses": ["Genesis 49:8-10", "Revelation 7:5"]
+  },
+  {
+    "id": "david",
+    "name": "David",
+    "tribe": "Judah",
+    "desc": "King to whom God swore an everlasting throne (2 Sam 7).",
+    "significance": "The Davidic covenant builds on the Abrahamic one, promising a descendant who will reign forever — fulfilled in Jesus.",
+    "verses": ["2 Samuel 7:12-16", "Psalm 89:3-4", "Luke 1:31-33"]
+  },
+  {
+    "id": "jesus",
+    "name": "Jesus (Yeshua)",
+    "tribe": "Judah",
+    "desc": "The promised Messiah; fulfiller of the Abrahamic and Davidic covenants.",
+    "significance": "Through Christ, the blessing of Abraham extends to all nations. The 144,000 in Revelation come from the 12 tribes, showing the covenant with Israel still stands.",
+    "verses": ["Luke 3:23-38", "Galatians 3:14", "Revelation 7:4-10"]
+  }
+]
