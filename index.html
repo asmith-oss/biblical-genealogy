@@ -1,160 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Biblical Genealogy Study Tool</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biblical Genealogy Explorer</title>
+  <link rel="stylesheet" href="style.css" />
   <script src="app.js" defer></script>
 </head>
 
 <body>
   <header>
-    <h1>📜 Biblical Genealogy Study Tool</h1>
-    <p class="subtitle">From Adam to Messiah: Tracing God’s Covenant Through the Ages</p>
+    <h1>📜 Biblical Genealogy Explorer</h1>
+    <p class="subtitle">Follow the bloodline from Adam to Messiah</p>
   </header>
 
   <main>
-    <!-- Theological overview -->
-    <section class="intro">
-      <div class="covenant-card">
-        <h2>🔥 The Abrahamic Covenant: Eternal & Unbreakable</h2>
-        <p><strong>Genesis 12:1–3; 15; 17</strong> — God’s covenant with Abraham is <em>unconditional and everlasting.</em> It was sealed by God alone (<em>Gen 15:17</em>), not dependent on human obedience.</p>
-
-        <p><strong>Key Truth:</strong> The Mosaic Law (given 430 years later, Gal 3:17) did not nullify the Abrahamic Covenant. The Law was added to reveal sin and point to the Messiah, but the promise to Abraham—land, offspring, and blessing to all nations—stands forever.</p>
-
-        <p><strong>Romans 11:29</strong> — “For the gifts and the calling of God are irrevocable.” God’s covenant with the physical descendants of Abraham (the Jewish/Hebrew people) remains in force.</p>
-
-        <p><strong>The 144,000 (Revelation 7:4–8; 14:1–5):</strong> These are <em>literal</em> descendants from the 12 tribes of Israel—sealed servants during the tribulation. They are <em>not</em> the Church (which includes believing Gentiles grafted in, Rom 11:17–24), but rather Jewish believers who fulfill God’s enduring promise to preserve and redeem Israel.</p>
-
-        <p><strong>Gentiles at the Covenant:</strong> Believing Gentiles are “grafted in” (<em>Rom 11</em>) and become Abraham’s spiritual seed through faith (<em>Gal 3:29</em>), sharing in the blessings. But this does <em>not</em> replace Israel’s unique role and future restoration (<em>Rom 11:25–27</em>; <em>Jer 31:31–37</em>).</p>
-      </div>
-    </section>
-
-    <!-- Filters / Quick buttons -->
-    <section class="filters">
-      <button class="filter-btn">📘 Family Tree</button>
-      <button class="filter-btn">🕰️ Timeline</button>
-      <button class="filter-btn">📖 Matthew vs Luke</button>
-      <button class="filter-btn">🩵 12 Tribes & 144,000</button>
-
-      <div class="legend">
-        <span class="legend-item messianic">🟡 Messianic Line</span>
-        <span class="legend-item priestly">🟣 Priestly Line</span>
-        <span class="legend-item covenant">🟠 Covenant Figures</span>
-      </div>
-    </section>
-
-    <!-- Genealogy tree and details -->
-    <section id="genealogy-section">
-      <div id="genealogy" class="tree"></div>
-
-      <aside id="details" class="details-panel">
-        <h2>Explore Lineage Details</h2>
-        <p>Select a name on the left to view their covenant role, prophetic significance, and key Scripture references.</p>
-      </aside>
+    <section id="genealogy-explorer">
+      <h2>Interactive Genealogy Tree</h2>
+      <p>Click a name to expand descendants. Side branches show where the line splits. Each person can later show covenant notes and Scripture references.</p>
+      <div id="tree-root" class="tree-container"></div>
     </section>
   </main>
-<!-- ============================= -->
-<!-- Study Reference Section -->
-<!-- ============================= -->
-<section id="study-notes">
-  <h2>📖 Big Picture: What to Track as You Study</h2>
-
-  <p><strong>Two master genealogies:</strong></p>
-  <ul>
-    <li>Creation → Flood → Abraham (<em>Genesis 5; 10–11</em>)</li>
-    <li>Abraham → David → Jesus (<em>Ruth 4:18–22; 1 Chronicles 2–3; Matthew 1; Luke 3</em>)</li>
-  </ul>
-
-  <p><strong>Three covenant “spines” the genealogy carries:</strong><br>
-  Abrahamic (<em>Gen 12:1–3; 15; 17</em>) → Davidic (<em>2 Sam 7:12–16; Ps 89</em>) → New Covenant (<em>Jer 31:31–34; Luke 22:20</em>).</p>
-
-  <p><strong>Key side-branches:</strong> Cain, Ham/Canaan, Ishmael, Esau/Edom, Levi (priesthood), and the split kingdoms (Judah/Davidic vs. Israel/Northern kings).</p>
-
-  <hr>
-
-  <h3>1) From Adam to Abraham (Creation to the Covenant Family)</h3>
-  <pre class="genealogy-block">
-Adam
-└─ Seth (Gen 4:25–26; 5:3–8)
-   └─ Enosh
-      └─ Kenan
-         └─ Mahalalel
-            └─ Jared
-               └─ Enoch (walked with God; taken—Gen 5:21–24; Heb 11:5)
-                  └─ Methuselah
-                     └─ Lamech
-                        └─ Noah (Gen 6–9; the Flood; Noahic covenant—Gen 9)
-  </pre>
-
-  <p><em>Why this line matters:</em> Preserves the “offspring” hope (Gen 3:15). Enoch and Noah show mercy in judgment; God preserves a family to continue the promise.</p>
-
-  <pre class="genealogy-block">
-Noah
-├─ Shem → Semitic peoples; promise line continues (Gen 9:26; 11:10–26)
-├─ Ham → Egypt, Canaan, Cush, etc. (Gen 10:6–20)
-└─ Japheth → Indo-European peoples (Gen 10:2–5)
-  </pre>
-
-  <p><em>Why Shem → Abraham matters:</em> The Abrahamic covenant (Gen 12; 15; 17) promises land, offspring, blessing to all nations through his seed. This covenant frames the rest of Scripture.</p>
-
-  <hr>
-
-  <h3>2) Abraham’s Household — Choosing the Covenant Line</h3>
-  <p>Abraham → Isaac → Jacob → 12 tribes (Gen 25–35). Judah receives the scepter promise (Gen 49:8–10). Levi becomes the priestly tribe (Num 3). Kingship and priesthood stay distinct until the Messiah (Ps 110; Heb 7).</p>
-
-  <hr>
-
-  <h3>3) The Messianic Line: Judah → David → Jesus</h3>
-  <pre class="genealogy-block">
-Judah
-└─ Perez → Hezron → Ram → Amminadab → Nahshon → Salmon
-   └─ Boaz + Ruth → Obed → Jesse → David
-  </pre>
-
-  <p><em>Ruth’s significance:</em> Ruth, a Moabite, joins Israel through faith and covenant loyalty, preserving the Judah line toward David. Boaz acts as kinsman-redeemer (Lev 25; Deut 25). This foreshadows Gentile inclusion through redemption.</p>
-
-  <hr>
-
-  <h3>4) From David to Jesus: Two Complementary Genealogies</h3>
-  <ul>
-    <li><strong>Matthew 1</strong> — Legal/royal line (through Solomon → Joseph)</li>
-    <li><strong>Luke 3</strong> — Biological line (through Nathan → Mary)</li>
-  </ul>
-  <p>Together they show Jesus as both David’s heir by law and David’s son by blood — resolving the Jeconiah curse (Jer 22:24–30) and upholding the covenant promises.</p>
-
-  <hr>
-
-  <h3>5) The Priestly Line (for Context)</h3>
-  <pre class="genealogy-block">
-Levi
-└─ Kohath
-   └─ Amram
-      ├─ Aaron → High Priest line
-      ├─ Moses
-      └─ Miriam
-  </pre>
-  <p>Kingship runs through Judah; priesthood through Levi — unified in Christ, our eternal priest-king (Ps 110; Heb 7).</p>
-
-  <hr>
-
-  <h3>6) Quick Text Index for Study</h3>
-  <ul>
-    <li>Genesis 3:15 — First promise</li>
-    <li>Genesis 5; 10–11 — Early genealogies</li>
-    <li>Genesis 12; 15; 17 — Abrahamic covenant</li>
-    <li>Genesis 38; 49:8–10 — Judah’s promise</li>
-    <li>Ruth 4:18–22 — Boaz to David</li>
-    <li>2 Samuel 7 — Davidic covenant</li>
-    <li>Jeremiah 22 — Jeconiah judgment</li>
-    <li>Matthew 1; Luke 3 — Christ’s genealogy</li>
-  </ul>
-</section>
 
   <footer>
     <p>“The gifts and calling of God are irrevocable.” — Romans 11:29</p>
-    <p>Built for study, reflection, and understanding of God’s eternal covenant through Abraham’s seed.</p>
   </footer>
 </body>
 </html>

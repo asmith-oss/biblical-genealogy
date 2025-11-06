@@ -1,13 +1,13 @@
 body {
-  font-family: 'Georgia', serif;
+  font-family: Georgia, serif;
   margin: 0;
+  background: linear-gradient(135deg, #101423, #1b2440);
   color: #f4f4f4;
-  background: linear-gradient(135deg, #101423 0%, #1b2440 100%);
 }
 
 header, footer {
   text-align: center;
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
   padding: 1.5rem;
   border-bottom: 1px solid #333;
 }
@@ -17,69 +17,42 @@ header, footer {
   font-style: italic;
 }
 
-main {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 80vh;
+h2 {
+  text-align: center;
+  margin-top: 1rem;
 }
 
-#genealogy {
-  padding: 1.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-  justify-content: center;
+.tree-container {
+  font-family: Georgia, serif;
+  text-align: left;
+  margin: 40px auto;
+  width: 90%;
+  max-width: 900px;
 }
 
-.name {
+.node-box {
+  display: inline-block;
+  margin: 8px;
+  padding: 6px 12px;
   background: #243055;
+  color: #fff;
+  border-radius: 6px;
   border: 1px solid #3a4a7d;
-  border-radius: 8px;
-  padding: 0.5rem 0.9rem;
   cursor: pointer;
   transition: all 0.2s ease;
+  font-size: 1rem;
 }
-.name:hover { background: #3a4a7d; }
+.node-box:hover { background: #3a4a7d; }
 
-#details {
-  padding: 1.5rem;
-  border-left: 1px solid #333;
-  background: rgba(255,255,255,0.05);
-  overflow-y: auto;
-}
-
-#details h2 { color: #8dd3ff; margin-top: 0; }
-.verse { display: block; color: #ffd08d; margin: 0.3rem 0; }
-
-#study-notes {
-  margin: 40px auto;
-  padding: 30px;
-  max-width: 900px;
-  background: #f9f9f9;
-  border: 2px solid #ccc;
-  border-radius: 12px;
-  font-family: Georgia, serif;
-  color: #222;
-  line-height: 1.6;
+.branch {
+  margin-left: 30px;
+  border-left: 2px solid #555;
+  padding-left: 15px;
 }
 
-#study-notes h2, #study-notes h3 {
-  color: #1e3c72;
-  margin-top: 1.5em;
-}
-
-#study-notes pre.genealogy-block {
-  background: #fff;
-  border: 1px solid #ddd;
+.person-info {
+  background: rgba(255, 255, 255, 0.1);
   padding: 10px;
   border-radius: 6px;
-  overflow-x: auto;
-  font-family: 'Courier New', monospace;
-}
-
-#study-notes hr {
-  margin: 30px 0;
-  border: 0;
-  height: 1px;
-  background: #ddd;
+  margin: 6px 0 12px 0;
 }
