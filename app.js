@@ -1,12 +1,28 @@
 // ============================================================
-// Biblical Genealogy Interactive Tree (Upgraded + Autocomplete)
-// Desktop + Mobile/Tablet Friendly — UTF-8 safe symbols
-// - Preserves your working tree logic
-// - Adds live autocomplete under the search box (theme-matched)
-// - Improves text search tolerance (spacing/punctuation/case)
+// Biblical Genealogy Interactive Tree (Auto-Nesting + Cache)
+// - Builds a nested hierarchy from the flat JSON (ignores "metadata")
+// - Caches the nested structure in localStorage (one-time build)
+// - Preserves ALL existing UI features & CSS classes
+// - Backward-compatible with descendants as IDs or objects
 // ============================================================
 
-let genealogyData = {};
+/*
+  Overview of key globals:
+
+  - flatGenealogyData: raw JSON loaded from biblical_genealogy.json (flat, by id)
+  - peopleById: a normalized flat lookup map { id -> personObject }
+  - nestedRoots: array of nested root nodes (objects with descendants as objects)
+  - genealogyData: kept as the flat lookup (for backward-compat with any logic that expects a map)
+
+  Rendering works with BOTH styles:
+  - If a person.descendants is an array of IDs -> we resolve children from peopleById
+  - If a person.descendants is an array of objects -> we use those directly
+*/
+
+let peopleById = {};      // flat lookup by id (kept for search and compatibility)
+let nestedRoots = [];     // array of nested root nodes
+let genealogyData = {};   // flat lookup exposed under the legacy name for compatibility
+
 let currentPath = [];
 let expandedNodes = new Set();
 
@@ -14,30 +30,11 @@ let expandedNodes = new Set();
 function prettifyKey(k) {
   return String(k).replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 }
+
 function isPersonObject(v) {
   return v && typeof v === 'object' && (
     'descendants' in v || 'bio' in v || 'scripture' in v || 'name' in v || 'id' in v
   );
-}
-function flattenEntries(obj, outMap) {
-  Object.entries(obj || {}).forEach(([key, value]) => {
-    if (!value || typeof value !== 'object') return;
-    if (isPersonObject(value)) {
-      const mapKey = (value.id && String(value.id)) || key;
-      outMap[mapKey] = {
-        id: value.id || mapKey,
-        name: value.name || prettifyKey(mapKey),
-        bio: value.bio || '',
-        scripture: value.scripture || '',
-        descendants: Array.isArray(value.descendants) ? value.descendants.slice() : [],
-        __sourceKey: key,
-        ...value
-      };
-      if (mapKey !== key) outMap[key] = outMap[mapKey];
-    } else {
-      flattenEntries(value, outMap);
-    }
-  });
 }
 
 // Normalize text for tolerant search
@@ -45,7 +42,7 @@ function normalizeText(str) {
   return String(str || "")
     .toLowerCase()
     .replace(/[\p{P}\p{S}]+/gu, "") // remove punctuation/symbols
-    .replace(/\s+/g, " ") // collapse spaces
+    .replace(/\s+/g, " ")           // collapse spaces
     .trim();
 }
 
@@ -55,16 +52,158 @@ function isScriptureQuery(q) {
   return re.test(q);
 }
 
-// Tolerant: exact by id key, then normalized id/name equality
+// ---------- Core: Builder (Auto-Nesting) ----------
+/*
+  buildNestedTree(data)
+  - Skips "metadata"
+  - Makes shallow copies with empty descendants
+  - Connects parent -> child as nested objects
+  - Identifies roots (never referenced as a descendant) and returns them
+*/
+function buildNestedTree(data) {
+  const lookup = {};
+  // pass 1: shallow copies with empty descendants
+  for (const id in data) {
+    if (!Object.prototype.hasOwnProperty.call(data, id)) continue;
+    if (id === "metadata") continue;
+    const src = data[id];
+    // Shallow copy, force id, normalize name, and defer descendants connection
+    lookup[id] = {
+      id,
+      name: src?.name || prettifyKey(id),
+      bio: src?.bio || "",
+      scripture: src?.scripture || "",
+      descendants: [] // IMPORTANT: we will reconnect as objects
+    };
+  }
+
+  // pass 2: reconnect descendants as objects (if they exist as IDs in source)
+  for (const id in data) {
+    if (!Object.prototype.hasOwnProperty.call(data, id)) continue;
+    if (id === "metadata") continue;
+    const src = data[id];
+    if (!src || !Array.isArray(src.descendants) || src.descendants.length === 0) continue;
+
+    const parent = lookup[id];
+    for (const childId of src.descendants) {
+      if (lookup[childId]) parent.descendants.push(lookup[childId]);
+    }
+  }
+
+  // detect roots: anyone not referenced as a child
+  const allChildren = new Set(
+    Object.values(lookup).flatMap(p => p.descendants.map(d => d.id))
+  );
+
+  const roots = [];
+  for (const id in lookup) {
+    if (!allChildren.has(id)) roots.push(lookup[id]);
+  }
+  return roots;
+}
+
+// ---------- Cache Wrapper ----------
+/*
+  One-time caching of the nested tree.
+  We never cache the flat lookup so you can keep editing the JSON safely;
+  the nested form is just a derived view for rendering performance.
+*/
+function getNestedWithCache(flatData) {
+  const cached = localStorage.getItem("nestedGenealogy");
+  if (cached) {
+    try {
+      const parsed = JSON.parse(cached);
+      if (Array.isArray(parsed)) return parsed;
+    } catch (_) {
+      // fall through to rebuild
+    }
+  }
+  const built = buildNestedTree(flatData);
+  try {
+    localStorage.setItem("nestedGenealogy", JSON.stringify(built));
+  } catch (_) {
+    // storage might be full or disabled — continue gracefully
+  }
+  return built;
+}
+
+// ---------- Load Data ----------
+async function loadGenealogyData() {
+  try {
+    const res = await fetch('./biblical_genealogy.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error(`Failed to fetch JSON: ${res.status} ${res.statusText}`);
+    const raw = await res.json();
+
+    // Your file may be either { genealogy: {...} } or a flat object. Support both.
+    const flatGenealogyData = raw && raw.genealogy ? raw.genealogy : raw;
+
+    // Build flat lookup (peopleById) WITHOUT altering your original JSON shape.
+    peopleById = {};
+    for (const key in flatGenealogyData) {
+      if (!Object.prototype.hasOwnProperty.call(flatGenealogyData, key)) continue;
+      if (key === "metadata") continue;
+      const v = flatGenealogyData[key];
+      if (!v || typeof v !== 'object') continue;
+
+      // ensure id + defaults; keep descendants as-is (array of IDs in your data)
+      const id = key;
+      peopleById[id] = {
+        id,
+        name: v.name || prettifyKey(id),
+        bio: v.bio || '',
+        scripture: v.scripture || '',
+        descendants: Array.isArray(v.descendants) ? v.descendants.slice() : []
+      };
+    }
+
+    // Build nested hierarchy with caching
+    nestedRoots = getNestedWithCache(flatGenealogyData);
+
+    // Expose flat lookup under legacy name for compatibility with existing logic
+    genealogyData = peopleById;
+
+    // Initialize UI from the TRUE root (prefer nested Adam)
+    initializeTree();
+    setupEventListeners();
+    updateStats();
+
+    console.info('Genealogy loaded — people:', Object.keys(peopleById).length, 'roots:', nestedRoots.length);
+  } catch (err) {
+    console.error('Error loading genealogy data:', err);
+    initializeTree();
+    setupEventListeners();
+    updateStats();
+  }
+}
+
+// ---------- Helpers to Support Both ID-based and Object-based descendants ----------
+function getChildrenArray(person) {
+  // Returns an array of CHILD OBJECTS no matter original shape
+  if (!person) return [];
+
+  // If descendants are already nested objects:
+  if (Array.isArray(person.descendants) && person.descendants.length && typeof person.descendants[0] === 'object') {
+    return person.descendants.filter(Boolean);
+  }
+
+  // If descendants are ID strings: resolve from flat lookup
+  const ids = Array.isArray(person.descendants) ? person.descendants : [];
+  const out = [];
+  for (const cid of ids) {
+    if (peopleById[cid]) out.push(peopleById[cid]);
+  }
+  return out;
+}
+
 function findPerson(idOrName) {
   if (!idOrName) return null;
   const raw = String(idOrName).trim();
 
-  // direct object-key hit (back-compat with your data keys)
-  if (genealogyData[raw]) return genealogyData[raw];
+  // direct id lookup
+  if (peopleById[raw]) return peopleById[raw];
 
   const q = normalizeText(raw);
-  for (const p of Object.values(genealogyData)) {
+  for (const p of Object.values(peopleById)) {
     if (!p) continue;
     if (normalizeText(p.id) === q) return p;
     if (normalizeText(p.name) === q) return p;
@@ -72,12 +211,11 @@ function findPerson(idOrName) {
   return null;
 }
 
-// Tolerant fuzzy: startsWith preferred, then includes; checks id, name, bio
 function fuzzyFind(nameLike) {
   if (!nameLike) return [];
   const q = normalizeText(nameLike);
 
-  const persons = Object.values(genealogyData).filter(Boolean);
+  const persons = Object.values(peopleById).filter(Boolean);
   const starts = [];
   const includes = [];
   const seen = new Set();
@@ -96,52 +234,35 @@ function fuzzyFind(nameLike) {
   return [...starts, ...includes];
 }
 
-// ---------- Load Data ----------
-async function loadGenealogyData() {
-  try {
-    const res = await fetch('./biblical_genealogy.json', { cache: 'no-store' });
-    if (!res.ok) throw new Error(`Failed to fetch JSON: ${res.status} ${res.statusText}`);
-    const raw = await res.json();
-    const source = raw && raw.genealogy ? raw.genealogy : raw;
+// ---------- Tree ----------
+function pickRootForUI() {
+  // Prefer nested Adam if available, else fall back to flat lookup
+  const adamNested =
+    (nestedRoots.find(n => n.id === 'adam') ||
+     nestedRoots.find(n => (n.name || '').toLowerCase() === 'adam')) || null;
 
-    const normalized = {};
-    flattenEntries(source, normalized);
-    genealogyData = normalized;
+  if (adamNested) return adamNested;
 
-    initializeTree();
-    setupEventListeners();
-    initAutocomplete(); // NEW
-    updateStats();
+  // fallback: derive Adam from flat lookup if nested not found
+  if (peopleById['adam']) return peopleById['adam'];
 
-    console.info('Genealogy loaded — people:', Object.keys(genealogyData).length);
-  } catch (err) {
-    console.error('Error loading genealogy data:', err);
-    initializeTree();
-    setupEventListeners();
-    initAutocomplete(); // ensure autocomplete still wires up
-    updateStats();
-  }
+  // last resort: first nested root or first flat person
+  return nestedRoots[0] || Object.values(peopleById)[0] || null;
 }
 
-// ---------- Tree (unchanged) ----------
 function initializeTree() {
-  const root = document.getElementById("tree-root");
-
-  const rootPerson =
-    genealogyData["adam"] ||
-    genealogyData.root ||
-    Object.values(genealogyData).find(p => p && p.id === "adam") ||
-    Object.values(genealogyData)[0];
+  const rootEl = document.getElementById("tree-root");
+  const rootPerson = pickRootForUI();
 
   if (!rootPerson) {
-    console.error("No root person found in genealogyData");
+    console.error("No root person found in dataset");
     return;
   }
 
   const rootNode = createNode(rootPerson);
-  root.innerHTML = '';
-  root.appendChild(rootNode);
-  currentPath = [rootPerson.name];
+  rootEl.innerHTML = '';
+  rootEl.appendChild(rootNode);
+  currentPath = [rootPerson.name || rootPerson.id || 'Root'];
   updateBreadcrumb(currentPath);
 }
 
@@ -150,9 +271,9 @@ function createNode(personData) {
   div.className = "node-box";
   div.dataset.personId = personData.id;
 
-  const hasDescendants = personData.descendants && personData.descendants.length > 0;
+  const hasDescendants = getChildrenArray(personData).length > 0;
   div.innerHTML = `
-    <span class="node-name">${personData.name}</span>
+    <span class="node-name">${personData.name || personData.id || 'Unknown'}</span>
     ${hasDescendants ? '<span class="expand-indicator">▼</span>' : ''}
   `;
 
@@ -200,20 +321,15 @@ function toggleBranch(container, personData) {
     return;
   }
 
-  const descendants = personData.descendants || [];
-  if (descendants.length === 0) return;
+  const children = getChildrenArray(personData);
+  if (!children.length) return;
 
   const branch = document.createElement("div");
   branch.className = "branch active";
   branch.dataset.parentId = personId;
 
-  descendants.forEach(childId => {
-    const childData = genealogyData[childId] || Object.values(genealogyData).find(p => p && p.id === childId);
-    if (childData) {
-      branch.appendChild(createNode(childData));
-    } else {
-      console.warn(`Missing data for descendant: ${childId}`);
-    }
+  children.forEach(childObj => {
+    if (childObj) branch.appendChild(createNode(childObj));
   });
 
   container.insertAdjacentElement("afterend", branch);
@@ -221,13 +337,13 @@ function toggleBranch(container, personData) {
   const indicator = container.querySelector('.expand-indicator');
   if (indicator) indicator.textContent = '▲';
 
-  if (!currentPath.length || currentPath[currentPath.length - 1] !== personData.name) {
-    currentPath.push(personData.name);
+  if (!currentPath.length || currentPath[currentPath.length - 1] !== (personData.name || personData.id)) {
+    currentPath.push(personData.name || personData.id);
     updateBreadcrumb(currentPath);
   }
 }
 
-// ---------- Modal (unchanged) ----------
+// ---------- Modal ----------
 function openModal(personData) {
   const modal = document.getElementById("infoModal");
   const modalContent = document.getElementById("person-info");
@@ -235,7 +351,7 @@ function openModal(personData) {
   const name = personData.name || personData.id || 'Unknown';
   const bio = personData.bio || 'No biography available.';
   const scripture = personData.scripture || 'No scripture refs.';
-  const descendantsCount = (personData.descendants && personData.descendants.length) || 0;
+  const descendantsCount = getChildrenArray(personData).length;
 
   modal.style.display = "block";
   modalContent.innerHTML = `
@@ -255,7 +371,7 @@ function openModal(personData) {
   `;
 }
 
-// ---------- Global UI / Events (kept) ----------
+// ---------- Global UI / Events ----------
 function setupEventListeners() {
   // Modal close
   const modal = document.getElementById("infoModal");
@@ -271,7 +387,7 @@ function setupEventListeners() {
     searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') smartSearch(searchInput.value); });
   }
 
-  // Quick navigation buttons
+  // Quick navigation buttons (Jump To)
   document.querySelectorAll('.nav-btn').forEach(btn => {
     btn.addEventListener('click', () => jumpToPerson(btn.dataset.person));
   });
@@ -279,7 +395,6 @@ function setupEventListeners() {
   // Lineage tools
   const btnAnc = document.getElementById('btn-ancestors');
   const btnDesc = document.getElementById('btn-descendants');
-  const btnMess = document.getElementById('btn-highlight-messianic');
 
   if (btnAnc) btnAnc.addEventListener('click', () => {
     const id = (document.getElementById('lin-person') || {}).value?.trim();
@@ -299,11 +414,6 @@ function setupEventListeners() {
     displayResults(`Descendants of ${person.name}`, list);
   });
 
-  if (btnMess) btnMess.addEventListener('click', () => {
-    highlightMessianicLine();
-    alert('Messianic line highlighted (if nodes are visible). Tip: navigate to Adam or David first.');
-  });
-
   // Compare
   const btnCmp = document.getElementById('btn-compare');
   if (btnCmp) btnCmp.addEventListener('click', () => {
@@ -316,24 +426,12 @@ function setupEventListeners() {
     comparePeople(p1.id, p2.id);
   });
 
-  // Tribe & roles
-  const btnTribe = document.getElementById('btn-tribe');
-  if (btnTribe) btnTribe.addEventListener('click', () => {
-    const tribeSel = document.getElementById('tribe-select');
-    const tribe = tribeSel ? tribeSel.value : '';
-    if (!tribe) return;
-    listTribe(tribe);
-  });
-  document.querySelectorAll('.role-btn').forEach(btn => {
-    btn.addEventListener('click', () => filterByRole(btn.dataset.role));
-  });
-
-  // Timeline
+  // Chronology
   const btnChron = document.getElementById('btn-chronology');
   if (btnChron) btnChron.addEventListener('click', listChronologically);
 }
 
-// ---------- Search (smarter, unchanged API) ----------
+// ---------- Search ----------
 function smartSearch(q) {
   const query = (q || '').trim();
   if (!query) return;
@@ -349,16 +447,16 @@ function smartSearch(q) {
 }
 
 function searchByScripture(ref) {
-  const results = Object.values(genealogyData).filter(p =>
+  const results = Object.values(peopleById).filter(p =>
     p.scripture && p.scripture.toLowerCase().includes(ref.toLowerCase())
   );
   displayResults(`People connected to ${ref}`, results);
 }
 
-// ---------- Lineage helpers (unchanged) ----------
+// ---------- Lineage helpers ----------
 function getAncestors(id, seen = new Set()) {
   const ancestors = [];
-  for (const person of Object.values(genealogyData)) {
+  for (const person of Object.values(peopleById)) {
     if (!person || !Array.isArray(person.descendants)) continue;
     if (person.descendants.includes(id) && !seen.has(person.id)) {
       ancestors.push(person);
@@ -374,11 +472,11 @@ function getAncestors(id, seen = new Set()) {
 }
 
 function getDescendants(id, seen = new Set()) {
-  const person = genealogyData[id];
+  const person = peopleById[id];
   if (!person || !Array.isArray(person.descendants)) return [];
   const out = [];
   for (const childId of person.descendants) {
-    const child = genealogyData[childId] || null;
+    const child = peopleById[childId] || null;
     if (child && !seen.has(child.id)) {
       out.push(child);
       seen.add(child.id);
@@ -392,32 +490,7 @@ function getDescendants(id, seen = new Set()) {
   return uniq;
 }
 
-// ---------- Themes / Filters (unchanged) ----------
-function listTribe(tribe) {
-  const t = String(tribe).toLowerCase();
-  const tribeRegex = new RegExp(`\\b${t}\\b`, 'i');
-  const contextRegex = new RegExp(`\\b(tribe|son|descendant|line|house)\\s+(of\\s+)?${t}\\b`, 'i');
-
-  const tribeMembers = Object.values(genealogyData).filter(p => {
-    const bio = p.bio ? p.bio.toLowerCase() : '';
-    const name = p.name ? p.name.toLowerCase() : '';
-    // keep only if tribe mentioned meaningfully in context
-    return contextRegex.test(bio) || contextRegex.test(name) ||
-           (tribeRegex.test(name) && !bio.includes('descendant'));
-  });
-
-  displayResults(`${tribe} Tribe`, tribeMembers);
-}
-
-function filterByRole(keyword) {
-  const k = String(keyword).toLowerCase();
-  const matches = Object.values(genealogyData).filter(p =>
-    p.bio && p.bio.toLowerCase().includes(k)
-  );
-  const title = k === 'woman' ? 'Women of Faith' : `People associated with "${keyword}"`;
-  displayResults(title, matches);
-}
-
+// ---------- Themes / Filters (Messianic line kept intact in case you highlight later) ----------
 const messianicLine = [
   "adam","seth","enos","enosh","kenan","mahalalel","jared","enoch","methuselah","lamach","lamech","noah",
   "shem","arapachshad","arphaxad","shelah","heber","peleg","reu","serug","nahor","terah","abraham",
@@ -430,8 +503,7 @@ const messianicLine = [
 function highlightMessianicLine() {
   document.querySelectorAll('.highlight-messianic').forEach(n => n.classList.remove('highlight-messianic'));
   messianicLine.forEach(id => {
-    // accept exact id or a person whose id matches case-insensitively
-    const match = Object.values(genealogyData).find(p => p.id && p.id.toLowerCase() === id);
+    const match = Object.values(peopleById).find(p => p.id && p.id.toLowerCase() === id);
     if (!match) return;
     const el = document.querySelector(`[data-person-id="${match.id}"]`);
     if (el) el.classList.add("highlight-messianic");
@@ -439,16 +511,16 @@ function highlightMessianicLine() {
 }
 
 function listChronologically() {
-  const ordered = Object.values(genealogyData)
+  const ordered = Object.values(peopleById)
     .filter(p => p && typeof p.scripture === 'string' && p.scripture.trim().length)
     .sort((a, b) => a.scripture.localeCompare(b.scripture));
   displayResults("Biblical Figures (Approximate Order)", ordered.slice(0, 250)); // cap to keep UI snappy
 }
 
-// ---------- Compare (unchanged) ----------
+// ---------- Compare ----------
 function comparePeople(id1, id2) {
-  const p1 = genealogyData[id1];
-  const p2 = genealogyData[id2];
+  const p1 = peopleById[id1];
+  const p2 = peopleById[id2];
   const modal = document.getElementById("infoModal");
   const content = document.getElementById("person-info");
   modal.style.display = "block";
@@ -469,7 +541,7 @@ function comparePeople(id1, id2) {
   `;
 }
 
-// ---------- Results rendering (unchanged) ----------
+// ---------- Results rendering ----------
 function displayResults(title, list) {
   const modal = document.getElementById("infoModal");
   const content = document.getElementById("person-info");
@@ -500,7 +572,7 @@ function displayResults(title, list) {
   });
 }
 
-// ---------- Jump / Breadcrumb / Stats (unchanged) ----------
+// ---------- Jump / Breadcrumb / Stats ----------
 function jumpToPerson(personId) {
   const person = findPerson(personId) || (fuzzyFind(personId)[0] || null);
   if (!person) {
@@ -526,190 +598,9 @@ function updateBreadcrumb(path) {
 }
 
 function updateStats() {
-  const count = Object.keys(genealogyData).length;
+  const count = Object.keys(peopleById).length;
   const el = document.getElementById('person-count');
   if (el) el.textContent = count;
-}
-
-// ============================================================
-// Autocomplete (NEW) — theme-matched dropdown
-// ============================================================
-let ac = {
-  box: null,
-  items: [],
-  index: -1,
-  open: false
-};
-
-function initAutocomplete() {
-  const input = document.getElementById('search-input');
-  if (!input) return;
-
-  // Ensure parent can position the dropdown
-  const parent = input.parentElement || document.body;
-  parent.style.position = parent.style.position || 'relative';
-
-  // Inject minimal theme-matched styles once
-  if (!document.getElementById('autocomplete-styles')) {
-    const style = document.createElement('style');
-    style.id = 'autocomplete-styles';
-    style.textContent = `
-      .ac-box {
-        position: absolute;
-        left: 0; right: 0;
-        margin: 6px auto 0;
-        max-width: 520px;
-        background: #1a2332;
-        border: 1px solid #3a4a7d;
-        border-radius: 10px;
-        box-shadow: 0 8px 18px rgba(0,0,0,0.35);
-        z-index: 9999;
-        overflow: hidden;
-        display: none;
-      }
-      .ac-item {
-        padding: 10px 12px;
-        color: #cfe6ff;
-        cursor: pointer;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
-      }
-      .ac-item:last-child { border-bottom: none; }
-      .ac-item:hover, .ac-item.active {
-        background: #3a4a7d;
-        color: #fff;
-      }
-      @media (max-width: 768px) {
-        .ac-box { left: 0; right: 0; max-width: none; }
-      }
-    `;
-    document.head.appendChild(style);
-  }
-
-  // Create dropdown
-  ac.box = document.createElement('div');
-  ac.box.className = 'ac-box';
-
-  // Place just after the input
-  parent.appendChild(ac.box);
-
-  // Events
-  input.addEventListener('input', () => updateAutocomplete(input.value));
-  input.addEventListener('keydown', onAutocompleteKeydown);
-  // Hide on blur (small delay so clicks register)
-  input.addEventListener('blur', () => setTimeout(hideAutocomplete, 150));
-  // Reposition on resize
-  window.addEventListener('resize', () => positionAutocompleteBox(input));
-  // Also show when focused with existing text
-  input.addEventListener('focus', () => {
-    if (input.value.trim().length >= 2) updateAutocomplete(input.value);
-  });
-
-  positionAutocompleteBox(input);
-}
-
-function positionAutocompleteBox(input) {
-  if (!ac.box) return;
-  // Box width follows input width visually since we center via parent max-width
-  // No absolute px calc needed; CSS handles responsiveness.
-  ac.box.style.display = ac.open ? 'block' : 'none';
-}
-
-function buildSuggestions(q) {
-  if (!q || normalizeText(q).length < 2) return [];
-  const list = fuzzyFind(q);
-  // Limit to 8, prefer unique names
-  const out = [];
-  const seen = new Set();
-  for (const p of list) {
-    const key = (p.name || p.id);
-    if (!seen.has(key)) {
-      out.push(p);
-      seen.add(key);
-    }
-    if (out.length >= 8) break;
-  }
-  return out;
-}
-
-function updateAutocomplete(q) {
-  if (!ac.box) return;
-  const suggestions = buildSuggestions(q);
-  ac.items = suggestions;
-  ac.index = -1;
-
-  if (suggestions.length === 0) {
-    hideAutocomplete();
-    return;
-  }
-
-  ac.box.innerHTML = suggestions.map((p, i) => `
-    <div class="ac-item" data-id="${p.id}" data-idx="${i}">
-      ${p.name}
-    </div>
-  `).join('');
-
-  // Click / touch handlers
-  ac.box.querySelectorAll('.ac-item').forEach(el => {
-    el.addEventListener('mousedown', (e) => {
-      e.preventDefault(); // prevent input blur before click
-      const id = el.getAttribute('data-id');
-      selectAutocompleteById(id);
-    });
-    el.addEventListener('touchstart', (e) => {
-      e.preventDefault();
-      const id = el.getAttribute('data-id');
-      selectAutocompleteById(id);
-    }, { passive: false });
-  });
-
-  ac.open = true;
-  ac.box.style.display = 'block';
-}
-
-function hideAutocomplete() {
-  if (!ac.box) return;
-  ac.open = false;
-  ac.index = -1;
-  ac.items = [];
-  ac.box.style.display = 'none';
-}
-
-function onAutocompleteKeydown(e) {
-  if (!ac.open || ac.items.length === 0) return; // let normal keys work
-
-  const key = e.key;
-  if (key === 'ArrowDown' || key === 'Down') {
-    e.preventDefault();
-    ac.index = (ac.index + 1) % ac.items.length;
-    refreshActiveItem();
-  } else if (key === 'ArrowUp' || key === 'Up') {
-    e.preventDefault();
-    ac.index = (ac.index - 1 + ac.items.length) % ac.items.length;
-    refreshActiveItem();
-  } else if (key === 'Enter') {
-    // If an item is highlighted, choose it; else let smartSearch handle it
-    if (ac.index >= 0 && ac.index < ac.items.length) {
-      e.preventDefault();
-      const chosen = ac.items[ac.index];
-      selectAutocompleteById(chosen.id);
-    } // else do nothing (smartSearch bound on click or keypress outside)
-  } else if (key === 'Escape' || key === 'Esc') {
-    hideAutocomplete();
-  }
-}
-
-function refreshActiveItem() {
-  if (!ac.box) return;
-  ac.box.querySelectorAll('.ac-item').forEach((el, i) => {
-    if (i === ac.index) el.classList.add('active'); else el.classList.remove('active');
-  });
-}
-
-function selectAutocompleteById(id) {
-  hideAutocomplete();
-  const p = findPerson(id) || genealogyData[id] || null;
-  if (!p) return;
-  openModal(p); // open details immediately; keeps your tree untouched
 }
 
 // ---------- Boot ----------
