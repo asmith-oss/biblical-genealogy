@@ -44,7 +44,7 @@ function flattenEntries(obj, outMap) {
       // alias original key if different (helps if buttons use original)
       if (mapKey !== key) outMap[key] = outMap[mapKey];
     } else {
-      // nested group — recurse
+      // nested group â€” recurse
       flattenEntries(value, outMap);
     }
   });
@@ -63,7 +63,7 @@ async function loadGenealogyData() {
     flattenEntries(source, normalized);
     genealogyData = normalized;
 
-    console.info('Genealogy loaded — person count:', Object.keys(genealogyData).length);
+    console.info('Genealogy loaded â€” person count:', Object.keys(genealogyData).length);
     console.debug('Has adam:', !!(genealogyData['adam'] || Object.values(genealogyData).find(p=>p.id==='adam')));
     console.debug('Sample keys:', Object.keys(genealogyData).slice(0,40));
 
@@ -75,7 +75,7 @@ async function loadGenealogyData() {
     const notice = document.getElementById('data-error-notice');
     if (notice) {
       notice.style.display = 'block';
-      notice.textContent = 'Error loading biblical_genealogy.json — check console.';
+      notice.textContent = 'Error loading biblical_genealogy.json â€” check console.';
     }
     initializeTree();
     setupEventListeners();
@@ -123,7 +123,7 @@ function createNode(personData) {
   const hasDescendants = personData.descendants && personData.descendants.length > 0;
   div.innerHTML = `
     <span class="node-name">${personData.name}</span>
-    ${hasDescendants ? '<span class="expand-indicator">▼</span>' : ''}
+    ${hasDescendants ? '<span class="expand-indicator">â–¼</span>' : ''}
   `;
 
   // ------------------------------------------------------------
@@ -171,12 +171,12 @@ function toggleBranch(container, personData) {
       existing.remove();
       expandedNodes.delete(personId);
       const indicator = container.querySelector('.expand-indicator');
-      if (indicator) indicator.textContent = '▼';
+      if (indicator) indicator.textContent = 'â–¼';
     } else {
       existing.classList.add('active');
       expandedNodes.add(personId);
       const indicator = container.querySelector('.expand-indicator');
-      if (indicator) indicator.textContent = '▲';
+      if (indicator) indicator.textContent = 'â–²';
     }
     return;
   }
@@ -203,7 +203,7 @@ function toggleBranch(container, personData) {
   container.insertAdjacentElement("afterend", branch);
   expandedNodes.add(personId);
   const indicator = container.querySelector('.expand-indicator');
-  if (indicator) indicator.textContent = '▲';
+  if (indicator) indicator.textContent = 'â–²';
 
   // update breadcrumb (avoid duplicates)
   if (!currentPath.length || currentPath[currentPath.length - 1] !== personData.name) {
@@ -229,7 +229,7 @@ function openModal(personData) {
       <p>${bio}</p>
     </div>
     <div class="scripture-section">
-      <h3>📖 Scripture References</h3>
+      <h3>ðŸ“– Scripture References</h3>
       <p class="scripture-refs">${scripture}</p>
     </div>
     <div class="descendants-section">
@@ -343,7 +343,7 @@ function updateBreadcrumb(path) {
   const breadcrumb = document.getElementById("breadcrumb");
   breadcrumb.innerHTML = path.map((name, i) => 
     `<span class="breadcrumb-item">${name}</span>`
-  ).join(' → ');
+  ).join(' â†’ ');
 }
 
 function updateStats() {
