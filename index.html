@@ -3,15 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Biblical Genealogy Explorer</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="app.js" defer></script>
+  <title>Biblical Genealogy Explorer - Enhanced</title>
+  <link rel="stylesheet" href="style_enhanced.css" />
+  <script src="app_enhanced.js" defer></script>
 </head>
 
 <body>
   <header>
     <h1>📜 Biblical Genealogy Explorer</h1>
     <p class="subtitle">Follow the Bloodline from Adam to Messiah</p>
+    <div class="view-mode-toggle">
+      <button class="mode-btn active" data-mode="tree">🌳 Tree View</button>
+      <button class="mode-btn" data-mode="timeline">📅 Timeline</button>
+      <button class="mode-btn" data-mode="lineage">🔗 Lineage Paths</button>
+      <button class="mode-btn" data-mode="stats">📊 Statistics</button>
+    </div>
   </header>
 
   <main>
@@ -28,38 +34,276 @@
       </p>
     </section>
 
+    <!-- ========== NEW: ADVANCED CONTROLS ========== -->
     <section id="controls">
-      <div class="search-container">
-        <input type="text" id="search-input" placeholder="Search for a person..." />
-        <button id="search-btn">Search</button>
-      </div>
-      <div class="quick-nav">
-        <button class="nav-btn" data-person="adam">Start at Adam</button>
-        <button class="nav-btn" data-person="abraham">Jump to Abraham</button>
-        <button class="nav-btn" data-person="david">Jump to David</button>
-        <button class="nav-btn" data-person="jesus">Jump to Jesus</button>
+      <div class="control-panel">
+        <!-- Search -->
+        <div class="search-container">
+          <input type="text" id="search-input" placeholder="Search for a person..." />
+          <button id="search-btn">🔍 Search</button>
+        </div>
+
+        <!-- Quick Navigation -->
+        <div class="quick-nav">
+          <button class="nav-btn" data-person="adam">Start at Adam</button>
+          <button class="nav-btn" data-person="noah">Jump to Noah</button>
+          <button class="nav-btn" data-person="abraham">Jump to Abraham</button>
+          <button class="nav-btn" data-person="moses">Jump to Moses</button>
+          <button class="nav-btn" data-person="david">Jump to David</button>
+          <button class="nav-btn" data-person="jesus">Jump to Jesus</button>
+        </div>
+
+        <!-- NEW: Advanced Filters -->
+        <details class="filter-section">
+          <summary>🔧 Advanced Filters & Tools</summary>
+          <div class="filter-grid">
+            <!-- Tribe Filter -->
+            <div class="filter-group">
+              <label>Filter by Tribe:</label>
+              <select id="tribe-filter">
+                <option value="">All Tribes</option>
+                <option value="judah">Judah</option>
+                <option value="levi">Levi (Priestly)</option>
+                <option value="benjamin">Benjamin</option>
+                <option value="ephraim">Ephraim</option>
+                <option value="manasseh">Manasseh</option>
+                <option value="reuben">Reuben</option>
+                <option value="simeon">Simeon</option>
+                <option value="dan">Dan</option>
+                <option value="naphtali">Naphtali</option>
+                <option value="gad">Gad</option>
+                <option value="asher">Asher</option>
+                <option value="issachar">Issachar</option>
+                <option value="zebulun">Zebulun</option>
+              </select>
+            </div>
+
+            <!-- Era Filter -->
+            <div class="filter-group">
+              <label>Filter by Era:</label>
+              <select id="era-filter">
+                <option value="">All Eras</option>
+                <option value="pre-flood">Pre-Flood (Adam-Noah)</option>
+                <option value="post-flood">Post-Flood (Noah-Abraham)</option>
+                <option value="patriarchs">Patriarchs (Abraham-Joseph)</option>
+                <option value="egypt">Egyptian Bondage</option>
+                <option value="exodus">Exodus & Wilderness</option>
+                <option value="judges">Period of Judges</option>
+                <option value="monarchy">United Monarchy</option>
+                <option value="divided">Divided Kingdom</option>
+                <option value="exile">Exile & Return</option>
+                <option value="intertestamental">Intertestamental</option>
+                <option value="nt">New Testament</option>
+              </select>
+            </div>
+
+            <!-- Role Filter -->
+            <div class="filter-group">
+              <label>Filter by Role:</label>
+              <select id="role-filter">
+                <option value="">All Roles</option>
+                <option value="patriarch">Patriarchs</option>
+                <option value="priest">Priests/High Priests</option>
+                <option value="king">Kings</option>
+                <option value="prophet">Prophets</option>
+                <option value="judge">Judges</option>
+                <option value="apostle">Apostles</option>
+              </select>
+            </div>
+          </div>
+        </details>
+
+        <!-- NEW: Thematic Lineage Paths -->
+        <details class="lineage-paths-section">
+          <summary>🔗 Trace Thematic Lineages</summary>
+          <div class="lineage-buttons">
+            <button class="lineage-btn" data-path="messianic">
+              👑 Messianic Line (Adam → Jesus)
+            </button>
+            <button class="lineage-btn" data-path="priestly">
+              🕎 Priestly Line (Levi → High Priests)
+            </button>
+            <button class="lineage-btn" data-path="royal">
+              👑 Royal Line (David → Kings of Judah)
+            </button>
+            <button class="lineage-btn" data-path="prophetic">
+              📖 Prophetic Line (Major Prophets)
+            </button>
+            <button class="lineage-btn" data-path="twelve-tribes">
+              🌟 Twelve Sons of Jacob
+            </button>
+            <button class="lineage-btn" data-path="apostles">
+              ✝️ Apostolic Line
+            </button>
+          </div>
+        </details>
+
+        <!-- NEW: Relationship Finder -->
+        <details class="relationship-finder">
+          <summary>🔍 Find Relationships Between People</summary>
+          <div class="relationship-form">
+            <input type="text" id="person1-input" placeholder="Person 1 (e.g., David)" />
+            <span class="arrow">→</span>
+            <input type="text" id="person2-input" placeholder="Person 2 (e.g., Jesus)" />
+            <button id="find-relationship-btn">Find Connection</button>
+          </div>
+          <div id="relationship-result"></div>
+        </details>
+
+        <!-- NEW: Ancestry Tracer -->
+        <details class="ancestry-tracer">
+          <summary>🌲 Trace Ancestry to Adam</summary>
+          <div class="ancestry-form">
+            <input type="text" id="ancestry-input" placeholder="Enter person's name..." />
+            <button id="trace-ancestry-btn">Trace to Adam</button>
+          </div>
+          <div id="ancestry-result"></div>
+        </details>
       </div>
     </section>
 
-    <section id="tree-section">
+    <!-- ========== TREE VIEW (Existing - Preserved) ========== -->
+    <section id="tree-section" class="view-section active">
       <h2>Interactive Genealogy Tree</h2>
       <p>Click a name to expand descendants. Double-click to view full biography and scripture references.</p>
+      <div class="tree-controls">
+        <button id="expand-all-btn">Expand All Visible</button>
+        <button id="collapse-all-btn">Collapse All</button>
+        <button id="reset-tree-btn">Reset to Root</button>
+      </div>
       <div id="breadcrumb"></div>
       <div id="tree-root" class="tree-container"></div>
+    </section>
+
+    <!-- ========== NEW: TIMELINE VIEW ========== -->
+    <section id="timeline-section" class="view-section">
+      <h2>📅 Biblical Timeline</h2>
+      <p>Explore genealogy across biblical history</p>
+      <div id="timeline-container"></div>
+    </section>
+
+    <!-- ========== NEW: LINEAGE PATH VIEW ========== -->
+    <section id="lineage-section" class="view-section">
+      <h2>🔗 Thematic Lineage Paths</h2>
+      <div id="lineage-display"></div>
+    </section>
+
+    <!-- ========== NEW: STATISTICS DASHBOARD ========== -->
+    <section id="stats-section" class="view-section">
+      <h2>📊 Genealogy Statistics & Insights</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3>Total Individuals</h3>
+          <div class="stat-value" id="stat-total">0</div>
+        </div>
+        <div class="stat-card">
+          <h3>Generations (Adam → Jesus)</h3>
+          <div class="stat-value" id="stat-generations">0</div>
+        </div>
+        <div class="stat-card">
+          <h3>Longest Lineage</h3>
+          <div class="stat-value" id="stat-longest">0</div>
+        </div>
+        <div class="stat-card">
+          <h3>Tribes Represented</h3>
+          <div class="stat-value" id="stat-tribes">12</div>
+        </div>
+        <div class="stat-card">
+          <h3>Priestly Line Members</h3>
+          <div class="stat-value" id="stat-priests">0</div>
+        </div>
+        <div class="stat-card">
+          <h3>Kings of Judah/Israel</h3>
+          <div class="stat-value" id="stat-kings">0</div>
+        </div>
+      </div>
+
+      <div class="chart-section">
+        <h3>Distribution by Era</h3>
+        <div id="era-chart" class="chart-container"></div>
+      </div>
+
+      <div class="chart-section">
+        <h3>Most Connected Individuals</h3>
+        <div id="connections-chart" class="chart-container"></div>
+      </div>
     </section>
   </main>
 
   <footer>
     <p>"The gifts and the calling of God are irrevocable." — Romans 11:29</p>
-    <p class="stats">Database contains <span id="person-count">400+</span> biblical figures</p>
+    <p class="stats">Database contains <span id="person-count">415</span> biblical figures</p>
+    <div class="footer-tools">
+      <button id="export-btn">💾 Export Current View</button>
+      <button id="share-btn">🔗 Share Link</button>
+      <button id="print-btn">🖨️ Print View</button>
+    </div>
   </footer>
 
-  <!-- Modal -->
+  <!-- ========== ENHANCED MODAL ========== -->
   <div id="infoModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
       <div id="person-info"></div>
+      <!-- NEW: Modal Actions -->
+      <div class="modal-actions">
+        <button class="action-btn" id="trace-to-adam-btn">🌲 Trace to Adam</button>
+        <button class="action-btn" id="show-descendants-btn">👥 View All Descendants</button>
+        <button class="action-btn" id="show-on-tree-btn">🌳 Show on Tree</button>
+        <button class="action-btn" id="compare-btn">⚖️ Compare</button>
+      </div>
     </div>
   </div>
+
+  <!-- ========== NEW: COMPARISON MODAL ========== -->
+  <div id="comparisonModal" class="modal">
+    <div class="modal-content modal-wide">
+      <span class="close comparison-close">&times;</span>
+      <h2>⚖️ Compare Genealogies</h2>
+      <div id="comparison-view"></div>
+    </div>
+  </div>
+
+  <!-- ========== NEW: HELP OVERLAY ========== -->
+  <div id="help-overlay" class="help-overlay">
+    <div class="help-content">
+      <span class="close help-close">&times;</span>
+      <h2>📚 How to Use the Biblical Genealogy Explorer</h2>
+      <div class="help-sections">
+        <div class="help-section">
+          <h3>🌳 Tree View</h3>
+          <ul>
+            <li><strong>Click</strong> a name to expand their descendants</li>
+            <li><strong>Double-click</strong> to view full biography</li>
+            <li><strong>Long press</strong> (mobile) for biography</li>
+          </ul>
+        </div>
+        <div class="help-section">
+          <h3>🔗 Lineage Paths</h3>
+          <ul>
+            <li>Trace specific thematic bloodlines (Messianic, Priestly, Royal)</li>
+            <li>See highlighted paths through biblical history</li>
+          </ul>
+        </div>
+        <div class="help-section">
+          <h3>🔍 Relationship Finder</h3>
+          <ul>
+            <li>Find connections between any two biblical figures</li>
+            <li>See the complete ancestral path</li>
+          </ul>
+        </div>
+        <div class="help-section">
+          <h3>⚙️ Filters</h3>
+          <ul>
+            <li>Filter by Tribe (12 Tribes of Israel)</li>
+            <li>Filter by Era (Pre-Flood to New Testament)</li>
+            <li>Filter by Role (Kings, Priests, Prophets, etc.)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button id="help-btn" class="floating-help-btn" title="Help">❓</button>
 </body>
 </html>
