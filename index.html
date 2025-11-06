@@ -3,31 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Biblical Genealogy — From Adam to Messiah</title>
+  <title>Biblical Genealogy Study Tool</title>
   <link rel="stylesheet" href="style.css">
   <script src="app.js" defer></script>
 </head>
 
 <body>
   <header>
-    <h1>Biblical Genealogy</h1>
-    <p class="subtitle">Tracing the Promise — from Adam → Abraham → David → Messiah</p>
+    <h1>📜 Biblical Genealogy Study Tool</h1>
+    <p class="subtitle">From Adam to Messiah: Tracing God’s Covenant Through the Ages</p>
   </header>
 
   <main>
-    <!-- Genealogy section -->
-    <section id="genealogy-container">
-      <h2>Click a name to explore</h2>
-      <p>This interactive genealogy reveals covenant connections from the creation of Adam through the line of Judah to Christ.</p>
+    <!-- Theological overview -->
+    <section class="intro">
+      <div class="covenant-card">
+        <h2>🔥 The Abrahamic Covenant: Eternal & Unbreakable</h2>
+        <p><strong>Genesis 12:1–3; 15; 17</strong> — God’s covenant with Abraham is <em>unconditional and everlasting.</em> It was sealed by God alone (<em>Gen 15:17</em>), not dependent on human obedience.</p>
 
-      <div id="genealogy"></div>
+        <p><strong>Key Truth:</strong> The Mosaic Law (given 430 years later, Gal 3:17) did not nullify the Abrahamic Covenant. The Law was added to reveal sin and point to the Messiah, but the promise to Abraham—land, offspring, and blessing to all nations—stands forever.</p>
+
+        <p><strong>Romans 11:29</strong> — “For the gifts and the calling of God are irrevocable.” God’s covenant with the physical descendants of Abraham (the Jewish/Hebrew people) remains in force.</p>
+
+        <p><strong>The 144,000 (Revelation 7:4–8; 14:1–5):</strong> These are <em>literal</em> descendants from the 12 tribes of Israel—sealed servants during the tribulation. They are <em>not</em> the Church (which includes believing Gentiles grafted in, Rom 11:17–24), but rather Jewish believers who fulfill God’s enduring promise to preserve and redeem Israel.</p>
+
+        <p><strong>Gentiles at the Covenant:</strong> Believing Gentiles are “grafted in” (<em>Rom 11</em>) and become Abraham’s spiritual seed through faith (<em>Gal 3:29</em>), sharing in the blessings. But this does <em>not</em> replace Israel’s unique role and future restoration (<em>Rom 11:25–27</em>; <em>Jer 31:31–37</em>).</p>
+      </div>
     </section>
 
-    <!-- Detail panel -->
-    <aside id="details">
-      <h2>Explore Lineage Details</h2>
-      <p>Select any name from the left to view their covenant role, significance, and Scripture references.</p>
-    </aside>
+    <!-- Filters / Quick buttons -->
+    <section class="filters">
+      <button class="filter-btn">📘 Family Tree</button>
+      <button class="filter-btn">🕰️ Timeline</button>
+      <button class="filter-btn">📖 Matthew vs Luke</button>
+      <button class="filter-btn">🩵 12 Tribes & 144,000</button>
+
+      <div class="legend">
+        <span class="legend-item messianic">🟡 Messianic Line</span>
+        <span class="legend-item priestly">🟣 Priestly Line</span>
+        <span class="legend-item covenant">🟠 Covenant Figures</span>
+      </div>
+    </section>
+
+    <!-- Genealogy tree and details -->
+    <section id="genealogy-section">
+      <div id="genealogy" class="tree"></div>
+
+      <aside id="details" class="details-panel">
+        <h2>Explore Lineage Details</h2>
+        <p>Select a name on the left to view their covenant role, prophetic significance, and key Scripture references.</p>
+      </aside>
+    </section>
   </main>
 
   <footer>
