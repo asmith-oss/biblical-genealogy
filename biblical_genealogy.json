@@ -33,8 +33,7 @@
     "bio": "Eleventh son of Jacob, firstborn of Rachel. His name means 'may he add.' Beloved by Jacob, given a richly ornamented robe. Dreamed his family would bow to him. Brothers sold him to Midianites for 20 shekels; he was taken to Egypt. Served Potiphar, falsely accused by his wife, imprisoned. Interpreted dreams for Pharaoh's cupbearer and baker, then Pharaoh himself. Made second in command of Egypt at 30. Stored grain during plenty, sold it during famine. Brothers came for food; he tested then revealed himself. Brought Jacob's family to Egypt (70 people). Jacob blessed Joseph's sons Ephraim and Manasseh, crossing his hands. Joseph made brothers swear to carry his bones to Canaan. Lived 110 years. His life pictures Christ—rejected by brothers, exalted, saves his people.",
     "scripture": "Gen 30:22-24; 33:2, 7; 35:24; 37:2-50:26; Ex 1:5-6, 8; 13:19; Num 1:10, 32; 13:11; 26:28, 37; 27:1; 32:33; 34:23; 36:1, 5, 12; Deut 27:12; 33:13-17; Josh 14:4; 16:1-4; 17:1-2, 14-17; 18:5, 11; 24:32; Judg 1:22-23, 35; 1 Chr 2:2; 5:1-2; 7:29; Ps 77:15; 78:67; 80:1; 81:5; 105:17; Ezek 37:16, 19; 47:13; 48:32; Amos 5:6, 15; 6:6; Obad 1:18; Zech 10:6; John 4:5; Acts 7:9-18; Heb 11:21-22; Rev 7:8",
     "descendants": [
-      "manasseh_joseph",
-      "ephraim"
+      "jesus"
     ]
   },
   "manasseh_joseph": {
@@ -348,7 +347,7 @@
     "bio": "Son of Azariah, high priest. Part of the continuous priestly line through the divided kingdom period.",
     "scripture": "1 Chr 6:11; Ezra 7:3",
     "descendants": [
-      "ahitub2"
+      "uzziah"
     ]
   },
   "azariah_uzziah": {
@@ -404,9 +403,7 @@
     "bio": "Son of Amon, eighteenth king of Judah. Became king at 8, reigned 31 years. One of Judah's greatest kings who 'did right...walking in all the way of David.' At 16, began to seek God; at 20, began purging high places, Asherah poles, idols. At 26, repaired the temple—priest Hilkiah found the Book of the Law. When read to Josiah, he tore his robes, realizing how far Judah had strayed. Prophetess Huldah prophesied judgment but said Josiah would die in peace. He renewed the covenant, celebrated greatest Passover since Samuel, removed mediums, household gods, and all abominations. 'Before him there was no king like him who turned to the LORD with all his heart...nor did any like him arise after him.' Tragically, he fought Pharaoh Neco at Megiddo despite warning, was mortally wounded, and died. All Judah mourned. Jeremiah wrote laments for him.",
     "scripture": "1 Kgs 13:2; 2 Kgs 21:24-23:30; 1 Chr 3:14-15; 2 Chr 33:25-36:1; Jer 1:2-3; 22:11, 18; 25:1, 3; 26:1; 27:1; 35:1; 36:1-2, 9; 37:1; 45:1; 46:2; Zeph 1:1; Matt 1:10-11",
     "descendants": [
-      "johanan_josiah",
-      "jehoiakim",
-      "zedekiah"
+      "jeconiah"
     ]
   },
   "johanan_josiah": {
@@ -444,14 +441,7 @@
     "bio": "Son of Shealtiel (or possibly Pedaiah, Shealtiel's brother), grandson of Jehoiachin. Governor of Judah who led first return from Babylonian exile with High Priest Jeshua (Joshua). Laid foundation of second temple despite opposition. When work stopped due to opposition, prophets Haggai and Zechariah encouraged him. Completed the temple in 516 BC. Called God's 'signet ring,' reversing the curse on his grandfather Jeconiah. His name means 'seed of Babylon.' A remnant of David's royal line, he led the restoration. Some see him as a type of Christ. Both Matthew and Luke trace Jesus' genealogy through him, though through different sons.",
     "scripture": "1 Chr 3:19; Ezra 2:2; 3:2-8; 4:2-3; 5:2; Neh 7:7; 12:1, 47; Hag 1:1-2:23; Zech 4:6-10; Matt 1:12-13; Luke 3:27",
     "descendants": [
-      "meshullam_zerubbabel",
-      "hananiah_zerubbabel",
-      "shelomith",
-      "hashubah",
-      "ohel",
-      "berekiah",
-      "hasadiah",
-      "jushabhesed"
+      "abiud"
     ]
   },
   "meshullam_zerubbabel": {
@@ -706,15 +696,13 @@
     "descendants": []
   },
   "zebulun": {
-  "name": "Zebulun",
-  "bio": "Tenth son of Jacob by Leah (her sixth son). His name means 'honor' or 'dwelling.' Leah said, 'God has presented me with a precious gift.' Father of three sons: Sered, Elon, and Jahleel. His tribe dwelled near the sea and traded with ships. Blessed by Moses for prosperity in trade and courage in battle.",
-  "scripture": "Gen 30:20; 35:23; 46:14; 49:13; Num 1:30; 2:7; 7:24; 10:16; Deut 33:18-19; Josh 19:10-16; Judg 1:30; 4:6; 5:14; 12:11; 1 Chr 2:1; 6:63; 12:33; Isa 9:1; Matt 4:13-15",
-  "descendants": [
-    "sered",
-    "elon",
-    "jahleel"
-  ]
-},
+    "name": "Zebulun",
+    "bio": "Tenth son of Jacob by Leah (her sixth son). His name means 'honor' or 'dwelling.' Leah said 'God has presented me with a precious gift. This time my husband will treat me with honor.' Father of three sons. His tribe received land from the Mediterranean to the Sea of Galilee. Jacob's blessing spoke of dwelling by seashore and ships. Moses blessed them for prosperity in trade. Zebulun and Naphtali risked their lives in Deborah's battle. Jesus grew up in Zebulun's territory, fulfilling Isaiah's prophecy.",
+    "scripture": "Ex 6:23; Num 1:7; 2:3; 7:12, 17; 10:14; Ruth 4:19-20; 1 Chr 2:10; 6:22; Matt 1:4; Luke 3:33",
+    "descendants": [
+      "nahshon"
+    ]
+  },
   "nahshon": {
     "name": "Nahshon",
     "bio": "Son of Amminadab, leader of the tribe of Judah during the wilderness wanderings. Brother of Elisheba (Aaron's wife), making him Aaron's brother-in-law. His tribe presented the first offering at the dedication of the tabernacle. Led Judah's division in the march through the wilderness. Ancestor of David and Christ.",
@@ -743,7 +731,9 @@
     "name": "Ruth",
     "bio": "A Moabite widow who showed faith and loyalty to Naomi. Redeemed by Boaz, she became the great-grandmother of King David.",
     "scripture": "Book of Ruth; Matthew 1:5",
-    "descendants": ["obed"]
+    "descendants": [
+      "obed"
+    ]
   },
   "obed": {
     "name": "Obed",
@@ -2645,19 +2635,7 @@
     "bio": "Son of Isaac and Rebekah, twin brother of Esau (born holding his heel). His name means 'supplanter.' Bought Esau's birthright and deceived Isaac to receive the blessing. Fled to Haran where he served Laban 20 years for his wives Leah and Rachel. At Peniel, he wrestled with God and was renamed Israel ('he struggles with God'). Father of the twelve tribes of Israel through four women. Favored Joseph and Benjamin (Rachel's sons). Moved to Egypt in old age where he blessed his sons and grandsons before dying at 147. His body was returned to Canaan for burial.",
     "scripture": "Gen 25:19-50:14; Ex 1:1-5; Matt 1:2; 8:11; Luke 3:34; John 4:5-6; Acts 7:8-16; Rom 9:11-13; Heb 11:9, 21",
     "descendants": [
-      "reuben",
-      "simeon",
-      "levi",
-      "judah",
-      "dan",
-      "naphtali",
-      "gad",
-      "asher",
-      "issachar",
-      "zebulun",
-      "joseph",
-      "benjamin",
-      "dinah"
+      "joseph"
     ]
   },
   "dinah": {
@@ -2872,7 +2850,7 @@
     "bio": "Third son of Aaron, married a daughter of Putiel. After his older brothers died, he became Aaron's successor as high priest. Helped Moses with the second census and assisted Joshua in dividing the Promised Land. Supervised the tabernacle and its holy objects. Father of Phinehas. The high priesthood continued through his line.",
     "scripture": "Ex 6:23, 25; 28:1; Lev 10:6, 12, 16; Num 3:2-4, 32; 4:16; 16:36-40; 19:3-4; 20:25-29; 25:7-11; 26:1-3, 60, 63; 27:2, 15-23; 31:12-54; 32:2, 28; 34:17; Deut 10:6; Josh 14:1; 17:4; 19:51; 21:1; 22:13-32; 24:33; Judg 20:28; 1 Chr 6:3-4, 50; 24:1-6",
     "descendants": [
-      "phinehas"
+      "matthan"
     ]
   },
   "phinehas": {
@@ -2944,7 +2922,7 @@
     "bio": "Son of Ahitub, high priest during David and Solomon's reigns. Remained faithful to David during Absalom's rebellion and supported Solomon against Adonijah. Anointed Solomon as king. God promised the priesthood would remain in his line. Ezekiel prophesied that Zadok's descendants would serve in the future temple. His name means 'righteous.'",
     "scripture": "2 Sam 8:17; 15:24-36; 17:15; 18:19-27; 19:11; 20:25; 1 Kgs 1:8-45; 2:35; 4:2, 4; 1 Chr 6:8, 12, 53; 12:28; 15:11; 16:39; 18:16; 24:3, 6, 31; 27:17; 29:22; 2 Chr 31:10; Ezra 7:2; Ezek 40:46; 43:19; 44:15; 48:11",
     "descendants": [
-      "ahimaaz"
+      "achim"
     ]
   },
   "ahimaaz": {
