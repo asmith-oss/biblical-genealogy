@@ -371,6 +371,98 @@ function openModal(personData) {
   `;
 }
 
+// ---------- Autocomplete ----------
+function setupAutocomplete(inputElement, onSelect) {
+  if (!inputElement) return;
+  
+  // Create dropdown container
+  const dropdown = document.createElement('div');
+  dropdown.className = 'autocomplete-dropdown';
+  dropdown.style.cssText = `
+    position: absolute;
+    background: #1a2332;
+    border: 2px solid #3a4a7d;
+    border-radius: 8px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  `;
+  
+  // Position dropdown below input
+  const positionDropdown = () => {
+    const rect = inputElement.getBoundingClientRect();
+    dropdown.style.left = rect.left + 'px';
+    dropdown.style.top = (rect.bottom + 5) + 'px';
+    dropdown.style.width = rect.width + 'px';
+  };
+  
+  document.body.appendChild(dropdown);
+  
+  // Show suggestions
+  inputElement.addEventListener('input', (e) => {
+    const value = e.target.value.trim();
+    
+    if (value.length < 2) {
+      dropdown.style.display = 'none';
+      return;
+    }
+    
+    const matches = fuzzyFind(value).slice(0, 10);
+    
+    if (matches.length === 0) {
+      dropdown.style.display = 'none';
+      return;
+    }
+    
+    dropdown.innerHTML = matches.map(p => `
+      <div class="autocomplete-item" data-id="${p.id}" style="
+        padding: 10px;
+        cursor: pointer;
+        border-bottom: 1px solid #2a3a5d;
+        color: #fff;
+        transition: background 0.2s;
+      ">
+        <div style="font-weight: 500;">${p.name}</div>
+        <div style="font-size: 0.85rem; color: #9dd3ff;">${(p.bio || '').substring(0, 80)}${p.bio && p.bio.length > 80 ? '...' : ''}</div>
+      </div>
+    `).join('');
+    
+    // Add hover effects and click handlers
+    dropdown.querySelectorAll('.autocomplete-item').forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        item.style.background = '#3a4a7d';
+      });
+      item.addEventListener('mouseleave', () => {
+        item.style.background = 'transparent';
+      });
+      item.addEventListener('click', () => {
+        const person = peopleById[item.dataset.id];
+        if (person) {
+          inputElement.value = person.name;
+          dropdown.style.display = 'none';
+          if (onSelect) onSelect(person);
+        }
+      });
+    });
+    
+    positionDropdown();
+    dropdown.style.display = 'block';
+  });
+  
+  // Close dropdown on outside click
+  document.addEventListener('click', (e) => {
+    if (e.target !== inputElement && !dropdown.contains(e.target)) {
+      dropdown.style.display = 'none';
+    }
+  });
+  
+  // Reposition on scroll/resize
+  window.addEventListener('scroll', positionDropdown);
+  window.addEventListener('resize', positionDropdown);
+}
+
 // ---------- Global UI / Events ----------
 function setupEventListeners() {
   // Modal close
@@ -379,13 +471,28 @@ function setupEventListeners() {
   if (closeBtn) closeBtn.onclick = () => (modal.style.display = "none");
   window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
 
-  // Search
+  // Search with autocomplete
   const searchBtn = document.getElementById("search-btn");
   const searchInput = document.getElementById("search-input");
   if (searchBtn && searchInput) {
+    setupAutocomplete(searchInput, (person) => {
+      openModal(person);
+    });
     searchBtn.addEventListener('click', () => smartSearch(searchInput.value));
     searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') smartSearch(searchInput.value); });
   }
+
+  // Lineage tools with autocomplete
+  const linInput = document.getElementById('lin-person');
+  if (linInput) {
+    setupAutocomplete(linInput);
+  }
+
+  // Compare fields with autocomplete
+  const cmpAInput = document.getElementById('cmp-a');
+  const cmpBInput = document.getElementById('cmp-b');
+  if (cmpAInput) setupAutocomplete(cmpAInput);
+  if (cmpBInput) setupAutocomplete(cmpBInput);
 
   // Quick navigation buttons (Jump To)
   document.querySelectorAll('.nav-btn').forEach(btn => {

@@ -84,20 +84,83 @@ h2 { text-align: center; color: #9dd3ff; }
 }
 .breadcrumb-item { color: #9dd3ff; }
 
-/* Tree Styles */
+/* Tree Styles - Improved with vertical alignment */
 .tree-container { margin: 30px auto; font-family: Georgia, serif; }
+
 .node-box {
-  display: inline-block; margin: 5px; padding: 8px 14px;
-  background: #243055; color: #fff; border-radius: 8px; border: 1px solid #3a4a7d;
-  cursor: pointer; transition: all 0.2s ease; position: relative;
+  display: inline-block;
+  margin: 8px 0;
+  padding: 8px 14px;
+  background: #243055;
+  color: #fff;
+  border-radius: 8px;
+  border: 1px solid #3a4a7d;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
 }
-.node-box:hover { background: #3a4a7d; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
+
+.node-box:hover {
+  background: #3a4a7d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
 .node-name { font-weight: 500; }
 .expand-indicator { margin-left: 8px; font-size: 0.8rem; color: #9dd3ff; }
 
-.branch { margin-left: 30px; border-left: 2px solid #555; padding-left: 15px; margin-top: 10px; display: none; }
-.branch.active { display: block; animation: slideIn 0.3s ease; }
-@keyframes slideIn { from { opacity: 0; transform: translateX(-10px);} to { opacity: 1; transform: translateX(0);} }
+/* Improved branch layout with clear vertical lines */
+.branch {
+  margin-left: 40px;
+  margin-top: 10px;
+  padding-left: 20px;
+  border-left: 3px solid #555;
+  display: none;
+  position: relative;
+}
+
+.branch.active {
+  display: block;
+  animation: slideIn 0.3s ease;
+}
+
+/* Make nodes display vertically in a column */
+.branch .node-box {
+  position: relative;
+  display: block;
+  margin: 12px 0;
+}
+
+/* Add horizontal connector lines from vertical line to child nodes */
+.branch .node-box::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  width: 15px;
+  height: 2px;
+  background: #555;
+}
+
+/* Clean up the vertical line for the last child */
+.branch .node-box:first-child {
+  margin-top: 0;
+}
+
+.branch .node-box:last-child::after {
+  content: '';
+  position: absolute;
+  left: -23px;
+  bottom: 50%;
+  width: 3px;
+  height: calc(100% + 50%);
+  background: #111827;
+}
+
+@keyframes slideIn { 
+  from { opacity: 0; transform: translateX(-10px);} 
+  to { opacity: 1; transform: translateX(0);} 
+}
 
 /* Messianic highlight */
 .highlight-messianic {
@@ -135,6 +198,7 @@ h2 { text-align: center; color: #9dd3ff; }
 .search-result-item p { margin: 0; color: #666; font-size: 0.9rem; }
 
 .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
 @media (max-width: 768px) {
   #search-input { width: 100%; margin-bottom: 10px; }
   #search-btn { margin-left: 0; width: 100%; }
