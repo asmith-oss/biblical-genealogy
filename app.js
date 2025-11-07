@@ -270,12 +270,27 @@ function createNode(personData) {
   const div = document.createElement("div");
   div.className = "node-box";
   div.dataset.personId = personData.id;
+  
+  const fullName = personData.name || personData.id || 'Unknown';
+  const children = getChildrenArray(personData);
+  const childCount = children.length;
+  
+  // Add title attribute for tooltip if name is long
+  if (fullName.length > 18) {
+    div.setAttribute('title', fullName);
+  }
 
-  const hasDescendants = getChildrenArray(personData).length > 0;
-  div.innerHTML = `
-    <span class="node-name">${personData.name || personData.id || 'Unknown'}</span>
-    ${hasDescendants ? '<span class="expand-indicator">▼</span>' : ''}
-  `;
+  const hasDescendants = childCount > 0;
+  
+  // Create innerHTML with optional child count badge
+  let innerHTML = `<span class="node-name">${fullName}</span>`;
+  
+  if (hasDescendants) {
+    innerHTML += `<span class="child-count">${childCount}</span>`;
+    innerHTML += `<span class="expand-indicator">▼</span>`;
+  }
+  
+  div.innerHTML = innerHTML;
 
   // Single click expands
   div.addEventListener("click", e => {
