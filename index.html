@@ -99,3 +99,58 @@
           <button id="btn-descendants">Show Descendants</button>
         </div>
 
+        <!-- Compare -->
+        <div class="compare-section">
+          <h3>Compare</h3>
+          <input type="text" id="cmp-a" placeholder="Person A" />
+          <input type="text" id="cmp-b" placeholder="Person B" />
+          <button id="btn-compare">Compare</button>
+        </div>
+
+        <!-- Jump To -->
+        <div class="jump-section">
+          <h3>Jump To</h3>
+          <button class="nav-btn" data-person="adam">Adam</button>
+          <button class="nav-btn" data-person="noah">Noah</button>
+          <button class="nav-btn" data-person="abraham">Abraham</button>
+          <button class="nav-btn" data-person="isaac">Isaac</button>
+          <button class="nav-btn" data-person="jacob">Jacob</button>
+          <button class="nav-btn" data-person="moses">Moses</button>
+          <button class="nav-btn" data-person="david">David</button>
+          <button class="nav-btn" data-person="jesus">Jesus</button>
+        </div>
+
+        <!-- Chronology -->
+        <div class="timeline-section">
+          <h3>Chronology</h3>
+          <button id="btn-chronology">List Chronologically</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="breadcrumb-container">
+      <div id="breadcrumb"></div>
+      <div id="person-count-container">
+        Total People: <span id="person-count">0</span>
+      </div>
+    </section>
+
+    <section id="tree-container">
+      <div id="tree-root"></div>
+    </section>
+  </main>
+
+  <div id="infoModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="person-info"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Biblical Genealogy Explorer | Data sourced from Scripture</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
