@@ -925,6 +925,12 @@
       "nathan"
     ]
   },
+  "nathan": {
+    "name": "Nathan (son of David)",
+    "bio": "Son of King David and Bathsheba, born in Jerusalem. Full brother of Solomon. His line continued through the ages but did not inherit the throne (Solomon did). According to Luke's genealogy, Nathan is ancestor of Mary, mother of Jesus, making him part of Jesus' biological lineage through Mary. While Solomon's royal line (Matthew's genealogy through Joseph) included wicked kings and was cursed through Jeconiah, Nathan's line remained unblemished, providing the blood claim to David's throne. Named after the prophet Nathan who confronted David about Bathsheba. Mentioned in Zechariah's prophecy about future mourning in families of David. His line is critical to understanding how Jesus is both legally (through Solomon/Joseph) and biologically (through Nathan/Mary) heir to David's throne.",
+    "scripture": "2 Samuel 5:14; 1 Chronicles 3:5, 14:4; Zechariah 12:12; Luke 3:31",
+    "descendants": ["mattatha"]
+  },
   "amnon": {
     "name": "Amnon",
     "bio": "Firstborn son of David by Ahinoam of Jezreel. Developed an obsessive infatuation with his half-sister Tamar. Following his friend Jonadab's wicked counsel, he pretended illness and raped Tamar, then immediately hated her intensely. David was furious but did not punish him. Two years later, Absalom avenged his sister by having his servants kill Amnon at a feast. His death as firstborn opened succession questions.",
