@@ -1038,8 +1038,8 @@
 },
 "mary": {
   "name": "Mary",
-  "bio": "Mother of Jesus, the virgin who gave birth to the Messiah. Mary’s lineage traces back to David through Nathan, showing Jesus’ rightful claim to David’s throne.",
-  "scripture": "Luke 1:26-38; Luke 3:31-38",
+  "bio": "Mother of Jesus, wife of Joseph. From Nazareth, descendant of David. A virgin betrothed to Joseph when the angel Gabriel announced she would conceive by the Holy Spirit and bear the Son of God. She responded with faith: 'Behold the handmaid of the Lord.' Visited her cousin Elizabeth (pregnant with John the Baptist) and sang the Magnificat. Gave birth to Jesus in Bethlehem. Fled to Egypt with Joseph to escape Herod. Raised Jesus in Nazareth. At the wedding in Cana, she told the servants to do whatever Jesus said. She stood by the cross when Jesus died; He entrusted her to John's care. She was with the disciples after the ascension, praying in the upper room. Catholic and Orthodox traditions honor her highly, while Protestants recognize her faithful obedience. She had other children with Joseph after Jesus.",
+  "scripture": "Matt 1:16-2:23; 12:46; 13:55; Mark 3:31; 6:3; Luke 1:26-2:52; 8:19-21; John 2:1-12; 19:25-27; Acts 1:14",
   "descendants": ["jesus"]
 },
 "jesus": {
@@ -3133,12 +3133,6 @@
     "name": "Jesus Christ",
     "bio": "Son of God, Son of Mary, legally son of Joseph. His name means 'The LORD saves.' Conceived by the Holy Spirit, born of the virgin Mary in Bethlehem, fulfilling prophecy. The eternal Word who became flesh. Fully God and fully man. Born under the Law, lived sinlessly. At 30, began public ministry. Preached the kingdom, performed miracles, called disciples. Betrayed by Judas, arrested, tried illegally, crucified under Pontius Pilate. Died for the sins of the world. Rose on the third day, appeared to many. Ascended to heaven, seated at God's right hand. He is Prophet, Priest, and King. The promised Messiah, Son of David, seed of Abraham. Second person of the Trinity. Savior of all who believe. He will return to judge the living and the dead and reign forever. He is the Alpha and Omega, beginning and end.",
     "scripture": "Matt 1:1-28:20; Mark 1:1-16:20; Luke 1:1-24:53; John 1:1-21:25; Acts 1:1-28:31; Rom 1:1-16:27; 1 Cor 1:1-16:24; Gal 1:1-6:18; Eph 1:1-6:24; Phil 1:1-4:23; Col 1:1-4:18; 1 Thess 1:1-5:28; 1 Tim 1:1-6:21; 2 Tim 1:1-4:22; Titus 1:1-3:15; Heb 1:1-13:25; 1 Pet 1:1-5:14; 2 Pet 1:1-3:18; 1 John 1:1-5:21; Rev 1:1-22:21",
-    "descendants": []
-  },
-  "mary": {
-    "name": "Mary (Jesus' mother)",
-    "bio": "Mother of Jesus, wife of Joseph. From Nazareth, descendant of David. A virgin betrothed to Joseph when the angel Gabriel announced she would conceive by the Holy Spirit and bear the Son of God. She responded with faith: 'Behold the handmaid of the Lord.' Visited her cousin Elizabeth (pregnant with John the Baptist) and sang the Magnificat. Gave birth to Jesus in Bethlehem. Fled to Egypt with Joseph to escape Herod. Raised Jesus in Nazareth. At the wedding in Cana, she told the servants to do whatever Jesus said. She stood by the cross when Jesus died; He entrusted her to John's care. She was with the disciples after the ascension, praying in the upper room. Catholic and Orthodox traditions honor her highly, while Protestants recognize her faithful obedience. She had other children with Joseph after Jesus.",
-    "scripture": "Matt 1:16-2:23; 12:46; 13:55; Mark 3:31; 6:3; Luke 1:26-2:52; 8:19-21; John 2:1-12; 19:25-27; Acts 1:14",
     "descendants": []
   },
   "peter": {
