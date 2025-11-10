@@ -16,14 +16,69 @@
     <section id="intro">
       <h2>The Genealogical Record of Scripture</h2>
       <p>
-        This project allows you to explore every recorded name and connection in the Bible’s genealogies.
+        This project allows you to explore every recorded name and connection in the Bible's genealogies.
         You can trace the line from Adam to Jesus, view biographies, search by name or Scripture,
-        and follow God’s promises through generations.
+        and follow God's promises through generations.
       </p>
       <p>
         Use the tools below to navigate ancestors, descendants, or compare key figures.
         Double-click any name in the tree to view their biography and references.
       </p>
+      
+      <!-- NEW: Biblical Figures Explorer Toggle -->
+      <div class="figures-explorer-toggle">
+        <button id="toggle-figures-explorer" class="explorer-toggle-btn">
+          📖 Explore Other Biblical Figures
+        </button>
+      </div>
+    </section>
+
+    <!-- NEW: Biblical Figures Explorer Panel -->
+    <section id="figures-explorer" class="hidden">
+      <div class="explorer-header">
+        <h2>Biblical Figures Explorer</h2>
+        <p>Discover people from Scripture not in the genealogical line</p>
+      </div>
+      
+      <div class="explorer-filters">
+        <div class="filter-group">
+          <label>Category:</label>
+          <select id="filter-category">
+            <option value="all">All Categories</option>
+            <option value="Prophets">Prophets</option>
+            <option value="Kings">Kings</option>
+            <option value="Judges">Judges</option>
+            <option value="Priests">Priests</option>
+            <option value="Apostles">Apostles</option>
+            <option value="Disciples">Disciples</option>
+            <option value="Women of Faith">Women of Faith</option>
+            <option value="Military Leaders">Military Leaders</option>
+            <option value="Political Leaders">Political Leaders</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label>Time Period:</label>
+          <select id="filter-period">
+            <option value="all">All Periods</option>
+            <option value="judges">Period of Judges</option>
+            <option value="divided">Kingdom Divided</option>
+            <option value="exile">Babylonian Exile</option>
+            <option value="nt">New Testament</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label>Search:</label>
+          <input type="text" id="figures-search" placeholder="Search figures..." />
+        </div>
+        
+        <button id="reset-filters" class="pill-btn">Reset Filters</button>
+      </div>
+      
+      <div id="figures-grid" class="figures-grid">
+        <!-- Figures will be populated here -->
+      </div>
     </section>
 
     <section id="controls">
@@ -44,58 +99,3 @@
           <button id="btn-descendants">Show Descendants</button>
         </div>
 
-        <!-- Compare -->
-        <div class="compare-section">
-          <h3>Compare</h3>
-          <input type="text" id="cmp-a" placeholder="Person A" />
-          <input type="text" id="cmp-b" placeholder="Person B" />
-          <button id="btn-compare">Compare</button>
-        </div>
-
-        <!-- Jump To -->
-        <div class="jump-section">
-          <h3>Jump To</h3>
-          <button class="nav-btn" data-person="adam">Adam</button>
-          <button class="nav-btn" data-person="noah">Noah</button>
-          <button class="nav-btn" data-person="abraham">Abraham</button>
-          <button class="nav-btn" data-person="isaac">Isaac</button>
-          <button class="nav-btn" data-person="jacob">Jacob</button>
-          <button class="nav-btn" data-person="moses">Moses</button>
-          <button class="nav-btn" data-person="david">David</button>
-          <button class="nav-btn" data-person="jesus">Jesus</button>
-        </div>
-
-        <!-- Chronology -->
-        <div class="timeline-section">
-          <h3>Chronology</h3>
-          <button id="btn-chronology">List Chronologically</button>
-        </div>
-      </div>
-    </section>
-
-    <section id="breadcrumb-container">
-      <div id="breadcrumb"></div>
-      <div id="person-count-container">
-        Total People: <span id="person-count">0</span>
-      </div>
-    </section>
-
-    <section id="tree-container">
-      <div id="tree-root"></div>
-    </section>
-  </main>
-
-  <div id="infoModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <div id="person-info"></div>
-    </div>
-  </div>
-
-  <footer>
-    <p>© 2025 Biblical Genealogy Explorer | Data sourced from Scripture</p>
-  </footer>
-
-  <script src="app.js"></script>
-</body>
-</html>

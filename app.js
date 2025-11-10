@@ -727,3 +727,231 @@ function updateStats() {
 
 // ---------- Boot ----------
 window.addEventListener('DOMContentLoaded', loadGenealogyData);
+
+// ============================================================
+// BIBLICAL FIGURES EXPLORER
+// Separate database for non-genealogical biblical figures
+// ============================================================
+
+let biblicalFigures = {};
+let currentFilters = {
+  category: 'all',
+  period: 'all',
+  search: ''
+};
+
+// Load biblical figures data
+async function loadBiblicalFigures() {
+  try {
+    const res = await fetch('./biblical_figures.json', { cache: 'no-store' });
+    if (!res.ok) {
+      console.warn('Biblical figures data not found');
+      return;
+    }
+    const data = await res.json();
+    biblicalFigures = data.figures || {};
+    console.info('Biblical figures loaded:', Object.keys(biblicalFigures).length);
+  } catch (err) {
+    console.warn('Could not load biblical figures:', err);
+  }
+}
+
+// Initialize figures explorer
+function initFiguresExplorer() {
+  const toggleBtn = document.getElementById('toggle-figures-explorer');
+  const explorerSection = document.getElementById('figures-explorer');
+  const filterCategory = document.getElementById('filter-category');
+  const filterPeriod = document.getElementById('filter-period');
+  const figuresSearch = document.getElementById('figures-search');
+  const resetBtn = document.getElementById('reset-filters');
+  
+  if (!toggleBtn || !explorerSection) return;
+  
+  // Toggle explorer visibility
+  toggleBtn.addEventListener('click', () => {
+    const isHidden = explorerSection.classList.contains('hidden');
+    if (isHidden) {
+      explorerSection.classList.remove('hidden');
+      toggleBtn.textContent = '📖 Hide Biblical Figures Explorer';
+      renderFigures();
+    } else {
+      explorerSection.classList.add('hidden');
+      toggleBtn.textContent = '📖 Explore Other Biblical Figures';
+    }
+  });
+  
+  // Filter event listeners
+  if (filterCategory) {
+    filterCategory.addEventListener('change', (e) => {
+      currentFilters.category = e.target.value;
+      renderFigures();
+    });
+  }
+  
+  if (filterPeriod) {
+    filterPeriod.addEventListener('change', (e) => {
+      currentFilters.period = e.target.value;
+      renderFigures();
+    });
+  }
+  
+  if (figuresSearch) {
+    figuresSearch.addEventListener('input', (e) => {
+      currentFilters.search = e.target.value.trim().toLowerCase();
+      renderFigures();
+    });
+  }
+  
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      currentFilters = { category: 'all', period: 'all', search: '' };
+      if (filterCategory) filterCategory.value = 'all';
+      if (filterPeriod) filterPeriod.value = 'all';
+      if (figuresSearch) figuresSearch.value = '';
+      renderFigures();
+    });
+  }
+}
+
+// Filter figures based on current filters
+function getFilteredFigures() {
+  return Object.entries(biblicalFigures).filter(([id, figure]) => {
+    // Category filter
+    if (currentFilters.category !== 'all' && figure.category !== currentFilters.category) {
+      return false;
+    }
+    
+    // Period filter
+    if (currentFilters.period !== 'all') {
+      const periodLower = figure.time_period.toLowerCase();
+      switch (currentFilters.period) {
+        case 'judges':
+          if (!periodLower.includes('judges')) return false;
+          break;
+        case 'divided':
+          if (!periodLower.includes('divided')) return false;
+          break;
+        case 'exile':
+          if (!periodLower.includes('exile')) return false;
+          break;
+        case 'nt':
+          if (!periodLower.includes('new testament')) return false;
+          break;
+      }
+    }
+    
+    // Search filter
+    if (currentFilters.search) {
+      const searchLower = currentFilters.search;
+      const nameMatch = figure.name.toLowerCase().includes(searchLower);
+      const bioMatch = figure.bio.toLowerCase().includes(searchLower);
+      const storiesMatch = figure.popular_stories.some(story => 
+        story.toLowerCase().includes(searchLower)
+      );
+      if (!nameMatch && !bioMatch && !storiesMatch) return false;
+    }
+    
+    return true;
+  });
+}
+
+// Render figures grid
+function renderFigures() {
+  const grid = document.getElementById('figures-grid');
+  if (!grid) return;
+  
+  const filtered = getFilteredFigures();
+  
+  if (filtered.length === 0) {
+    grid.innerHTML = `
+      <div class="no-results">
+        <p>No figures found matching your criteria.</p>
+        <p>Try adjusting your filters or search terms.</p>
+      </div>
+    `;
+    return;
+  }
+  
+  grid.innerHTML = filtered.map(([id, figure]) => `
+    <div class="figure-card" data-figure-id="${id}">
+      <div class="figure-card-header">
+        <h3 class="figure-card-name">${figure.name}</h3>
+        <span class="figure-card-category">${figure.category}</span>
+      </div>
+      <div class="figure-card-period">${figure.time_period}</div>
+      <div class="figure-card-bio">${figure.bio}</div>
+      ${figure.popular_stories && figure.popular_stories.length > 0 ? `
+        <div class="figure-card-stories">
+          ${figure.popular_stories.slice(0, 3).map(story => 
+            `<span class="story-badge">${story.split('(')[0].trim()}</span>`
+          ).join('')}
+          ${figure.popular_stories.length > 3 ? 
+            `<span class="story-badge">+${figure.popular_stories.length - 3} more</span>` : ''
+          }
+        </div>
+      ` : ''}
+    </div>
+  `).join('');
+  
+  // Add click listeners to figure cards
+  grid.querySelectorAll('.figure-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const figureId = card.dataset.figureId;
+      const figure = biblicalFigures[figureId];
+      if (figure) openFigureModal(figure);
+    });
+  });
+}
+
+// Open modal for figure details
+function openFigureModal(figure) {
+  const modal = document.getElementById("infoModal");
+  const content = document.getElementById("person-info");
+  
+  modal.style.display = "block";
+  content.innerHTML = `
+    <h2>${figure.name}</h2>
+    
+    <div class="bio-section">
+      <h3>Category & Time Period</h3>
+      <p><strong>Category:</strong> ${figure.category}</p>
+      <p><strong>Time Period:</strong> ${figure.time_period}</p>
+    </div>
+    
+    <div class="bio-section">
+      <h3>Biography</h3>
+      <p>${figure.bio}</p>
+    </div>
+    
+    ${figure.popular_stories && figure.popular_stories.length > 0 ? `
+      <div class="stories-section">
+        <h3>📖 Popular Stories</h3>
+        <ul class="stories-list">
+          ${figure.popular_stories.map(story => `<li>${story}</li>`).join('')}
+        </ul>
+      </div>
+    ` : ''}
+    
+    <div class="scripture-section">
+      <h3>📖 Scripture References</h3>
+      <p class="scripture-refs">${figure.scripture}</p>
+    </div>
+    
+    ${figure.related_figures && figure.related_figures.length > 0 ? `
+      <div class="descendants-section">
+        <h3>Related Figures</h3>
+        <p>${figure.related_figures.map(id => {
+          const related = biblicalFigures[id];
+          return related ? related.name : id;
+        }).join(', ')}</p>
+      </div>
+    ` : ''}
+  `;
+}
+
+// Initialize on page load
+window.addEventListener('DOMContentLoaded', async () => {
+  await loadBiblicalFigures();
+  initFiguresExplorer();
+});
+

@@ -1,0 +1,502 @@
+{
+  "metadata": {
+    "title": "Biblical Figures Database - Non-Genealogical",
+    "version": "1.0",
+    "source": "King James Version Bible",
+    "description": "Biblical figures not included in genealogy records, organized by categories, time periods, and stories",
+    "total_entries": 150,
+    "categories": [
+      "Prophets",
+      "Kings",
+      "Judges", 
+      "Priests",
+      "Apostles",
+      "Disciples",
+      "Women of Faith",
+      "Military Leaders",
+      "False Prophets",
+      "Enemies of Israel",
+      "Angels",
+      "Minor Figures"
+    ]
+  },
+  
+  "figures": {
+    "elijah": {
+      "name": "Elijah",
+      "category": "Prophets",
+      "time_period": "Kingdom Divided (9th century BC)",
+      "bio": "Mighty prophet of the Northern Kingdom during reign of Ahab and Jezebel. Name means 'My God is Yahweh.' Confronted Baal worship. Fed by ravens at brook Cherith. Sustained widow of Zarephath, raising her son from death. Challenged 450 prophets of Baal on Mount Carmel - fire fell from heaven. Ran before Ahab's chariot to Jezreel. Fled Jezebel's threat to cave at Horeb where God spoke in still small voice. Anointed Elisha as successor. Called down fire on Ahaziah's messengers. Taken to heaven in whirlwind with chariots of fire - did not see death. Appeared with Moses at Jesus' transfiguration. Malachi prophesied his return before the Day of the Lord.",
+      "scripture": "1 Kings 17-19, 21; 2 Kings 1-2; Mal 4:5-6; Matt 17:1-13; Luke 9:28-36; James 5:17-18",
+      "popular_stories": [
+        "Fed by Ravens (1 Kings 17:1-7)",
+        "Widow's Oil and Flour (1 Kings 17:8-16)",
+        "Raising the Widow's Son (1 Kings 17:17-24)",
+        "Contest on Mount Carmel (1 Kings 18:16-46)",
+        "Still Small Voice (1 Kings 19:9-18)",
+        "Taken Up in Whirlwind (2 Kings 2:1-18)",
+        "Transfiguration Appearance (Matthew 17:1-13)"
+      ],
+      "related_figures": ["elisha", "ahab", "jezebel", "john_baptist"]
+    },
+    
+    "elisha": {
+      "name": "Elisha",
+      "category": "Prophets",
+      "time_period": "Kingdom Divided (9th century BC)",
+      "bio": "Prophet and successor to Elijah. Name means 'God is salvation.' Son of Shaphat. Called while plowing with twelve yoke of oxen. Received double portion of Elijah's spirit. Performed many miracles: parted Jordan, healed Jericho's water, multiplied widow's oil, raised Shunammite's son, healed Naaman's leprosy, made iron axehead float, struck Arameans blind, prophesied to kings. Served during reigns of Jehoram, Jehu, Jehoahaz, and Joash. His bones raised a dead man even after his own death. Ministry spanned approximately 50 years.",
+      "scripture": "1 Kings 19:16-21; 2 Kings 2-9, 13:14-21",
+      "popular_stories": [
+        "Receives Double Portion (2 Kings 2:9-15)",
+        "Healing the Waters (2 Kings 2:19-22)",
+        "Widow's Oil Multiplied (2 Kings 4:1-7)",
+        "Shunammite's Son Raised (2 Kings 4:8-37)",
+        "Naaman's Leprosy Healed (2 Kings 5:1-19)",
+        "Floating Axe Head (2 Kings 6:1-7)",
+        "Aramean Army Blinded (2 Kings 6:8-23)"
+      ],
+      "related_figures": ["elijah", "naaman", "gehazi"]
+    },
+    
+    "isaiah": {
+      "name": "Isaiah",
+      "category": "Prophets",
+      "time_period": "Kingdom Divided (8th century BC)",
+      "bio": "Major prophet in Judah. Name means 'Salvation of the LORD.' Son of Amoz. Prophesied during reigns of Uzziah, Jotham, Ahaz, and Hezekiah - approximately 740-680 BC. Called in temple vision seeing the Lord high and lifted up, seraphim crying 'Holy, holy, holy.' Prophesied virgin birth of Messiah, suffering servant, and future glory. Advised King Hezekiah during Assyrian siege. Married to 'the prophetess,' had sons with prophetic names: Shear-jashub and Maher-shalal-hash-baz. Tradition says he was sawn in two during Manasseh's reign. Book of Isaiah contains 66 chapters with extensive Messianic prophecies.",
+      "scripture": "2 Kings 19-20; 2 Chronicles 26:22, 32:20, 32; Isaiah 1-66",
+      "popular_stories": [
+        "Temple Vision and Calling (Isaiah 6:1-13)",
+        "Virgin Birth Prophecy (Isaiah 7:14)",
+        "Suffering Servant (Isaiah 52:13-53:12)",
+        "Hezekiah's Shadow Sign (2 Kings 20:1-11)",
+        "Comfort Ye My People (Isaiah 40:1-11)"
+      ],
+      "related_figures": ["hezekiah", "jeremiah"]
+    },
+    
+    "jeremiah": {
+      "name": "Jeremiah",
+      "category": "Prophets",
+      "time_period": "Kingdom Divided/Fall of Judah (7th-6th century BC)",
+      "bio": "Major prophet called 'the weeping prophet.' Name means 'Yahweh establishes.' Son of Hilkiah, priest of Anathoth. Called as youth - 'Before I formed thee in the belly I knew thee.' Prophesied during reigns of Josiah, Jehoahaz, Jehoiakim, Jehoiachin, and Zedekiah. Warned of Babylonian captivity for 40+ years. Imprisoned, thrown in muddy cistern, rescued by Ebed-melech. Witnessed fall of Jerusalem in 586 BC. Forced to Egypt with remnant. Wrote Lamentations. Prophesied new covenant written on hearts. Forbidden to marry as sign of coming judgment. Known for passionate prayers and complaints to God.",
+      "scripture": "2 Kings 23-25; 2 Chronicles 35-36; Jeremiah 1-52; Lamentations",
+      "popular_stories": [
+        "Call as a Youth (Jeremiah 1:4-19)",
+        "Broken Clay Pot (Jeremiah 19:1-15)",
+        "Thrown in Cistern (Jeremiah 38:1-13)",
+        "New Covenant Prophecy (Jeremiah 31:31-34)",
+        "Fall of Jerusalem (Jeremiah 52)",
+        "Book of Lamentations (Lamentations 1-5)"
+      ],
+      "related_figures": ["baruch", "ezekiel", "daniel"]
+    },
+    
+    "ezekiel": {
+      "name": "Ezekiel",
+      "category": "Prophets",
+      "time_period": "Babylonian Exile (6th century BC)",
+      "bio": "Major prophet during Babylonian captivity. Name means 'God strengthens.' Son of Buzi the priest. Taken captive to Babylon in 597 BC with King Jehoiachin. Called at age 30 by Chebar canal with vision of four living creatures and wheels within wheels. Prophesied to Jewish exiles. Performed dramatic sign-acts: laid on side 390 days, shaved head, cooked with dung. Struck mute except when prophesying. Wife died as sign - he didn't mourn. Vision of valley of dry bones. Saw God's glory depart and return to temple. Prophesied against nations. Detailed vision of millennial temple. Ministry spanned at least 22 years.",
+      "scripture": "Ezekiel 1-48",
+      "popular_stories": [
+        "Vision of the Throne (Ezekiel 1:1-28)",
+        "Watchman for Israel (Ezekiel 3:16-21)",
+        "Sign of Jerusalem's Siege (Ezekiel 4:1-17)",
+        "Valley of Dry Bones (Ezekiel 37:1-14)",
+        "River from the Temple (Ezekiel 47:1-12)",
+        "Gog and Magog (Ezekiel 38-39)"
+      ],
+      "related_figures": ["daniel", "jeremiah"]
+    },
+    
+    "daniel": {
+      "name": "Daniel",
+      "category": "Prophets",
+      "time_period": "Babylonian Exile (6th century BC)",
+      "bio": "Prophet and government official in Babylon and Persia. Name means 'God is my judge.' Of royal or noble lineage from Judah. Taken captive as youth around 605 BC. With friends (Hananiah, Mishael, Azariah) refused king's food, ate vegetables. Interpreted Nebuchadnezzar's dreams. Made ruler over Babylon. Served under Nebuchadnezzar, Belshazzar, Darius, and Cyrus. Read handwriting on wall. Thrown in lions' den for praying to God - lions' mouths shut. Given visions of four beasts, ram and goat, seventy weeks, and end times. Highly favored - called 'greatly beloved.' Ezekiel mentioned him with Noah and Job for righteousness. Prayed with windows open toward Jerusalem. Model of integrity and faithfulness.",
+      "scripture": "Ezekiel 14:14, 20, 28:3; Daniel 1-12; Matthew 24:15",
+      "popular_stories": [
+        "Refusing the King's Food (Daniel 1:8-16)",
+        "Nebuchadnezzar's Dream (Daniel 2:1-49)",
+        "Fiery Furnace (Daniel 3:1-30)",
+        "Writing on the Wall (Daniel 5:1-31)",
+        "Lions' Den (Daniel 6:1-28)",
+        "Vision of Four Beasts (Daniel 7:1-28)",
+        "Seventy Weeks Prophecy (Daniel 9:24-27)"
+      ],
+      "related_figures": ["shadrach", "meshach", "abednego", "nebuchadnezzar"]
+    },
+    
+    "john_baptist": {
+      "name": "John the Baptist",
+      "category": "Prophets",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "Forerunner and herald of Jesus Christ. Son of Zacharias the priest and Elisabeth (Mary's cousin). Birth announced by angel Gabriel - parents were old and barren. Filled with Holy Ghost from womb. Lived in wilderness, wore camel's hair, ate locusts and wild honey. Preached repentance and baptism. Baptized Jesus in Jordan - saw Spirit descend like dove and heard Father's voice. Declared Jesus 'Lamb of God which taketh away sin of the world.' Sent disciples to Jesus. Rebuked Herod Antipas for marrying Herodias (his brother Philip's wife). Imprisoned and beheaded at Herodias' daughter's request. Jesus called him greatest born of women, more than a prophet, the Elijah who was to come. Fulfilled Isaiah 40:3 and Malachi 4:5-6.",
+      "scripture": "Matthew 3, 11, 14; Mark 1, 6; Luke 1, 3, 7; John 1, 3; Acts 13:24-25",
+      "popular_stories": [
+        "Birth Announcement (Luke 1:5-25)",
+        "Preaching in Wilderness (Matthew 3:1-12)",
+        "Baptism of Jesus (Matthew 3:13-17)",
+        "Lamb of God Declaration (John 1:29-34)",
+        "Disciples Sent to Jesus (Matthew 11:2-6)",
+        "Beheading by Herod (Matthew 14:1-12)"
+      ],
+      "related_figures": ["zacharias", "elisabeth", "jesus", "herod_antipas"]
+    },
+    
+    "peter": {
+      "name": "Peter (Simon Peter)",
+      "category": "Apostles",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "Chief apostle, spokesman for the twelve. Born Simon, son of Jona (Jonas), brother of Andrew. Fisherman from Bethsaida, lived in Capernaum. Married. Called by Jesus at Sea of Galilee. Jesus renamed him Cephas (Peter) meaning 'rock.' Part of inner circle with James and John. Walked on water, began to sink. Confessed Jesus as Christ at Caesarea Philippi - received keys of kingdom. At transfiguration. Cut off servant's ear in garden. Denied Jesus three times, wept bitterly. Restored by Jesus ('Feed my sheep'). Preached at Pentecost - 3,000 saved. Healed lame man at temple. Vision of unclean animals - sent to Cornelius. Freed from prison by angel. Leader of Jerusalem church. Confronted by Paul in Antioch. Wrote 1 and 2 Peter. Tradition says crucified upside down in Rome under Nero.",
+      "scripture": "Matthew 4, 14, 16-17, 26; Mark 8, 14; Luke 5, 22; John 1, 6, 13, 18, 21; Acts 1-5, 9-12, 15; Galatians 2; 1-2 Peter",
+      "popular_stories": [
+        "Call as Fisherman (Luke 5:1-11)",
+        "Walking on Water (Matthew 14:22-33)",
+        "Confession at Caesarea (Matthew 16:13-20)",
+        "Denial of Jesus (Matthew 26:69-75)",
+        "Restoration by Jesus (John 21:15-19)",
+        "Pentecost Sermon (Acts 2:14-41)",
+        "Prison Angel Rescue (Acts 12:1-19)"
+      ],
+      "related_figures": ["andrew", "james", "john", "paul"]
+    },
+    
+    "paul": {
+      "name": "Paul (Saul of Tarsus)",
+      "category": "Apostles",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "Apostle to Gentiles, greatest missionary, wrote much of New Testament. Born Saul in Tarsus, tribe of Benjamin, Roman citizen. Pharisee, student of Gamaliel. Persecuted church, held coats at Stephen's stoning. Converted on Damascus road - blinded by light, heard Jesus' voice. Baptized by Ananias, sight restored. Called to preach to Gentiles. Spent time in Arabia. Ministry with Barnabas from Antioch. Three missionary journeys establishing churches. Jerusalem Council. Conflict with Peter, separation from Barnabas over Mark. Imprisoned multiple times. Shipwrecked three times. Received visions and revelations. Thorn in flesh. Wrote 13 epistles (possibly Hebrews). Arrested in Jerusalem, appealed to Caesar. Imprisoned in Rome. Tradition says beheaded under Nero. 'I have fought a good fight, I have finished my course, I have kept the faith.'",
+      "scripture": "Acts 7:58-60, 9-28; Romans-Philemon; possibly Hebrews",
+      "popular_stories": [
+        "Stoning of Stephen (Acts 7:54-8:1)",
+        "Damascus Road Conversion (Acts 9:1-22)",
+        "First Missionary Journey (Acts 13-14)",
+        "Jerusalem Council (Acts 15:1-35)",
+        "Philippian Jail Earthquake (Acts 16:16-40)",
+        "Riot in Ephesus (Acts 19:23-41)",
+        "Shipwreck on Malta (Acts 27:1-28:10)"
+      ],
+      "related_figures": ["barnabas", "silas", "timothy", "luke"]
+    },
+    
+    "mary_magdalene": {
+      "name": "Mary Magdalene",
+      "category": "Women of Faith",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "Devoted follower of Jesus from whom He cast seven devils. From Magdala on Sea of Galilee. Provided for Jesus and disciples out of her substance with other women. Present at crucifixion when many fled. Watched where Jesus was laid. First to tomb on resurrection morning with spices. Found tomb empty. Saw two angels. First to see risen Christ - He said 'Touch me not; for I am not yet ascended.' Told disciples 'I have seen the Lord.' Often confused with sinful woman who anointed Jesus (Luke 7) or Mary of Bethany, but Scripture doesn't identify her as either. Represents transformed life and faithful devotion.",
+      "scripture": "Matthew 27:56, 61, 28:1; Mark 15:40, 47, 16:1-9; Luke 8:2, 24:10; John 19:25, 20:1-18",
+      "popular_stories": [
+        "Seven Devils Cast Out (Mark 16:9, Luke 8:2)",
+        "At the Crucifixion (John 19:25)",
+        "First at Empty Tomb (John 20:1-2)",
+        "First to See Risen Christ (John 20:11-18)",
+        "Told Disciples 'I Have Seen the Lord' (John 20:18)"
+      ],
+      "related_figures": ["jesus", "mary_mother", "joanna", "susanna"]
+    },
+    
+    "barnabas": {
+      "name": "Barnabas",
+      "category": "Apostles",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "Apostle and missionary companion of Paul. Name means 'son of consolation.' Born Joseph, Levite from Cyprus. Sold land and gave proceeds to apostles. Introduced converted Saul to suspicious disciples. Sent from Jerusalem to Antioch - encouraged believers, called them Christians there first. Brought Paul from Tarsus to Antioch. Took relief offering to Jerusalem. First missionary journey with Paul through Cyprus and Asia Minor. Jerusalem Council. Separated from Paul over John Mark (Barnabas' cousin). Continued ministry with Mark to Cyprus. Early church father says he preached in Alexandria and was martyred in Cyprus. Known as encouraging, generous, willing to give second chances.",
+      "scripture": "Acts 4:36-37, 9:26-27, 11:19-30, 13-15:39; 1 Corinthians 9:6; Galatians 2:1-13; Colossians 4:10",
+      "popular_stories": [
+        "Sold Land for the Church (Acts 4:36-37)",
+        "Vouched for Paul (Acts 9:26-27)",
+        "Ministry in Antioch (Acts 11:19-26)",
+        "First Missionary Journey (Acts 13:1-14:28)",
+        "Jerusalem Council (Acts 15:1-35)",
+        "Separation from Paul (Acts 15:36-41)"
+      ],
+      "related_figures": ["paul", "mark", "silas"]
+    },
+    
+    "timothy": {
+      "name": "Timothy",
+      "category": "Disciples",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "Young pastor and Paul's faithful disciple. Name means 'honoring God.' Son of Jewish mother Eunice and Greek father. Grandmother Lois also believer. From Lystra. Well spoken of by brethren. Joined Paul on second missionary journey - circumcised to avoid offense to Jews. With Paul in Philippi, Thessalonica, Berea. Sent back to encourage Thessalonians. Joined Paul in Corinth. Co-author of several Paul's epistles. Pastor in Ephesus. Paul wrote two letters instructing him in ministry. Warned against false teachers. Told to drink wine for stomach. 'Let no man despise thy youth.' Paul called him 'my own son in the faith,' 'my dearly beloved son.' Tradition says first bishop of Ephesus, martyred under Domitian or Nerva.",
+      "scripture": "Acts 16:1-3, 17-20; Romans 16:21; 1 Corinthians 4:17, 16:10; Philippians 2:19-23; 1 Thessalonians 3:2-6; 1-2 Timothy; Hebrews 13:23",
+      "popular_stories": [
+        "Joined Paul's Team (Acts 16:1-5)",
+        "Ministry in Thessalonica (1 Thessalonians 3:1-6)",
+        "Pastor in Ephesus (1 Timothy 1:3)",
+        "Instructions for Ministry (1-2 Timothy)",
+        "Faithful Service (Philippians 2:19-22)"
+      ],
+      "related_figures": ["paul", "lois", "eunice", "silas"]
+    },
+    
+    "lydia": {
+      "name": "Lydia",
+      "category": "Women of Faith",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "First European convert to Christianity. Businesswoman from Thyatira, city famous for purple dye. Seller of purple cloth - expensive luxury item indicating she was wealthy. Worshipper of God (likely Gentile God-fearer). In Philippi when Paul preached by riverside. 'The Lord opened her heart' to believe Paul's message. Baptized with her household. Insisted Paul and his companions stay at her home - showed hospitality. Her home likely became meeting place for Philippian church. Represents God's providence in gospel spreading to Europe, importance of women in early church, and blessing of hospitality. Name may be reference to her region (Lydia) rather than personal name.",
+      "scripture": "Acts 16:11-15, 40",
+      "popular_stories": [
+        "Conversion by River (Acts 16:13-15)",
+        "Household Baptized (Acts 16:15)",
+        "Hosted Paul's Team (Acts 16:15, 40)"
+      ],
+      "related_figures": ["paul", "silas", "luke"]
+    },
+    
+    "stephen": {
+      "name": "Stephen",
+      "category": "Disciples",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "First Christian martyr. One of seven chosen as deacon to serve tables - full of faith and Holy Ghost. Name means 'crown.' Did great wonders and miracles among people. Disputed with Hellenistic Jews who couldn't resist his wisdom and spirit. False witnesses accused him of blasphemy. Brought before council - his face shone like angel. Gave powerful sermon recounting Israel's history and resistance to God. Accused leaders of betraying and murdering the Just One. Saw heaven opened and Jesus standing at God's right hand. Dragged outside city and stoned. Prayed 'Lord Jesus, receive my spirit' and 'Lord, lay not this sin to their charge.' Saul held the coats of those stoning him. His death scattered church but spread gospel, led to Philip's ministry in Samaria.",
+      "scripture": "Acts 6:1-8:2, 11:19, 22:20",
+      "popular_stories": [
+        "Chosen as Deacon (Acts 6:1-7)",
+        "Face Like an Angel (Acts 6:8-15)",
+        "Powerful Defense Sermon (Acts 7:1-53)",
+        "Vision of Jesus Standing (Acts 7:54-56)",
+        "Stoning and Death (Acts 7:57-60)",
+        "Church Scattered (Acts 8:1-4)"
+      ],
+      "related_figures": ["paul", "philip_deacon", "james_brother"]
+    },
+    
+    "philip_deacon": {
+      "name": "Philip the Evangelist",
+      "category": "Disciples",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "One of seven deacons, evangelist. Different from Philip the Apostle. Full of Holy Ghost and wisdom. After Stephen's martyrdom, went to Samaria preaching Christ. Great miracles - unclean spirits cast out, paralyzed and lame healed. Whole city had great joy. Simon the sorcerer believed and was baptized. Peter and John came, laid hands for Holy Ghost. Angel sent Philip to Gaza road. Met Ethiopian eunuch (court official of Queen Candace) reading Isaiah 53. Philip explained Jesus was the suffering servant. Eunuch believed, baptized in water. Spirit caught Philip away to Azotus. Preached through coastal cities to Caesarea. Twenty years later still in Caesarea with four virgin daughters who prophesied. Paul stayed at his house. Called 'the evangelist' - one of five ministry gifts (Ephesians 4:11).",
+      "scripture": "Acts 6:5, 8:5-40, 21:8-9",
+      "popular_stories": [
+        "Chosen as Deacon (Acts 6:1-6)",
+        "Revival in Samaria (Acts 8:5-13)",
+        "Ethiopian Eunuch (Acts 8:26-40)",
+        "Caught Away by Spirit (Acts 8:39-40)",
+        "Four Prophesying Daughters (Acts 21:8-9)"
+      ],
+      "related_figures": ["stephen", "peter", "john", "ethiopian_eunuch"]
+    },
+    
+    "dorcas": {
+      "name": "Dorcas (Tabitha)",
+      "category": "Women of Faith",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "Faithful disciple raised from the dead by Peter. Name Tabitha in Aramaic, Dorcas in Greek - both mean 'gazelle.' Lived in Joppa (modern Jaffa). Full of good works and almsdeeds. Made coats and garments for poor, especially widows. Fell sick and died. Disciples laid her in upper chamber. Sent for Peter from nearby Lydda. Peter put everyone out, knelt and prayed, said 'Tabitha, arise.' She opened eyes, sat up. Peter presented her alive. News spread throughout Joppa - many believed in the Lord. Represents ministry of helps, serving others, and God's power over death. Example of Acts church caring for widows and needy. Only woman in Bible called a 'disciple' (female form).",
+      "scripture": "Acts 9:36-43",
+      "popular_stories": [
+        "Known for Good Works (Acts 9:36)",
+        "Death and Mourning (Acts 9:37-39)",
+        "Raised by Peter (Acts 9:40-41)",
+        "Many Believed (Acts 9:42)"
+      ],
+      "related_figures": ["peter", "cornelius"]
+    },
+    
+    "cornelius": {
+      "name": "Cornelius",
+      "category": "Disciples",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "First Gentile convert, Roman centurion. Stationed in Caesarea with Italian regiment. Devout man who feared God with all his house. Gave much alms to people, prayed to God always. Angel appeared in vision telling him to send for Peter in Joppa. Sent two servants and devout soldier. While they traveled, Peter on rooftop had vision three times of unclean animals - voice said 'What God hath cleansed, that call not thou common.' Spirit told Peter three men sought him. Peter went with them to Cornelius. Large gathering assembled. Cornelius fell at Peter's feet - Peter raised him up. Peter preached Jesus. While speaking, Holy Ghost fell on all who heard. Jewish believers amazed Gentiles received Holy Ghost, spoke in tongues. Peter commanded they be baptized. Breakthrough showing gospel for all nations.",
+      "scripture": "Acts 10:1-11:18, 15:7-11",
+      "popular_stories": [
+        "Vision of Angel (Acts 10:1-8)",
+        "Peter's Vision of Animals (Acts 10:9-16)",
+        "Meeting Peter (Acts 10:24-33)",
+        "Holy Spirit Falls (Acts 10:44-48)",
+        "Defense in Jerusalem (Acts 11:1-18)"
+      ],
+      "related_figures": ["peter", "philip_deacon"]
+    },
+    
+    "priscilla": {
+      "name": "Priscilla (Prisca)",
+      "category": "Women of Faith",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "Wife of Aquila, faithful co-worker with Paul. Jewish Christian from Rome. Expelled from Rome with Aquila under Claudius' edict against Jews (49 AD). Tentmakers like Paul. Hosted Paul in Corinth. Traveled with Paul to Ephesus. Church met in their house in Ephesus. Heard eloquent Apollos preach - took him aside and 'expounded unto him the way of God more perfectly.' Later had church in house in Rome. Risked their necks for Paul's life - all Gentile churches grateful. Paul called them 'my helpers in Christ Jesus.' Name usually mentioned before husband's - unusual for time, indicating prominence. Paul sent greetings through them in 2 Timothy. Example of husband-wife ministry team, hospitality, teaching, and courage.",
+      "scripture": "Acts 18:1-3, 18-28; Romans 16:3-5; 1 Corinthians 16:19; 2 Timothy 4:19",
+      "popular_stories": [
+        "Met Paul in Corinth (Acts 18:1-3)",
+        "Taught Apollos (Acts 18:24-28)",
+        "House Church (Romans 16:3-5)",
+        "Risked Their Lives (Romans 16:3-4)"
+      ],
+      "related_figures": ["aquila", "paul", "apollos"]
+    },
+    
+    "gideon": {
+      "name": "Gideon",
+      "category": "Judges",
+      "time_period": "Period of Judges (12th century BC)",
+      "bio": "Judge who delivered Israel from Midianites. Youngest son of Joash, from tribe of Manasseh. Angel appeared while he threshed wheat by winepress hiding from Midianites. Called 'mighty man of valour' though felt weak. Asked for signs - fleece wet/dry. Tore down father's Baal altar, built altar to LORD called Jehovah-shalom. Blew trumpet, gathered army of 32,000. God reduced to 300 who lapped water. Used trumpets, pitchers, lamps to confuse enemy. Midianites killed each other fleeing. Refused to be king - 'The LORD shall rule over you.' Made golden ephod which became snare. Judged Israel 40 years. Had 70 sons. Had peace in his days. Given as example of faith in Hebrews 11. Also called Jerubbaal.",
+      "scripture": "Judges 6-8; Hebrews 11:32",
+      "popular_stories": [
+        "Angel's Call (Judges 6:11-24)",
+        "Fleece Signs (Judges 6:36-40)",
+        "Army Reduced to 300 (Judges 7:1-8)",
+        "Victory with Trumpets (Judges 7:16-25)",
+        "Refused Kingship (Judges 8:22-23)"
+      ],
+      "related_figures": ["barak", "samson", "jephthah"]
+    },
+    
+    "samson": {
+      "name": "Samson",
+      "category": "Judges",
+      "time_period": "Period of Judges (12th century BC)",
+      "bio": "Judge with supernatural strength. From tribe of Dan. Birth announced by angel to barren mother - to be Nazarite from womb (no wine, no haircut, no dead bodies). Desired Philistine wife from Timnath. Killed lion with bare hands - later found honey in carcass. Gave riddle at wedding feast. Wife betrayed him to Philistines. Killed 30 men of Ashkelon. Set foxes' tails on fire, burned Philistine crops. Killed 1,000 Philistines with donkey's jawbone. Loved Delilah who betrayed him for silver. Nagged him until he revealed strength was in hair. Philistines cut hair, gouged out eyes, imprisoned him. Hair grew back. At temple feast to Dagon, pushed pillars down, killed more in death than life. Judged Israel 20 years. Represents wasted potential due to sin and compromise.",
+      "scripture": "Judges 13-16; Hebrews 11:32",
+      "popular_stories": [
+        "Birth Announcement (Judges 13:2-25)",
+        "Killed Lion (Judges 14:5-6)",
+        "Wedding Riddle (Judges 14:10-20)",
+        "Jawbone Victory (Judges 15:14-17)",
+        "Delilah's Betrayal (Judges 16:4-20)",
+        "Temple Collapse (Judges 16:23-31)"
+      ],
+      "related_figures": ["delilah", "gideon"]
+    },
+    
+    "deborah": {
+      "name": "Deborah",
+      "category": "Judges",
+      "time_period": "Period of Judges (12th century BC)",
+      "bio": "Only female judge of Israel, prophetess. Wife of Lapidoth. Judged Israel under palm tree between Ramah and Bethel. Israel oppressed 20 years by Jabin, Canaanite king. Deborah called Barak to gather 10,000 men against Sisera's army. Barak refused to go unless Deborah came - she agreed but said a woman would get the glory. At Mount Tabor, LORD discomfited Sisera's army. Sisera fled on foot to Jael's tent. Jael gave him milk, he slept. She drove tent peg through his temple - killed him. Deborah and Barak sang victory song (Judges 5). 'The stars in their courses fought against Sisera.' Land had rest 40 years. Called 'a mother in Israel.' Represents godly female leadership and God using weak things to confound mighty.",
+      "scripture": "Judges 4-5",
+      "popular_stories": [
+        "Judging Under Palm Tree (Judges 4:4-5)",
+        "Called Barak (Judges 4:6-9)",
+        "Victory Over Sisera (Judges 4:14-16)",
+        "Song of Deborah (Judges 5:1-31)",
+        "Mother in Israel (Judges 5:7)"
+      ],
+      "related_figures": ["barak", "jael", "sisera"]
+    },
+    
+    "ruth": {
+      "name": "Ruth",
+      "category": "Women of Faith",
+      "time_period": "Period of Judges (12th century BC)",
+      "bio": "Moabite widow who became great-grandmother of King David, ancestor of Jesus. Married Mahlon, son of Elimelech and Naomi, during famine when they moved to Moab. After husband died, refused to leave mother-in-law Naomi. Said 'Whither thou goest, I will go... thy people shall be my people, and thy God my God.' Returned to Bethlehem with Naomi. Gleaned in fields of Boaz (kinsman of Elimelech). Boaz showed her favor. Naomi advised her to lie at Boaz's feet at threshing floor. Boaz performed role of kinsman-redeemer, married Ruth. Bore Obed, grandfather of David. Listed in genealogy of Jesus (Matthew 1). Book shows God's sovereignty, rewards loyalty, includes Gentiles in His plan. Ruth means 'friendship' or 'companion.' Model of devotion, faith, and virtue.",
+      "scripture": "Book of Ruth; Matthew 1:5",
+      "popular_stories": [
+        "Loyalty to Naomi (Ruth 1:16-18)",
+        "Gleaning in Boaz's Field (Ruth 2:1-23)",
+        "At the Threshing Floor (Ruth 3:1-18)",
+        "Marriage to Boaz (Ruth 4:1-13)",
+        "Birth of Obed (Ruth 4:13-17)"
+      ],
+      "related_figures": ["naomi", "boaz", "david"]
+    },
+    
+    "hannah": {
+      "name": "Hannah",
+      "category": "Women of Faith",
+      "time_period": "Period of Judges (11th century BC)",
+      "bio": "Mother of Samuel, woman of prayer. One of two wives of Elkanah from Ramathaimzophim (Ramathaim) in Ephraim. Barren while rival Peninnah had children. Peninnah provoked her yearly. Wept and prayed bitterly at tabernacle in Shiloh. Vowed if given son, would give him to LORD all his days, no razor on his head (Nazarite vow). Moved lips silently - Eli the priest thought she was drunk. She said 'I am a woman of sorrowful spirit... I have poured out my soul before the LORD.' Eli blessed her. Conceived, bore Samuel. After weaning, brought him to tabernacle, kept her vow. Prayed magnificent prayer of praise (1 Samuel 2) - echoed in Mary's Magnificat. LORD gave her five more children. Visited Samuel yearly with new coat. Model of faith, prayer, keeping vows, and worship.",
+      "scripture": "1 Samuel 1-2:21",
+      "popular_stories": [
+        "Prayer for a Son (1 Samuel 1:9-18)",
+        "Birth of Samuel (1 Samuel 1:19-20)",
+        "Keeping Her Vow (1 Samuel 1:21-28)",
+        "Song of Hannah (1 Samuel 2:1-10)",
+        "Visited Samuel Yearly (1 Samuel 2:18-21)"
+      ],
+      "related_figures": ["samuel", "eli", "elkanah"]
+    },
+    
+    "naaman": {
+      "name": "Naaman",
+      "category": "Military Leaders",
+      "time_period": "Kingdom Divided (9th century BC)",
+      "bio": "Syrian commander healed of leprosy by Elisha. Captain of the host of king of Syria (Aram), great man, honorable, mighty man of valour, but leper. Wife's Israelite servant girl told of prophet in Samaria who could heal. King sent Naaman with letter to king of Israel - king distressed, tore clothes. Elisha heard, sent for Naaman. Elisha's messenger told him to wash seven times in Jordan. Naaman angry - expected prophet to come out, wave hand, call on his God. Rivers of Damascus better than Israel's waters. Servants persuaded him to obey. Dipped seven times, flesh restored like child's. Returned, confessed 'there is no God in all the earth, but in Israel.' Offered gifts - Elisha refused. Asked for two mules' burden of earth. Gehazi ran after him, lied, took gifts - struck with leprosy. Jesus mentioned Naaman as example of faith (Luke 4:27).",
+      "scripture": "2 Kings 5:1-27; Luke 4:27",
+      "popular_stories": [
+        "Servant Girl's Faith (2 Kings 5:1-4)",
+        "Visit to Elisha (2 Kings 5:8-14)",
+        "Healing in Jordan (2 Kings 5:14)",
+        "Confession of Faith (2 Kings 5:15-19)",
+        "Gehazi's Deception (2 Kings 5:20-27)"
+      ],
+      "related_figures": ["elisha", "gehazi"]
+    },
+    
+    "nebuchadnezzar": {
+      "name": "Nebuchadnezzar",
+      "category": "Kings",
+      "time_period": "Babylonian Empire (6th century BC)",
+      "bio": "Greatest king of Babylon, conquered Judah. Son of Nabopolassar. Defeated Egyptians at Carchemish (605 BC). Became king of Babylon. Besieged Jerusalem three times (605, 597, 586 BC). Took Daniel and nobles as captives. Burned temple, destroyed Jerusalem, exiled Jews. Had troubling dream of statue with gold head - Daniel interpreted. Made gold image on plain of Dura - threw Shadrach, Meshach, Abednego into fiery furnace for refusing to worship. Saw fourth man like Son of God in fire. Had dream of tree cut down - Daniel interpreted as seven years of madness. Boasted of his achievements. Driven from men, ate grass like beast, hair like eagle feathers, nails like bird claws. After seven times, reason returned, blessed Most High. Acknowledged God's sovereignty. Represents pride's fall and God's supremacy over nations.",
+      "scripture": "2 Kings 24-25; 2 Chronicles 36; Jeremiah 21-52; Daniel 1-4",
+      "popular_stories": [
+        "Conquest of Jerusalem (2 Kings 24-25)",
+        "Dream of Statue (Daniel 2)",
+        "Fiery Furnace (Daniel 3)",
+        "Dream of Tree (Daniel 4:1-18)",
+        "Seven Years of Madness (Daniel 4:28-33)",
+        "Restoration and Praise (Daniel 4:34-37)"
+      ],
+      "related_figures": ["daniel", "shadrach", "meshach", "abednego"]
+    },
+    
+    "cyrus": {
+      "name": "Cyrus the Great",
+      "category": "Kings",
+      "time_period": "Persian Empire (6th century BC)",
+      "bio": "Persian king who freed Jews from Babylonian captivity. Founded Achaemenid Persian Empire. Isaiah prophesied his name 150 years before his birth, called God's 'shepherd' and 'anointed' (Isaiah 44:28-45:1). Conquered Babylon in 539 BC without battle - army entered through riverbed. Found his name in Scripture. First year issued decree allowing Jews to return, rebuild temple. Returned sacred vessels Nebuchadnezzar had taken. Provided funding for temple. 42,360 Jews returned under Zerubbabel. Reigned 29 years. Policy of allowing captive peoples to return home and worship their gods was revolutionary. Represents God using pagan kings for His purposes, fulfilling prophecy, and ending exile. God called him 'my shepherd' though Cyrus didn't know the LORD initially.",
+      "scripture": "2 Chronicles 36:22-23; Ezra 1:1-11, 3:7, 4:3-5, 5:13-17, 6:3-14; Isaiah 44:28-45:6; Daniel 1:21, 6:28, 10:1",
+      "popular_stories": [
+        "Isaiah's Prophecy (Isaiah 44:28-45:7)",
+        "Conquest of Babylon (Daniel 5:30-31)",
+        "Decree to Rebuild Temple (Ezra 1:1-4)",
+        "Return of Vessels (Ezra 1:7-11)",
+        "Jews Return Home (Ezra 1:1-2:70)"
+      ],
+      "related_figures": ["daniel", "zerubbabel", "ezra"]
+    },
+    
+    "herod_great": {
+      "name": "Herod the Great",
+      "category": "Kings",
+      "time_period": "Intertestamental/New Testament (1st century BC)",
+      "bio": "Idumean king of Judea during Jesus' birth. Son of Antipater. Appointed king by Roman Senate 40 BC, took Jerusalem 37 BC. Married ten wives including Mariamne I (Hasmonean princess) whom he later murdered. Rebuilt temple magnificently starting 20 BC. Paranoid, murderous. Killed his own sons. Wise men came seeking 'King of Jews.' Herod troubled, inquired where Christ should be born. Told them Bethlehem. Sent them to search diligently. They didn't return. Herod sent soldiers, killed all children in Bethlehem under two years (Massacre of Innocents). Joseph fled with Mary and Jesus to Egypt. Herod died shortly after (4 BC), kingdom divided among sons: Archelaus (Judea), Antipas (Galilee), Philip (northern territories). Jesus born under his reign, began ministry under Antipas, crucified under Roman prefect Pilate.",
+      "scripture": "Matthew 2:1-22; Luke 1:5",
+      "popular_stories": [
+        "Wise Men Visit (Matthew 2:1-8)",
+        "Massacre of Innocents (Matthew 2:16-18)",
+        "Flight to Egypt (Matthew 2:13-15)",
+        "Death of Herod (Matthew 2:19-20)"
+      ],
+      "related_figures": ["jesus", "herod_antipas", "pilate"]
+    },
+    
+    "pilate": {
+      "name": "Pontius Pilate",
+      "category": "Political Leaders",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "Roman prefect (governor) of Judea who condemned Jesus. Appointed 26 AD, served until 36 AD. Brought Jesus' trial before him by Jewish leaders who couldn't execute under Roman law. Questioned Jesus: 'Art thou the King of Jews?' Jesus said 'Thou sayest.' Found no fault. Sent to Herod Antipas (Galilean jurisdiction). Herod returned Him. Pilate offered to release Jesus or Barabbas per Passover custom - crowd chose Barabbas. Wife sent message warning of dream about 'that just man.' Pilate tried to release Jesus but Jews threatened 'thou art not Caesar's friend.' Scourged Jesus. Soldiers mocked Him, put crown of thorns, purple robe. Pilate said 'Behold the man' and 'Behold your King.' Jews shouted 'Crucify him!' Pilate washed hands before crowd - 'I am innocent of the blood of this just person.' Gave body to Joseph of Arimathea. Set guard at tomb. Symbolizes political cowardice and worldly power's inability to recognize truth.",
+      "scripture": "Matthew 27:1-66; Mark 15:1-47; Luke 23:1-56; John 18:28-19:38; Acts 3:13, 4:27, 13:28; 1 Timothy 6:13",
+      "popular_stories": [
+        "Jesus' Trial (John 18:28-40)",
+        "Scourging of Jesus (John 19:1-5)",
+        "Washing Hands (Matthew 27:24)",
+        "Release of Barabbas (Matthew 27:15-26)",
+        "Crucifixion Order (Matthew 27:26)",
+        "Gave Body to Joseph (Matthew 27:57-61)"
+      ],
+      "related_figures": ["jesus", "herod_antipas", "caiaphas", "barabbas"]
+    },
+    
+    "judas_iscariot": {
+      "name": "Judas Iscariot",
+      "category": "Apostles",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "Apostle who betrayed Jesus. Son of Simon Iscariot, possibly from Kerioth in Judea (only non-Galilean apostle). Treasurer for disciples, but was a thief, stole from money bag. At Bethany complained when Mary anointed Jesus with expensive ointment - 'Why not sold and given to poor?' Really wanted the money. Satan entered him. Made deal with chief priests to betray Jesus for thirty pieces of silver (price of slave). At Last Supper, Jesus said one would betray Him. Gave Judas sop, said 'That thou doest, do quickly.' Judas left immediately. Led soldiers to Gethsemane, kissed Jesus to identify Him. Later remorseful, returned silver to priests saying 'I have sinned in that I have betrayed innocent blood.' They rejected it. Judas threw money in temple, went and hanged himself. Body fell, burst open. Priests bought potter's field (field of blood) with money. Matthias chosen to replace him. Jesus called him 'son of perdition.'",
+      "scripture": "Matthew 26:14-16, 20-25, 47-50, 27:3-10; Mark 14:10-11, 43-46; Luke 22:3-6, 47-48; John 6:70-71, 12:4-6, 13:2-30, 18:2-5; Acts 1:16-25",
+      "popular_stories": [
+        "Deal with Priests (Matthew 26:14-16)",
+        "Last Supper Revealed (John 13:21-30)",
+        "Betrayal in Garden (Matthew 26:47-50)",
+        "Return of Silver (Matthew 27:3-5)",
+        "Death by Hanging (Matthew 27:5, Acts 1:18)"
+      ],
+      "related_figures": ["jesus", "peter", "john", "caiaphas"]
+    }
+  }
+}
