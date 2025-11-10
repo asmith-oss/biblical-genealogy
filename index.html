@@ -1,4 +1,3 @@
-<!-- Updated HTML integrating Biblical Figures Explorer with biblical_figures.json. Inserted scripts and structure matching JSON categories, periods, and search. Full HTML file retained. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +24,7 @@
         Use the tools below to navigate ancestors, descendants, or compare key figures.
         Double-click any name in the tree to view their biography and references.
       </p>
-
+      
       <!-- NEW: Biblical Figures Explorer Toggle -->
       <div class="figures-explorer-toggle">
         <button id="toggle-figures-explorer" class="explorer-toggle-btn">
@@ -40,31 +39,46 @@
         <h2>Biblical Figures Explorer</h2>
         <p>Discover people from Scripture not in the genealogical line</p>
       </div>
-
+      
       <div class="explorer-filters">
         <div class="filter-group">
           <label>Category:</label>
           <select id="filter-category">
             <option value="all">All Categories</option>
+            <option value="Prophets">Prophets</option>
+            <option value="Kings">Kings</option>
+            <option value="Judges">Judges</option>
+            <option value="Priests">Priests</option>
+            <option value="Apostles">Apostles</option>
+            <option value="Disciples">Disciples</option>
+            <option value="Women of Faith">Women of Faith</option>
+            <option value="Military Leaders">Military Leaders</option>
+            <option value="Political Leaders">Political Leaders</option>
           </select>
         </div>
-
+        
         <div class="filter-group">
           <label>Time Period:</label>
           <select id="filter-period">
             <option value="all">All Periods</option>
+            <option value="judges">Period of Judges</option>
+            <option value="divided">Kingdom Divided</option>
+            <option value="exile">Babylonian Exile</option>
+            <option value="nt">New Testament</option>
           </select>
         </div>
-
+        
         <div class="filter-group">
           <label>Search:</label>
           <input type="text" id="figures-search" placeholder="Search figures..." />
         </div>
-
+        
         <button id="reset-filters" class="pill-btn">Reset Filters</button>
       </div>
-
-      <div id="figures-grid" class="figures-grid"></div>
+      
+      <div id="figures-grid" class="figures-grid">
+        <!-- Figures will be populated here -->
+      </div>
     </section>
 
     <section id="controls">
@@ -136,111 +150,6 @@
   <footer>
     <p>© 2025 Biblical Genealogy Explorer | Data sourced from Scripture</p>
   </footer>
-
-  <!-- NEW SCRIPT: Load Biblical Figures JSON and populate explorer -->
-  <script>
-    let biblicalFigures = {};
-
-    fetch('biblical_figures.json')
-      .then(res => res.json())
-      .then(data => {
-        biblicalFigures = data.figures;
-        initFiguresExplorer(data);
-      });
-
-    function initFiguresExplorer(data) {
-      const categories = data.metadata.categories;
-      const catSelect = document.getElementById('filter-category');
-      categories.forEach(c => {
-        const opt = document.createElement('option');
-        opt.value = c;
-        opt.textContent = c;
-        catSelect.appendChild(opt);
-      });
-
-      const periods = [...new Set(Object.values(data.figures).map(f => f.time_period))];
-      const periodSelect = document.getElementById('filter-period');
-      periods.forEach(p => {
-        const opt = document.createElement('option');
-        opt.value = p;
-        opt.textContent = p;
-        periodSelect.appendChild(opt);
-      });
-
-      renderFiguresGrid(data.figures);
-
-      document.getElementById('toggle-figures-explorer').addEventListener('click', () => {
-        document.getElementById('figures-explorer').classList.toggle('hidden');
-      });
-
-      document.getElementById('filter-category').addEventListener('change', applyFilters);
-      document.getElementById('filter-period').addEventListener('change', applyFilters);
-      document.getElementById('figures-search').addEventListener('input', applyFilters);
-      document.getElementById('reset-filters').addEventListener('click', resetFilters);
-    }
-
-    function renderFiguresGrid(figures) {
-      const grid = document.getElementById('figures-grid');
-      grid.innerHTML = '';
-      Object.values(figures).forEach(f => {
-        const card = document.createElement('div');
-        card.className = 'figure-card';
-        card.innerHTML = `
-          <h3>${f.name}</h3>
-          <p><strong>Category:</strong> ${f.category}</p>
-          <p><strong>Period:</strong> ${f.time_period}</p>
-        `;
-
-        
-        card.addEventListener('click', () => showFigureModal(f));
-      grid.appendChild(card);
-      });
-    }
-
-    function applyFilters() {
-      const catVal = document.getElementById('filter-category').value;
-      const perVal = document.getElementById('filter-period').value;
-      const searchVal = document.getElementById('figures-search').value.toLowerCase();
-
-      const filtered = Object.values(biblicalFigures).filter(f => {
-        return (
-          (catVal === 'all' || f.category === catVal) &&
-          (perVal === 'all' || f.time_period === perVal) &&
-          (f.name.toLowerCase().includes(searchVal) || f.bio.toLowerCase().includes(searchVal))
-        );
-      });
-
-      renderFiguresGrid(Object.fromEntries(filtered.map(f => [f.name, f])));
-    }
-
-    function resetFilters() {
-      document.getElementById('filter-category').value = 'all';
-      document.getElementById('filter-period').value = 'all';
-      document.getElementById('figures-search').value = '';
-      renderFiguresGrid(biblicalFigures);
-    }
-
-    function showFigureModal(figure) {
-      const modal = document.getElementById('infoModal');
-      const info = document.getElementById('person-info');
-
-      info.innerHTML = `
-        <h2>${figure.name}</h2>
-        <p><strong>Category:</strong> ${figure.category}</p>
-        <p><strong>Time Period:</strong> ${figure.time_period}</p>
-        <p><strong>Scripture:</strong> ${figure.scripture}</p>
-        <p><strong>Bio:</strong> ${figure.bio}</p>
-        <h3>Popular Stories</h3>
-        <ul>
-          ${figure.popular_stories.map(s => `<li>${s}</li>`).join('')}
-        </ul>
-      `;
-
-      modal.style.display = 'block';
-      document.querySelector('.close').onclick = () => { modal.style.display = 'none'; };
-      window.onclick = e => { if (e.target === modal) modal.style.display = 'none'; };
-    }
-  </script>
 
   <script src="app.js"></script>
 </body>
