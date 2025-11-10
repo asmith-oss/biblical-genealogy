@@ -23,7 +23,7 @@ h2 { text-align: center; color: #9dd3ff; }
 /* Controls Section */
 #controls { margin: 30px 0; text-align: center; }
 
-.search-container { margin-bottom: 20px; }
+.search-container { margin-bottom: 20px; position: relative; }
 #search-input {
   padding: 10px 15px;
   width: 60%; max-width: 520px;
@@ -37,6 +37,48 @@ h2 { text-align: center; color: #9dd3ff; }
   transition: background 0.3s;
 }
 #search-btn:hover { background: #4a5a8d; }
+
+/* Autocomplete Dropdown Positioning */
+.autocomplete-dropdown {
+  position: absolute;
+  background: #1a2332;
+  border: 2px solid #3a4a7d;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  margin-top: 5px;
+  min-width: 300px;
+}
+
+.autocomplete-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(58, 74, 125, 0.3);
+  transition: background 0.2s ease;
+}
+
+.autocomplete-item:last-child {
+  border-bottom: none;
+}
+
+.autocomplete-item:hover {
+  background: rgba(58, 74, 125, 0.5);
+}
+
+.autocomplete-item strong {
+  color: #9dd3ff;
+  display: block;
+  margin-bottom: 4px;
+  font-size: 1rem;
+}
+
+.autocomplete-item small {
+  color: #c7e3ff;
+  font-size: 0.85rem;
+  font-style: italic;
+}
 
 .quick-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
 .nav-btn {
@@ -57,6 +99,7 @@ h2 { text-align: center; color: #9dd3ff; }
   border: 1px solid #334;
   border-radius: 14px;
   padding: 14px;
+  position: relative;
 }
 .tool-card h3 { margin: 4px 0 10px; color: #c7e3ff; }
 .row { display: flex; gap: 10px; margin-bottom: 10px; }
@@ -611,46 +654,3 @@ h2 { text-align: center; color: #9dd3ff; }
   margin: 10px 0;
 }
 
-/* Story list in modal */
-.stories-section {
-  margin: 20px 0;
-}
-
-.stories-section h3 {
-  color: #243055;
-  border-bottom: 2px solid #9dd3ff;
-  padding-bottom: 8px;
-  margin-bottom: 15px;
-}
-
-.stories-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.stories-list li {
-  padding: 8px 12px;
-  margin: 6px 0;
-  background: #f0f8ff;
-  border-left: 4px solid #3a4a7d;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  color: #333;
-}
-
-@media (max-width: 768px) {
-  .explorer-filters {
-    flex-direction: column;
-  }
-  
-  .filter-group select,
-  .filter-group input {
-    width: 100%;
-    min-width: auto;
-  }
-  
-  .figures-grid {
-    grid-template-columns: 1fr;
-  }
-}
