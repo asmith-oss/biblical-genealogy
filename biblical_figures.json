@@ -977,6 +977,542 @@
         "Evangelized City (John 4:28-30, 39-42)"
       ],
       "related_figures": ["jesus"]
+    },
+    "esther": {
+      "name": "Esther (Hadassah)",
+      "category": "Women of Faith",
+      "time_period": "Persian Empire (5th century BC)",
+      "bio": "Jewish queen who saved her people from genocide. Orphan raised by cousin Mordecai in Persia. Birth name Hadassah. Chosen as queen by King Ahasuerus (Xerxes) after Vashti deposed. Hid Jewish identity per Mordecai's instruction. Haman plotted to destroy all Jews - Mordecai told Esther. She said 'If I perish, I perish' and risked life approaching king uninvited. King held out golden scepter. She invited king and Haman to banquets. Revealed she was Jewish, Haman's plot to destroy her people. King hanged Haman on gallows prepared for Mordecai. Issued decree allowing Jews to defend themselves. Jews saved, enemies destroyed. Feast of Purim instituted. Book of Esther unique - never mentions God's name but shows His providence.",
+      "scripture": "Book of Esther",
+      "popular_stories": [
+        "Chosen as Queen (Esther 2:1-18)",
+        "Mordecai Saves King (Esther 2:19-23)",
+        "Haman's Plot (Esther 3:1-15)",
+        "For Such a Time as This (Esther 4:14)",
+        "If I Perish, I Perish (Esther 4:16)",
+        "Uninvited Before King (Esther 5:1-3)",
+        "Revealed Jewish Identity (Esther 7:1-6)",
+        "Haman Hanged (Esther 7:9-10)",
+        "Jews Delivered (Esther 8:1-17)"
+      ],
+      "related_figures": ["mordecai", "haman"]
+    },
+    
+    "mordecai": {
+      "name": "Mordecai",
+      "category": "Political Leaders",
+      "time_period": "Persian Empire (5th century BC)",
+      "bio": "Jewish official who saved his people, cousin of Esther. Benjamite, descendant of Kish (like King Saul). Raised orphaned cousin Hadassah (Esther). Sat at king's gate as official. Overheard plot to assassinate King Ahasuerus, reported through Esther - plotters hanged, recorded in chronicles. Refused to bow to Haman. Haman plotted to destroy all Jews. Mordecai told Esther to intervene - 'Who knoweth whether thou art come to the kingdom for such a time as this?' King couldn't sleep, read chronicles, learned Mordecai never rewarded. Haman forced to honor Mordecai. After Haman's fall, Mordecai promoted to second in command. Wrote decree allowing Jews to defend themselves. Established Feast of Purim. 'Accepted of the multitude of his brethren, seeking the wealth of his people.'",
+      "scripture": "Book of Esther",
+      "popular_stories": [
+        "Raised Esther (Esther 2:5-7)",
+        "Saved King from Plot (Esther 2:21-23)",
+        "Refused to Bow to Haman (Esther 3:2-5)",
+        "For Such a Time (Esther 4:13-14)",
+        "Honored by King (Esther 6:1-11)",
+        "Promoted to Power (Esther 8:1-2, 15)",
+        "Wrote Purim Decree (Esther 9:20-32)"
+      ],
+      "related_figures": ["esther", "haman"]
+    },
+    
+    "haman": {
+      "name": "Haman",
+      "category": "Enemies of Israel",
+      "time_period": "Persian Empire (5th century BC)",
+      "bio": "Agagite enemy of the Jews, promoted by King Ahasuerus above all princes. All bowed to him except Mordecai the Jew. Haman full of wrath. Learned Mordecai was Jewish. Sought to destroy all Jews throughout kingdom. Cast pur (lot) to determine date - 13th of Adar. Offered king 10,000 talents of silver. King gave him signet ring, said do as pleased. Sent letters throughout kingdom to destroy Jews. Wife Zeresh and friends advised building 75-foot gallows for Mordecai. King couldn't sleep, read chronicles, learned Mordecai unrewarded. Asked Haman how to honor a man - Haman thought king meant him, suggested elaborate honor. King commanded Haman honor Mordecai thus. At Esther's banquet, she revealed plot. King hanged Haman on his own gallows. Ten sons also hanged.",
+      "scripture": "Book of Esther",
+      "popular_stories": [
+        "Promoted to Power (Esther 3:1)",
+        "Mordecai Refused to Bow (Esther 3:2-5)",
+        "Plot to Destroy Jews (Esther 3:6-15)",
+        "Built Gallows (Esther 5:14)",
+        "Forced to Honor Mordecai (Esther 6:10-12)",
+        "Exposed by Esther (Esther 7:5-6)",
+        "Hanged on Own Gallows (Esther 7:9-10)"
+      ],
+      "related_figures": ["esther", "mordecai"]
+    },
+    
+    "nehemiah": {
+      "name": "Nehemiah",
+      "category": "Political Leaders",
+      "time_period": "Persian Empire (5th century BC)",
+      "bio": "Cupbearer to Persian king, rebuilt Jerusalem's walls. Served King Artaxerxes. Heard Jerusalem walls broken down, gates burned - wept, fasted, prayed. King noticed his sadness. Nehemiah feared but requested to rebuild Jerusalem. King granted, gave letters for safe passage and timber. Arrived Jerusalem, surveyed walls by night. Organized Jews to rebuild. Faced opposition from Sanballat, Tobiah, Geshem - mocked, threatened, plotted. Nehemiah prayed, set guards, armed workers. 'We made our prayer... and set a watch.' Workers built with sword in one hand, trowel in other. Walls completed in 52 days. Enemies feared. Nehemiah governed 12 years, refused governor's allowance. Organized census, reading of law. Opposed intermarriage with pagans. 'Remember me, O my God, for good.'",
+      "scripture": "Book of Nehemiah; Ezra 2:2",
+      "popular_stories": [
+        "Cupbearer's Prayer (Nehemiah 1:1-11)",
+        "King Grants Request (Nehemiah 2:1-8)",
+        "Night Survey of Walls (Nehemiah 2:11-16)",
+        "Let Us Rise and Build (Nehemiah 2:17-20)",
+        "Opposition Faced (Nehemiah 4:1-23)",
+        "Sword and Trowel (Nehemiah 4:17-18)",
+        "Walls Completed (Nehemiah 6:15-16)",
+        "Reading of the Law (Nehemiah 8:1-18)"
+      ],
+      "related_figures": ["ezra", "sanballat"]
+    },
+    
+    "ezra": {
+      "name": "Ezra",
+      "category": "Priests",
+      "time_period": "Persian Empire (5th century BC)",
+      "bio": "Priest and scribe who led return from exile, restored law. Descendant of Aaron through Zadok. Ready scribe in law of Moses. King Artaxerxes commissioned him to teach law in Judah. 'The hand of the LORD his God was upon him.' Led group from Babylon to Jerusalem - journey of 4 months. Fasted, prayed for protection - refused king's soldiers, declared trust in God. Arrived safely with gold, silver, vessels for temple. Discovered Jews had married pagan women - tore clothes, plucked hair, sat astonished. Made passionate prayer of confession. People wept, agreed to put away foreign wives. Made covenant to obey law. With Nehemiah led revival - read law to people, they wept. 'This day is holy... the joy of the LORD is your strength.'",
+      "scripture": "Book of Ezra; Nehemiah 8, 12",
+      "popular_stories": [
+        "Commissioned by King (Ezra 7:1-28)",
+        "Hand of God Upon Him (Ezra 7:6, 9, 28)",
+        "Journey from Babylon (Ezra 8:21-32)",
+        "Intermarriage Problem (Ezra 9:1-4)",
+        "Prayer of Confession (Ezra 9:5-15)",
+        "Covenant to Obey (Ezra 10:1-17)",
+        "Reading the Law (Nehemiah 8:1-12)",
+        "Joy of the Lord (Nehemiah 8:10)"
+      ],
+      "related_figures": ["nehemiah", "zerubbabel"]
+    },
+    
+    "job": {
+      "name": "Job",
+      "category": "Minor Figures",
+      "time_period": "Patriarchal Period (2000-1800 BC)",
+      "bio": "Righteous man who suffered greatly, restored by God. From land of Uz. Perfect and upright, feared God, eschewed evil. Richest man in east - 7 sons, 3 daughters, 7,000 sheep, 3,000 camels, 500 oxen, 500 donkeys, many servants. Satan accused Job of serving God only for blessings. God allowed Satan to test Job. Lost all possessions, all children killed in one day. Job worshipped: 'The LORD gave, and the LORD hath taken away; blessed be the name of the LORD.' Satan smote him with painful boils. Wife said 'Curse God, and die.' Job said 'Shall we receive good at the hand of God, and shall we not receive evil?' Three friends came - Eliphaz, Bildad, Zophar - accused Job of hidden sin. Job maintained innocence, questioned God. God answered from whirlwind. Job repented: 'I abhor myself.' God restored double - 14,000 sheep, 6,000 camels, 1,000 oxen, 1,000 donkeys, 7 sons, 3 daughters. Lived 140 more years.",
+      "scripture": "Book of Job; Ezekiel 14:14, 20; James 5:11",
+      "popular_stories": [
+        "Perfect and Upright (Job 1:1-5)",
+        "Satan's Challenge (Job 1:6-12)",
+        "Lost Everything (Job 1:13-22)",
+        "The Lord Gave (Job 1:21)",
+        "Smitten with Boils (Job 2:7-10)",
+        "Three Friends (Job 2:11-13)",
+        "Why Was I Born? (Job 3:1-26)",
+        "God Answers from Whirlwind (Job 38-41)",
+        "I Abhor Myself (Job 42:1-6)",
+        "Restoration Doubled (Job 42:10-17)"
+      ],
+      "related_figures": ["eliphaz", "bildad", "zophar"]
+    },
+    
+    "balaam": {
+      "name": "Balaam",
+      "category": "False Prophets",
+      "time_period": "Exodus/Conquest (15th-13th century BC)",
+      "bio": "Prophet hired to curse Israel, couldn't. Son of Beor from Pethor in Mesopotamia. Balak king of Moab feared Israel, sent for Balaam to curse them. God told Balaam not to go, don't curse Israel. Princes came with more honor and money. God let him go but be careful. Angel with sword blocked path - donkey saw, turned aside. Balaam struck donkey. Happened three times. Donkey spoke: 'What have I done unto thee?' God opened Balaam's eyes - saw angel. Angel said he would've been killed. Balaam tried four times to curse Israel - each time blessed instead. Prophesied 'there shall come a Star out of Jacob' (Messiah). Later advised Moabites to seduce Israelites into idolatry - caused plague killing 24,000. Balaam killed in battle by Israelites. Represents greed, divination, leading others to sin.",
+      "scripture": "Numbers 22-24, 31:8, 16; Deuteronomy 23:4-5; Joshua 13:22; 2 Peter 2:15; Jude 1:11; Revelation 2:14",
+      "popular_stories": [
+        "Hired to Curse Israel (Numbers 22:1-6)",
+        "God Says Don't Go (Numbers 22:12)",
+        "Angel Blocks Path (Numbers 22:22-35)",
+        "Donkey Speaks (Numbers 22:28-30)",
+        "Blessing Instead of Curse (Numbers 23:7-12)",
+        "Star Out of Jacob (Numbers 24:17)",
+        "Led Israel to Sin (Numbers 31:16)",
+        "Killed in Battle (Numbers 31:8)"
+      ],
+      "related_figures": ["balak"]
+    },
+    
+    "rahab": {
+      "name": "Rahab",
+      "category": "Women of Faith",
+      "time_period": "Conquest of Canaan (15th-13th century BC)",
+      "bio": "Canaanite harlot who hid Israelite spies, saved in Jericho's fall. Lived in house on city wall of Jericho. Joshua sent two spies - she hid them on roof with stalks of flax. King's men searched for spies. Rahab said they left at gate closing, sent pursuers on wild chase. She told spies 'I know that the LORD hath given you the land' - heard how God dried Red Sea, defeated kings. Said 'the LORD your God, he is God in heaven above, and in earth beneath.' Made spies swear to spare her family. Let them down by scarlet cord through window. Told them hide in mountains three days. They said bind scarlet cord in window - all in house with her would be saved. She did so. Israelites marched around Jericho seven days, walls fell. Spies brought Rahab and family out safely. She dwelt in Israel. Married Salmon, bore Boaz - in lineage of David and Jesus. Listed in Hebrews 11 and James 2 as example of faith.",
+      "scripture": "Joshua 2, 6:17-25; Matthew 1:5; Hebrews 11:31; James 2:25",
+      "popular_stories": [
+        "Hid the Spies (Joshua 2:1-7)",
+        "Confession of Faith (Joshua 2:8-11)",
+        "Scarlet Cord (Joshua 2:12-21)",
+        "Jericho Falls (Joshua 6:20-25)",
+        "Saved with Family (Joshua 6:25)",
+        "In Jesus' Lineage (Matthew 1:5)"
+      ],
+      "related_figures": ["joshua", "salmon", "boaz"]
+    },
+    
+    "delilah": {
+      "name": "Delilah",
+      "category": "Enemies of Israel",
+      "time_period": "Period of Judges (12th century BC)",
+      "bio": "Philistine woman who betrayed Samson. From valley of Sorek. Samson loved her. Lords of Philistines each offered her 1,100 pieces of silver to discover source of his strength. She asked Samson daily. First he said bind with seven green withs - she did, Philistines came, he broke them easily. Then fresh ropes - same result. Then weave seven locks of hair - same result. She said 'How canst thou say, I love thee, when thine heart is not with me?' She pressed him daily until 'his soul was vexed unto death.' Finally told her: strength in his hair, never cut, Nazarite to God. She made him sleep on her lap, called man to shave seven locks. His strength left. She said 'The Philistines be upon thee!' He awoke not knowing LORD departed. Philistines took him, gouged eyes, imprisoned him. She received her silver. Represents seduction, betrayal, and love of money over loyalty.",
+      "scripture": "Judges 16:4-22",
+      "popular_stories": [
+        "Bribed by Philistines (Judges 16:4-5)",
+        "Tried to Learn Secret (Judges 16:6-14)",
+        "How Canst Thou Say I Love Thee (Judges 16:15-16)",
+        "Told His Secret (Judges 16:17)",
+        "Shaved His Head (Judges 16:18-19)",
+        "Philistines Captured Him (Judges 16:20-21)"
+      ],
+      "related_figures": ["samson"]
+    },
+    
+    "goliath": {
+      "name": "Goliath",
+      "category": "Enemies of Israel",
+      "time_period": "United Kingdom (11th century BC)",
+      "bio": "Giant Philistine warrior killed by David. From Gath. Height six cubits and span (over 9 feet tall). Wore bronze helmet, coat of mail weighing 5,000 shekels (125 pounds), bronze armor on legs, bronze javelin. Spear staff like weaver's beam, iron spear head weighed 600 shekels (15 pounds). Shield bearer went before him. For 40 days challenged Israel to send champion - winner takes all. Israel terrified. David came with food for brothers, heard Goliath's defiance. Asked 'Who is this uncircumcised Philistine, that he should defy the armies of the living God?' Saul gave David his armor - David removed it, couldn't walk. Took staff, five smooth stones from brook, sling. Goliath disdained him: 'Am I a dog?' David said 'Thou comest to me with sword... I come to thee in the name of the LORD.' Ran toward Goliath, slung stone, struck forehead, fell. David took Goliath's sword, cut off his head. Philistines fled.",
+      "scripture": "1 Samuel 17; 1 Samuel 21:9; 2 Samuel 21:19; 1 Chronicles 20:5",
+      "popular_stories": [
+        "Giant Champion (1 Samuel 17:4-7)",
+        "40 Days Defiance (1 Samuel 17:8-16)",
+        "David Heard Challenge (1 Samuel 17:23-27)",
+        "Who Is This Philistine (1 Samuel 17:26)",
+        "Five Smooth Stones (1 Samuel 17:40)",
+        "Am I a Dog (1 Samuel 17:43-44)",
+        "In Name of the Lord (1 Samuel 17:45-47)",
+        "Stone to Forehead (1 Samuel 17:48-51)"
+      ],
+      "related_figures": ["david", "saul"]
+    },
+    
+    "jonathan": {
+      "name": "Jonathan",
+      "category": "Military Leaders",
+      "time_period": "United Kingdom (11th century BC)",
+      "bio": "Son of King Saul, loyal friend of David. Valiant warrior - attacked Philistine garrison with only armor bearer. Said 'there is no restraint to the LORD to save by many or by few.' God gave great victory. Saul made foolish oath - no eating until evening. Jonathan didn't hear, ate honey, eyes enlightened. People saved him from death. Met David after Goliath - soul knit to David, loved him as own soul. Made covenant, gave robe, armor, sword. Defended David to Saul multiple times. Warned David of Saul's murderous intent. Shot arrows as signal - 'Is not the arrow beyond thee?' David and Jonathan wept together. Jonathan said 'The LORD be between me and thee.' Killed in battle on Mount Gilboa with father and brothers. David lamented: 'I am distressed for thee, my brother Jonathan... thy love to me was wonderful, passing the love of women.' David showed kindness to Jonathan's son Mephibosheth.",
+      "scripture": "1 Samuel 13-14, 18-20, 23, 31; 2 Samuel 1, 9",
+      "popular_stories": [
+        "Attack on Garrison (1 Samuel 14:1-15)",
+        "Honey Incident (1 Samuel 14:24-30, 43-45)",
+        "Covenant with David (1 Samuel 18:1-4)",
+        "Defended David (1 Samuel 19:1-7, 20:1-42)",
+        "Arrow Signal (1 Samuel 20:18-42)",
+        "Killed with Saul (1 Samuel 31:1-6)",
+        "David's Lament (2 Samuel 1:17-27)"
+      ],
+      "related_figures": ["david", "saul", "mephibosheth"]
+    },
+    
+    "saul": {
+      "name": "Saul",
+      "category": "Kings",
+      "time_period": "United Kingdom (11th century BC)",
+      "bio": "First king of Israel, chosen then rejected by God. Benjamite, son of Kish. 'Choice young man, goodly... higher than any of the people from his shoulders upward.' Anointed by Samuel. Spirit of God came upon him, prophesied. Chosen by lot at Mizpeh - hid among stuff. Defeated Ammonites at Jabesh-gilead. Disobeyed at Amalek - spared King Agag and best animals though commanded to destroy all. Samuel said 'To obey is better than sacrifice.' Kingdom torn from him, given to neighbor (David). Evil spirit troubled him - David played harp to soothe. Jealous of David - tried to pin him to wall with javelin twice. Gave daughter Michal to David hoping Philistines would kill him. Pursued David relentlessly. Consulted witch of Endor, Samuel's spirit appeared. Killed in battle on Mount Gilboa. Fell on own sword. Represents disobedience, jealousy, decline from God's favor.",
+      "scripture": "1 Samuel 9-31; 2 Samuel 1; 1 Chronicles 10; Acts 13:21",
+      "popular_stories": [
+        "Anointed by Samuel (1 Samuel 10:1)",
+        "Hidden Among Stuff (1 Samuel 10:20-24)",
+        "Disobedience at Amalek (1 Samuel 15:1-23)",
+        "To Obey Is Better (1 Samuel 15:22)",
+        "Evil Spirit Troubled Him (1 Samuel 16:14-23)",
+        "Jealous of David (1 Samuel 18:6-16)",
+        "Pursued David (1 Samuel 19-26)",
+        "Witch of Endor (1 Samuel 28:3-25)",
+        "Death on Mount Gilboa (1 Samuel 31:1-6)"
+      ],
+      "related_figures": ["samuel", "david", "jonathan"]
+    },
+    
+    "absalom": {
+      "name": "Absalom",
+      "category": "Enemies of Israel",
+      "time_period": "United Kingdom (10th century BC)",
+      "bio": "David's son who rebelled against him. Third son of David, mother Maacah. Very handsome - 'no blemish in him.' Long beautiful hair - cut yearly, weighed 200 shekels. Sister Tamar raped by half-brother Amnon. Absalom hated Amnon, waited two years, then had servants kill Amnon at sheep-shearing feast. Fled to Geshur three years. Joab arranged his return - two years in Jerusalem without seeing David's face. Finally reconciled. Absalom stole hearts of Israel - stood at gate, told people their matters good but no one to hear them. Said 'O that I were made judge in the land!' After four years, asked to go to Hebron - there proclaimed himself king. David fled Jerusalem. Absalom entered Jerusalem, went in to David's concubines on rooftop fulfilling prophecy. War between forces. Absalom riding mule, head caught in oak tree, left hanging. Joab thrust three darts through his heart. David wept: 'O my son Absalom, my son, my son!'",
+      "scripture": "2 Samuel 13-19; 1 Kings 1:6; 2:28",
+      "popular_stories": [
+        "Very Handsome (2 Samuel 14:25-27)",
+        "Avenged Tamar (2 Samuel 13:23-29)",
+        "Fled to Geshur (2 Samuel 13:37-39)",
+        "Stole Hearts of Israel (2 Samuel 15:1-6)",
+        "Proclaimed King (2 Samuel 15:7-12)",
+        "David Fled (2 Samuel 15:13-17)",
+        "Went to Concubines (2 Samuel 16:20-22)",
+        "Caught in Oak Tree (2 Samuel 18:9-15)",
+        "David's Lament (2 Samuel 18:33)"
+      ],
+      "related_figures": ["david", "joab", "amnon"]
+    },
+    
+    "melchizedek": {
+      "name": "Melchizedek",
+      "category": "Priests",
+      "time_period": "Patriarchal Period (2000 BC)",
+      "bio": "Mysterious priest-king who blessed Abraham. King of Salem (Jerusalem), priest of the most high God. Met Abraham returning from defeating kings who captured Lot. Brought bread and wine. Blessed Abraham: 'Blessed be Abram of the most high God... And blessed be the most high God, which hath delivered thine enemies into thy hand.' Abraham gave him tithes of all. Name means 'king of righteousness,' Salem means 'peace' - king of righteousness and peace. No genealogy recorded - 'without father, without mother, without descent, having neither beginning of days, nor end of life.' Type of Christ. Psalm 110: 'Thou art a priest for ever after the order of Melchizedek.' Hebrews explains Jesus is priest after order of Melchizedek - superior to Levitical priesthood. Greater than Abraham - Abraham paid tithes to him.",
+      "scripture": "Genesis 14:18-20; Psalm 110:4; Hebrews 5:6-10, 6:20, 7:1-28",
+      "popular_stories": [
+        "Met Abraham (Genesis 14:18-20)",
+        "Blessed Abraham (Genesis 14:19)",
+        "Abraham's Tithe (Genesis 14:20)",
+        "King of Righteousness and Peace (Hebrews 7:1-2)",
+        "Without Genealogy (Hebrews 7:3)",
+        "Type of Christ (Hebrews 7:11-17)",
+        "Superior Priesthood (Hebrews 7:4-10)"
+      ],
+      "related_figures": ["abraham", "jesus"]
+    },
+    
+    "gehazi": {
+      "name": "Gehazi",
+      "category": "Minor Figures",
+      "time_period": "Kingdom Divided (9th century BC)",
+      "bio": "Servant of Elisha who became leprous through greed. Attended prophet Elisha. When Shunammite woman's son died, Elisha sent Gehazi with his staff to lay on child - no response. Elisha came, raised child. When Naaman healed of leprosy, offered gifts - Elisha refused. Gehazi thought 'My master hath spared Naaman... I will run after him, and take somewhat of him.' Told Naaman Elisha sent him - two young prophets arrived, need talent of silver and two changes of garments. Naaman gave two talents silver, two changes. Gehazi hid them. Elisha asked where he'd been. Gehazi lied: 'Thy servant went no whither.' Elisha said 'Went not mine heart with thee?' Declared leprosy of Naaman would cleave to Gehazi and his seed forever. He went out leprous, white as snow. Later advised king about Elisha's miracles, identified Shunammite woman. Represents greed, deception, and consequences of sin.",
+      "scripture": "2 Kings 4:8-37, 5:15-27, 8:1-6",
+      "popular_stories": [
+        "Sent to Shunammite's Son (2 Kings 4:29-31)",
+        "Naaman's Healing (2 Kings 5:15-19)",
+        "Ran After Naaman (2 Kings 5:20-24)",
+        "Lied to Elisha (2 Kings 5:25)",
+        "Struck with Leprosy (2 Kings 5:26-27)",
+        "Told of Miracles (2 Kings 8:4-6)"
+      ],
+      "related_figures": ["elisha", "naaman"]
+    },
+    
+    "ananias_sapphira": {
+      "name": "Ananias and Sapphira",
+      "category": "Disciples",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "Couple who lied to Holy Spirit and died. Early Jerusalem church - believers had all things common, sold possessions, brought money to apostles. Ananias and Sapphira sold land. Kept back part of price, wife knowing it, brought portion to apostles as if it were all. Peter said 'Ananias, why hath Satan filled thine heart to lie to the Holy Ghost?' Not required to sell or give all - could keep it. 'Thou hast not lied unto men, but unto God.' Ananias fell down, died. Young men carried him out, buried. Three hours later Sapphira came, not knowing. Peter asked if sold land for certain price. She said yes. Peter said 'How is it that ye have agreed together to tempt the Spirit of the Lord?' She fell down, died. Great fear came on church. Represents hypocrisy, lying to God, testing Holy Spirit, and God's holiness in the church.",
+      "scripture": "Acts 5:1-11",
+      "popular_stories": [
+        "Sold Land, Kept Part (Acts 5:1-2)",
+        "Lied to Holy Spirit (Acts 5:3-4)",
+        "Ananias Died (Acts 5:5-6)",
+        "Sapphira Came (Acts 5:7-8)",
+        "Agreed to Tempt Spirit (Acts 5:9)",
+        "Sapphira Died (Acts 5:10)",
+        "Great Fear (Acts 5:11)"
+      ],
+      "related_figures": ["peter", "barnabas"]
+    },
+    
+    "simon_sorcerer": {
+      "name": "Simon the Sorcerer",
+      "category": "False Prophets",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "Sorcerer in Samaria who tried to buy Holy Spirit's power. Used sorcery, bewitched people of Samaria. Gave himself out as 'some great one' - people said 'This man is the great power of God.' Philip preached Christ in Samaria, performed miracles. People believed, baptized. Simon also believed, baptized. Continued with Philip, amazed at miracles. Peter and John came, laid hands on believers - they received Holy Spirit. Simon saw Spirit given through laying on hands. Offered money: 'Give me also this power, that on whomsoever I lay hands, he may receive the Holy Ghost.' Peter said 'Thy money perish with thee... thy heart is not right in the sight of God... thou art in the gall of bitterness, and in the bond of iniquity.' Simon begged 'Pray ye to the Lord for me.' Source of word 'simony' - buying/selling church offices. Represents false profession, love of power/position, attempting to buy God's gifts.",
+      "scripture": "Acts 8:9-24",
+      "popular_stories": [
+        "Bewitched Samaria (Acts 8:9-11)",
+        "Believed and Baptized (Acts 8:12-13)",
+        "Amazed at Miracles (Acts 8:13)",
+        "Saw Spirit Given (Acts 8:14-17)",
+        "Offered Money (Acts 8:18-19)",
+        "Money Perish with Thee (Acts 8:20-23)",
+        "Pray for Me (Acts 8:24)"
+      ],
+      "related_figures": ["philip_deacon", "peter", "john"]
+    },
+    
+    "onesimus": {
+      "name": "Onesimus",
+      "category": "Disciples",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "Runaway slave converted by Paul, sent back to master. Slave of Philemon in Colossae. Ran away, possibly stole from master. Met Paul in Rome during Paul's imprisonment. Converted - Paul called him 'my son Onesimus, whom I have begotten in my bonds.' Name means 'profitable' - Paul said he was unprofitable before but now profitable. Served Paul in prison. Paul loved him but sent him back to Philemon with letter (Epistle to Philemon). Letter asked Philemon receive Onesimus as brother in Christ, not just slave. 'If he hath wronged thee, or oweth thee ought, put that on mine account.' Paul hoped Philemon would free him, send him back to serve Paul. Paul said 'knowing that thou wilt also do more than I say.' Tradition says Philemon freed him, later became bishop. Represents redemption, transformation, reconciliation, Christian brotherhood transcending social status.",
+      "scripture": "Philemon 1:10-21; Colossians 4:7-9",
+      "popular_stories": [
+        "Runaway Slave (Philemon 1:15-16)",
+        "Converted in Prison (Philemon 1:10)",
+        "My Son Onesimus (Philemon 1:10)",
+        "Unprofitable Now Profitable (Philemon 1:11)",
+        "Sent Back with Letter (Philemon 1:12)",
+        "Receive as Brother (Philemon 1:15-16)",
+        "Put on My Account (Philemon 1:18-19)"
+      ],
+      "related_figures": ["philemon", "paul", "tychicus"]
+    },
+    
+    "philemon": {
+      "name": "Philemon",
+      "category": "Disciples",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "Christian slave owner who received runaway slave Onesimus back. From Colossae. Wealthy - church met in his house. Paul called him 'dearly beloved, and fellowlabourer.' Paul heard of his love and faith toward Lord Jesus and all saints. His love refreshed saints' hearts. Slave Onesimus ran away. Paul converted Onesimus in Rome, sent him back with letter. Letter asked Philemon receive Onesimus not as slave but as 'a brother beloved.' Paul offered to repay anything Onesimus owed. Reminded Philemon he owed Paul his own salvation. Confident Philemon would do even more than asked - likely meaning free Onesimus. Prepared lodging for Paul, hoped to visit. Epistle shows how gospel transforms relationships - slave and master become brothers. Represents Christian love, forgiveness, gracious reception, faith putting Christianity into practice.",
+      "scripture": "Book of Philemon; Colossians 4:9",
+      "popular_stories": [
+        "Church in His House (Philemon 1:2)",
+        "Love and Faith (Philemon 1:4-7)",
+        "Refreshed the Saints (Philemon 1:7)",
+        "Received Onesimus Back (Philemon 1:15-17)",
+        "Brother Beloved (Philemon 1:16)",
+        "Paul's Confidence (Philemon 1:21)"
+      ],
+      "related_figures": ["onesimus", "paul", "apphia"]
+    },
+    
+    "gamaliel": {
+      "name": "Gamaliel",
+      "category": "Priests",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "Respected Pharisee teacher, gave wise counsel. Doctor of law, had reputation among all people. Paul's teacher - 'brought up... at the feet of Gamaliel, taught according to the perfect manner of the law.' When apostles arrested for preaching Jesus, council wanted to kill them. Gamaliel commanded put apostles outside briefly. Gave wise speech: Remember Theudas who claimed to be somebody - about 400 joined him, he was slain, followers dispersed, came to nothing. After him Judas of Galilee in days of taxing - he perished, followers scattered. 'And now I say unto you, Refrain from these men, and let them alone: for if this counsel or this work be of men, it will come to nought: But if it be of God, ye cannot overthrow it; lest haply ye be found even to fight against God.' Council took his advice, beat apostles, released them. Represents wisdom, tolerance, recognition that truth will prevail.",
+      "scripture": "Acts 5:34-40, 22:3",
+      "popular_stories": [
+        "Paul's Teacher (Acts 22:3)",
+        "Apostles Arrested (Acts 5:17-18, 27-33)",
+        "Commanded Privacy (Acts 5:34)",
+        "Examples of Failed Movements (Acts 5:36-37)",
+        "If It Be of God (Acts 5:38-39)",
+        "Council Agreed (Acts 5:40)"
+      ],
+      "related_figures": ["paul", "peter"]
+    },
+    
+    "demas": {
+      "name": "Demas",
+      "category": "Disciples",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "Fellow worker who later forsook Paul. Worked with Paul - mentioned with Luke in letter to Philemon as 'fellowlabourer.' Also with Paul during first Roman imprisonment, sent greetings to Colossians. Later, during Paul's final imprisonment, forsook him. Paul wrote sadly to Timothy: 'Demas hath forsaken me, having loved this present world, and is departed unto Thessalonica.' Contrast with Luke who stayed. No explanation why he left - whether persecution, worldliness, discouragement. Paul didn't accuse him of apostasy, just said he loved this world. Departed to Thessalonica. Nothing more known of him. Represents believers who start well but don't finish, love of world, leaving ministry under pressure, disappointing those who mentored them. Warning example in Scripture alongside faithful examples like Luke and Timothy.",
+      "scripture": "Colossians 4:14; Philemon 1:24; 2 Timothy 4:10",
+      "popular_stories": [
+        "Fellow Worker (Philemon 1:24)",
+        "With Paul in Prison (Colossians 4:14)",
+        "Forsook Paul (2 Timothy 4:10)",
+        "Loved This World (2 Timothy 4:10)",
+        "Went to Thessalonica (2 Timothy 4:10)"
+      ],
+      "related_figures": ["paul", "luke", "timothy"]
+    },
+    
+    "epaphras": {
+      "name": "Epaphras",
+      "category": "Disciples",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "Faithful minister who founded church at Colossae. From Colossae. Fellow servant with Paul, faithful minister of Christ. Brought gospel to Colossae - church learned of Christ through him. Declared to Colossians the love they had in the Spirit. Came to Paul (probably in Rome) with report of church. Paul commended him highly. 'Always labouring fervently for you in prayers, that ye may stand perfect and complete in all the will of God.' Paul testified he had great zeal for believers in Colossae, Laodicea, and Hierapolis. Shared Paul's imprisonment - 'Epaphras, my fellowprisoner in Christ Jesus.' Represents faithful ministry, fervent prayer, concern for believers' spiritual maturity, willingness to suffer for Christ. Model of pastor's heart and intercessory prayer.",
+      "scripture": "Colossians 1:7-8, 4:12-13; Philemon 1:23",
+      "popular_stories": [
+        "Brought Gospel to Colossae (Colossians 1:7)",
+        "Faithful Minister (Colossians 1:7)",
+        "Reported Their Love (Colossians 1:8)",
+        "Labored in Prayer (Colossians 4:12)",
+        "Zeal for Three Churches (Colossians 4:13)",
+        "Fellow Prisoner (Philemon 1:23)"
+      ],
+      "related_figures": ["paul", "tychicus"]
+    },
+    
+    "phoebe": {
+      "name": "Phoebe",
+      "category": "Women of Faith",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "Deaconess who delivered Paul's letter to Romans. From Cenchrea, port city near Corinth. Servant (deaconess) of the church. Paul commended her to Romans: 'I commend unto you Phoebe our sister, which is a servant of the church which is at Cenchrea.' Asked them 'receive her in the Lord, as becometh saints, and that ye assist her in whatsoever business she hath need of you.' Reason: 'for she hath been a succourer of many, and of myself also.' Likely carried Paul's epistle to Romans from Corinth to Rome - important task requiring trustworthy person. Word 'succourer' (prostatis) means helper, patron, protector - suggests she was wealthy, used resources to help others. First woman called deacon in Scripture. Represents women in ministry, servant leadership, generosity, trustworthiness, importance of supporting ministers.",
+      "scripture": "Romans 16:1-2",
+      "popular_stories": [
+        "Servant of Church (Romans 16:1)",
+        "Commended to Romans (Romans 16:1-2)",
+        "Receive Her in the Lord (Romans 16:2)",
+        "Succourer of Many (Romans 16:2)",
+        "Likely Carried Epistle (Romans 16:1-2)"
+      ],
+      "related_figures": ["paul", "priscilla"]
+    },
+    
+    "eutychus": {
+      "name": "Eutychus",
+      "category": "Minor Figures",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "Young man who fell from window during Paul's sermon, raised from dead. In Troas. Paul preached in upper room (third story) on Sunday, ready to depart next day. Many lights in room. Paul continued speech until midnight. Eutychus sat in window. 'Being fallen into a deep sleep' as Paul 'was long preaching, he sunk down with sleep.' Fell down from third story. Taken up dead. Paul went down, fell on him, embraced him, said 'Trouble not yourselves; for his life is in him.' Young man alive. They brought him, were comforted. Paul continued talking until daybreak, then departed. Story shows Paul's ministry style (long preaching), danger of sleeping in church (literally!), God's power to raise dead, and Paul like Elijah/Elisha performing such miracles. Humor in fact young man fell asleep during apostle's sermon. Represents God's mercy and power over death.",
+      "scripture": "Acts 20:7-12",
+      "popular_stories": [
+        "Paul Preached Long (Acts 20:7-9)",
+        "Sat in Window (Acts 20:9)",
+        "Fell Asleep (Acts 20:9)",
+        "Fell from Third Story (Acts 20:9)",
+        "Taken Up Dead (Acts 20:9)",
+        "Paul Raised Him (Acts 20:10)",
+        "They Were Comforted (Acts 20:12)"
+      ],
+      "related_figures": ["paul"]
+    },
+    
+    "felix": {
+      "name": "Felix (Antonius Felix)",
+      "category": "Political Leaders",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "Roman governor who kept Paul imprisoned. Procurator of Judea 52-60 AD. Married Drusilla, Jewish woman (daughter of Herod Agrippa I). Paul brought before him by Tertullus who accused Paul. Paul defended himself. Felix had 'more perfect knowledge of that way' (Christianity). Deferred judgment, told centurion keep Paul but let him have liberty, friends could visit. Called for Paul often, heard him about faith in Christ. As Paul reasoned of righteousness, temperance, and judgment to come, Felix trembled, said 'Go thy way for this time; when I have a convenient season, I will call for thee.' Hoped Paul would bribe him. Communed with Paul often. After two years, replaced by Festus. To please Jews, left Paul bound. Represents procrastination in salvation, love of money, hearing truth but not acting, political expediency over justice.",
+      "scripture": "Acts 23:24-24:27",
+      "popular_stories": [
+        "Paul Brought Before Him (Acts 24:1-9)",
+        "Paul's Defense (Acts 24:10-21)",
+        "Deferred Judgment (Acts 24:22)",
+        "Heard About Faith (Acts 24:24)",
+        "Felix Trembled (Acts 24:25)",
+        "Hoped for Bribe (Acts 24:26)",
+        "Left Paul Bound (Acts 24:27)"
+      ],
+      "related_figures": ["paul", "festus", "drusilla"]
+    },
+    
+    "festus": {
+      "name": "Festus (Porcius Festus)",
+      "category": "Political Leaders",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "Roman governor who heard Paul's appeal to Caesar. Succeeded Felix as procurator of Judea around 60 AD. Three days after arriving in province, went to Jerusalem. Chief priests informed him against Paul, asked him brought to Jerusalem (planned ambush). Festus said Paul kept at Caesarea, he'd return there soon. Accusers came, made many serious charges they couldn't prove. Paul denied wrongdoing. Festus, willing to please Jews, asked if Paul would go to Jerusalem for trial. Paul said 'I stand at Caesar's judgment seat... I appeal unto Caesar.' Festus conferred with council: 'Hast thou appealed unto Caesar? unto Caesar shalt thou go.' King Agrippa visited. Festus explained Paul's case. Agrippa wanted to hear Paul. Next day, great pomp, Paul brought. After hearing, Agrippa said to Festus 'This man might have been set at liberty, if he had not appealed unto Caesar.' Represents political pragmatism, recognizing innocence but unwilling to act justly.",
+      "scripture": "Acts 24:27-26:32",
+      "popular_stories": [
+        "Succeeded Felix (Acts 24:27)",
+        "Jews Accused Paul (Acts 25:1-7)",
+        "Appeal to Caesar (Acts 25:8-12)",
+        "Consulted Agrippa (Acts 25:13-22)",
+        "Paul Before Agrippa (Acts 25:23-26:32)",
+        "Could Have Been Freed (Acts 26:32)"
+      ],
+      "related_figures": ["paul", "felix", "agrippa"]
+    },
+    
+    "agrippa": {
+      "name": "Agrippa II (Herod Agrippa II)",
+      "category": "Political Leaders",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "King before whom Paul testified. Son of Herod Agrippa I, great-grandson of Herod the Great. King over territories in northern Palestine. Came with sister Bernice to visit Festus. Festus explained Paul's case - accusers brought no charges Festus expected, instead questions about their religion and 'one Jesus, which was dead, whom Paul affirmed to be alive.' Agrippa said 'I would also hear the man myself.' Next day came with great pomp. Paul brought. Agrippa said 'Thou art permitted to speak for thyself.' Paul gave defense, testimony of conversion, preaching to Gentiles. Spoke of prophets and Moses. Festus said 'Paul, thou art beside thyself; much learning doth make thee mad.' Paul said 'I am not mad... King Agrippa, believest thou the prophets? I know that thou believest.' Agrippa said 'Almost thou persuadest me to be a Christian.' Agrippa and Bernice agreed Paul had done nothing worthy of death, could have been freed if hadn't appealed to Caesar.",
+      "scripture": "Acts 25:13-26:32",
+      "popular_stories": [
+        "Visited Festus (Acts 25:13)",
+        "Heard About Paul (Acts 25:14-22)",
+        "Wanted to Hear Paul (Acts 25:22)",
+        "Great Pomp (Acts 25:23)",
+        "Paul's Defense (Acts 26:1-23)",
+        "Almost Persuaded (Acts 26:24-28)",
+        "Paul Could Have Been Freed (Acts 26:30-32)"
+      ],
+      "related_figures": ["paul", "festus", "bernice"]
+    },
+    
+    "onesiphorus": {
+      "name": "Onesiphorus",
+      "category": "Disciples",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "Faithful friend who searched for Paul in prison. From Ephesus. Paul wrote to Timothy: 'The Lord give mercy unto the house of Onesiphorus; for he oft refreshed me, and was not ashamed of my chain.' When Paul imprisoned in Rome, Onesiphorus 'sought me out very diligently, and found me.' Not easy task - had to search Roman prisons to find him. Wasn't ashamed of Paul's chains when others might avoid imprisoned friend. Previously ministered to Paul in Ephesus - Timothy knew well how much he served there. Paul prayed for him twice: 'The Lord grant unto him that he may find mercy of the Lord in that day' (judgment day). Paul sent greetings to his household. May have died by time of letter (explains references to household not him personally, and prayers for mercy 'in that day'). Represents loyal friendship, courage in visiting imprisoned, not ashamed of persecuted believers, faithful service.",
+      "scripture": "2 Timothy 1:16-18, 4:19",
+      "popular_stories": [
+        "Refreshed Paul (2 Timothy 1:16)",
+        "Not Ashamed of Chain (2 Timothy 1:16)",
+        "Searched for Paul (2 Timothy 1:17)",
+        "Found Him in Rome (2 Timothy 1:17)",
+        "Served in Ephesus (2 Timothy 1:18)",
+        "Paul's Prayer for Him (2 Timothy 1:18)"
+      ],
+      "related_figures": ["paul", "timothy"]
+    },
+    
+    "eunice": {
+      "name": "Eunice",
+      "category": "Women of Faith",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "Timothy's mother, woman of sincere faith. Jewish believer in Lystra. Married to Greek man. Daughter of Lois, also believer. Raised Timothy in Scriptures from childhood. Paul commended her faith: 'When I call to remembrance the unfeigned faith that is in thee, which dwelt first in thy grandmother Lois, and thy mother Eunice; and I am persuaded that in thee also.' Her teaching paid off - Timothy became great minister. Showed importance of mothers teaching children God's Word. Though married to unbeliever, faithfully raised son in the faith. Paul reminded Timothy 'from a child thou hast known the holy scriptures, which are able to make thee wise unto salvation.' Represents faithful motherhood, teaching children Scripture, sincere faith passed to next generation, successful single parent (spiritually) in mixed marriage.",
+      "scripture": "Acts 16:1; 2 Timothy 1:5, 3:14-15",
+      "popular_stories": [
+        "Jewish Believer (Acts 16:1)",
+        "Married to Greek (Acts 16:1)",
+        "Unfeigned Faith (2 Timothy 1:5)",
+        "Taught Timothy Scriptures (2 Timothy 3:14-15)",
+        "Faith from Childhood (2 Timothy 3:15)"
+      ],
+      "related_figures": ["timothy", "lois"]
+    },
+    
+    "lois": {
+      "name": "Lois",
+      "category": "Women of Faith",
+      "time_period": "New Testament (1st century AD)",
+      "bio": "Timothy's grandmother, woman of sincere faith. Jewish believer in Lystra. Mother of Eunice, grandmother of Timothy. Paul commended her faith along with Eunice's: 'the unfeigned faith that is in thee, which dwelt first in thy grandmother Lois, and thy mother Eunice.' Her faith came first chronologically - she taught Eunice, Eunice taught Timothy. Three generations of faithful women. Though Scripture says little about her, her influence massive - grandson became Paul's closest companion and pastor of Ephesus. Represents godly grandmothers, multi-generational faith, legacy of teaching God's Word, influence of older women on family. Her unfeigned (sincere, genuine) faith set pattern for daughter and grandson. Shows importance of grandparents in spiritual formation of children.",
+      "scripture": "2 Timothy 1:5",
+      "popular_stories": [
+        "Grandmother of Timothy (2 Timothy 1:5)",
+        "Unfeigned Faith (2 Timothy 1:5)",
+        "Faith Passed to Eunice (2 Timothy 1:5)",
+        "Faith Passed to Timothy (2 Timothy 1:5)",
+        "Three Generations (2 Timothy 1:5)"
+      ],
+      "related_figures": ["eunice", "timothy"]
     }
   }
 }
