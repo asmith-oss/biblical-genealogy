@@ -189,11 +189,11 @@
           <h3>${f.name}</h3>
           <p><strong>Category:</strong> ${f.category}</p>
           <p><strong>Period:</strong> ${f.time_period}</p>
-          <button class="view-btn">View Details</button>
         `;
 
-        card.querySelector('.view-btn').addEventListener('click', () => showFigureModal(f));
-        grid.appendChild(card);
+        
+        card.addEventListener('click', () => showFigureModal(f));
+      grid.appendChild(card);
       });
     }
 
